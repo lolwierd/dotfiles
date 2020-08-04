@@ -1,3 +1,4 @@
+
 syntax on
 " Show line number
 set number
@@ -82,4 +83,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'christoomey/vim-conflicted'
 Plug 'tpope/vim-rhubarb'
 Plug 'neovimhaskell/haskell-vim'
+Plug 'google/vim-maktaba'
+Plug 'google/vim-codefmt'
+Plug 'google/vim-glaive'
+Plug 'lpenz/vim-codefmt-haskell'
 call plug#end()
