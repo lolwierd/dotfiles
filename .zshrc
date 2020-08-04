@@ -1,4 +1,5 @@
 
+ export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -f -g \"\""
 # If you come from bash you might have to change your $PATH.
  export PATH=$HOME/bin:/usr/local/bin:$PATH
  export PATH=$HOME/Library/flutter/bin:$PATH

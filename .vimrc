@@ -66,10 +66,20 @@ noremap <Leader>tn :tabnext<CR>
 noremap <Leader>tp :tabprevious<CR>
 " Quickly source .vimrc
 nnoremap <leader>r :source $MYVIMRC<CR>
+nmap <Leader>gs :Gstatus<cr>
+nmap <Leader>gc :Gcommit -v<cr>
+nmap <Leader>ga :Git add -p<cr>
+nmap <Leader>gp :Gpush<cr>
+nmap <Leader>gd :Gdiff<cr>
+nmap <Leader>gw :Gwrite<cr>
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-fugitive'
+Plug 'christoomey/vim-conflicted'
+Plug 'tpope/vim-rhubarb'
+Plug 'neovimhaskell/haskell-vim'
 call plug#end()

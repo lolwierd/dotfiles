@@ -1,0 +1,24 @@
+[user]
+	name = Ayaan
+	email = ayaan.180410107098@gmail.com
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[core]
+	autocrlf = input
+	excludesfile = /Users/ayaan/.gitignore_global
+	precomposeUnicode = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Users/ayaan/Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/ayaan/.stCommitMsg
+[color]
+	ui = true
+[alias]
+	conflicted = !vim +Conflicted
