@@ -20,11 +20,7 @@ set shiftround
 set shiftwidth=2
 set mouse=a
 map <C-n> :NERDTreeToggle<CR>
-map <S-f> :Files<CR>
-nnoremap <Left>  :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up>    :echoe "Use k"<CR>
-nnoremap <Down>  :echoe "Use j"<CR>
+map <leader>f :Files<CR>
 " Enable Highlight Search
 set hlsearch
 " Highlight while search
@@ -88,3 +84,14 @@ Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
 Plug 'lpenz/vim-codefmt-haskell'
 call plug#end()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<tab>" :
+      \ coc#refresh()
+inoremap <silent><expr> <c-space> coc#refresh()
