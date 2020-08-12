@@ -1,4 +1,4 @@
-
+set nocompatible
 syntax on
 " Show line number
 set number
@@ -83,8 +83,32 @@ Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
 Plug 'lpenz/vim-codefmt-haskell'
+Plug 'romainl/vim-cool' 
+Plug 'mhinz/vim-startify'
+Plug 'roxma/vim-tmux-clipboard'
+Plug 'patstockwell/vim-monokai-tasty'
 call plug#end()
+colorscheme vim-monokai-tasty
+let g:lightline = {
+      \ 'colorscheme': 'monokai_tasty',
+      \ }
+" Remove newbie crutches in Insert Mode
+inoremap <Down> <Nop>
+inoremap <Left> <Nop>
+inoremap <Right> <Nop>
+inoremap <Up> <Nop>
 
+" Remove newbie crutches in Normal Mode
+nnoremap <Down> <Nop>
+nnoremap <Left> <Nop>
+nnoremap <Right> <Nop>
+nnoremap <Up> <Nop>
+
+" Remove newbie crutches in Visual Mode
+vnoremap <Down> <Nop>
+vnoremap <Left> <Nop>
+vnoremap <Right> <Nop>
+vnoremap <Up> <Nop>
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
