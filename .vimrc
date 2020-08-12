@@ -6,6 +6,7 @@ set number
 set relativenumber
 nnoremap B ^
 nnoremap E $
+imap jk <Esc>
 filetype plugin indent on
 " On pressing tab, insert 2 spaces
 set expandtab
