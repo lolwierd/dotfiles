@@ -1,4 +1,4 @@
-set nocompatible
+" Remapped CAPSLOCK to <Esc>
 syntax on
 " Show line number
 set number
@@ -6,7 +6,6 @@ set number
 set relativenumber
 nnoremap B ^
 nnoremap E $
-imap jk <Esc>
 filetype plugin indent on
 " On pressing tab, insert 2 spaces
 set expandtab
