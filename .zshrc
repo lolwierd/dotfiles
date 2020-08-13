@@ -1,13 +1,15 @@
-
- export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -f -g \"\""
+export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -f -g \"\""
 # If you come from bash you might have to change your $PATH.
- export PATH=$HOME/bin:/usr/local/bin:$PATH
- export PATH=$HOME/Library/flutter/bin:$PATH
- export PATH=$HOME/Library/Android/sdk/platform-tools:$PATH
- export PATH=/opt/miniconda3/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/Library/flutter/bin:$PATH
+export PATH=$HOME/Library/Android/sdk/platform-tools:$PATH
+export PATH=/opt/miniconda3/bin:$PATH
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/ayaan/.oh-my-zsh"
 export TERM=xterm-256color
+
+#Good vim emulation plugin for zsh.
+source "$HOME/.oh-my-zsh/custom/plugins/zsh-vim-mode/zsh-vim-mode.plugin.zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -137,3 +139,5 @@ fi
 
 eval "$(starship init zsh)"
 [ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
+# Make everything vim. Fuck it going all in.
+bindkey -v
