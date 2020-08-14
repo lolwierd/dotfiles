@@ -26,6 +26,10 @@ nnoremap <leader>- <C-w>s
 " Better mapping for kill-pane
 nnoremap <C-w>x <C-w>c
 map <C-n> :NERDTreeToggle<CR>
+vmap ++ <plug>NERDCommenterToggle
+nmap ++ <plug>NERDCommenterToggle
+" Close NERDTree if it is the only pane open.
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 map <leader>f :Files<CR>
 " Enable Highlight Search
 set hlsearch
@@ -91,20 +95,16 @@ Plug 'lpenz/vim-codefmt-haskell'
 Plug 'romainl/vim-cool' 
 Plug 'mhinz/vim-startify'
 Plug 'roxma/vim-tmux-clipboard'
-Plug 'patstockwell/vim-monokai-tasty'
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'thosakwe/vim-flutter'
+Plug 'preservim/nerdcommenter'
+Plug 'tpope/vim-surround'
 call plug#end()
-colorscheme vim-monokai-tasty
-let g:lightline = {
-      \ 'colorscheme': 'monokai_tasty',
-      \ }
 " coc config
 let g:coc_global_extensions = [
       \'coc-snippets',
       \'coc-pairs',
       \]
-
 
 "Remove newbie crutches in Insert Mode
 inoremap <Down> <Nop>

@@ -8,9 +8,6 @@ export PATH=/opt/miniconda3/bin:$PATH
 export ZSH="/Users/ayaan/.oh-my-zsh"
 export TERM=xterm-256color
 
-#Good vim emulation plugin for zsh.
-source "$HOME/.oh-my-zsh/custom/plugins/zsh-vim-mode/zsh-vim-mode.plugin.zsh"
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
