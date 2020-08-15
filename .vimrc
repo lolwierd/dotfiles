@@ -20,7 +20,7 @@ set shiftround
 " Set auto indent spacing.
 set shiftwidth=2
 set mouse=a
-" Tmux inspired defaults for panes.
+" Tmux inspired defaults for panes/windows.
 nnoremap <leader><bar> <C-w>v
 nnoremap <leader>- <C-w>s
 " Better mapping for kill-pane
@@ -83,7 +83,6 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-fugitive'
 Plug 'christoomey/vim-conflicted'
 Plug 'tpope/vim-rhubarb'
@@ -91,7 +90,6 @@ Plug 'neovimhaskell/haskell-vim'
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
-Plug 'lpenz/vim-codefmt-haskell'
 Plug 'romainl/vim-cool' 
 Plug 'mhinz/vim-startify'
 Plug 'roxma/vim-tmux-clipboard'
@@ -99,6 +97,12 @@ Plug 'dart-lang/dart-vim-plugin'
 Plug 'thosakwe/vim-flutter'
 Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-surround'
+Plug 'unblevable/quick-scope'
+Plug 'matze/vim-move'
+Plug 'camspiers/animate.vim'
+Plug 'camspiers/lens.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 " coc config
 let g:coc_global_extensions = [
@@ -106,8 +110,8 @@ let g:coc_global_extensions = [
       \'coc-pairs',
       \]
 
-"Remove newbie crutches in Insert Mode
 inoremap <Down> <Nop>
+"Remove newbie crutches in Insert Mode
 inoremap <Left> <Nop>
 inoremap <Right> <Nop>
 inoremap <Up> <Nop>
@@ -184,3 +188,16 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
+"For quickscope
+highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
+"Set the move modifier to C as A is reserved for tmux pane navigation
+let g:move_key_modifier = 'C'
+let s:hidden_all=0
+nnoremap <silent> <Leader>h :call ToggleHideAll()<CR>
+"Remove the extranous padding from bottom after commandline
+:set cmdheight=1
+"Airline specific config
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+
