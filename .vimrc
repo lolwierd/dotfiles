@@ -92,7 +92,6 @@ Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
 Plug 'romainl/vim-cool' 
 Plug 'mhinz/vim-startify'
-Plug 'roxma/vim-tmux-clipboard'
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'thosakwe/vim-flutter'
 Plug 'preservim/nerdcommenter'
@@ -101,6 +100,7 @@ Plug 'unblevable/quick-scope'
 Plug 'matze/vim-move'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'psliwka/vim-smoothie'
 call plug#end()
 " coc config
 let g:coc_global_extensions = [
@@ -134,8 +134,7 @@ autocmd VimLeave * call system("tmux rename-window zsh")
 " TextEdit might fail if hidden is not set.
 set hidden
 " Some servers have issues with backup files, see #649.
-set nobackup
-set nowritebackup
+set nobackup nowritebackup noswapfile
 " Give more space for displaying messages.
 set cmdheight=2
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
