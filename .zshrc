@@ -4,6 +4,7 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/Library/flutter/bin:$PATH
 export PATH=$HOME/Library/Android/sdk/platform-tools:$PATH
 export PATH=/opt/miniconda3/bin:$PATH
+export PATH=/Users/ayaan/Library/Android/sdk/build-tools/29.0.2:$PATH
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/ayaan/.oh-my-zsh"
 export TERM=xterm-256color

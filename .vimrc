@@ -99,8 +99,6 @@ Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'unblevable/quick-scope'
 Plug 'matze/vim-move'
-Plug 'camspiers/animate.vim'
-Plug 'camspiers/lens.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 call plug#end()
@@ -195,9 +193,8 @@ highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=und
 let g:move_key_modifier = 'C'
 let s:hidden_all=0
 nnoremap <silent> <Leader>h :call ToggleHideAll()<CR>
-"Remove the extranous padding from bottom after commandline
-:set cmdheight=1
 "Airline specific config
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-
+"Remove the extranous padding from bottom after commandline
+:set cmdheight=1
