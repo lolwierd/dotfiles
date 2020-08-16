@@ -70,7 +70,7 @@ noremap <Leader>tN :tabnext<CR>
 " Easily go to previous tab.
 noremap <Leader>tP :tabprevious<CR>
 " Quickly source .vimrc
-nnoremap <leader>r :source $MYVIMRC<CR>
+nnoremap <leader>r :source ~/.config/nvim/init.vim<CR>
 nmap <Leader>gs :Gstatus<cr>
 nmap <Leader>gb :Git branch<cr>
 nmap <Leader>gc :Gcommit -v<cr>

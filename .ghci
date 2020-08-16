@@ -1,0 +1,2 @@
+:set prompt  "Haskell \ESC[38;5;208m\STX\x03BB\ESC[m\STX: "
+:set prompt-cont  "   | "
