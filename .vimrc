@@ -5,6 +5,8 @@ set number
 " Set relative number by default
 set relativenumber
 set encoding=UTF-8
+set wrap
+set linebreak
 nnoremap B ^
 nnoremap E $
 filetype plugin indent on
@@ -101,18 +103,13 @@ Plug 'matze/vim-move'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'psliwka/vim-smoothie'
+Plug 'junegunn/goyo.vim'
 call plug#end()
 " coc config
 let g:coc_global_extensions = [
       \'coc-snippets',
       \'coc-pairs',
       \]
-
-inoremap <Down> <Nop>
-"Remove newbie crutches in Insert Mode
-inoremap <Left> <Nop>
-inoremap <Right> <Nop>
-inoremap <Up> <Nop>
 
 " Remove newbie crutches in Normal Mode
 nnoremap <Down> <Nop>
@@ -163,8 +160,8 @@ if exists('*complete_info')
 else
   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+xmap <leader>a  <Plug>(coc-codeaction-selected)<CR>
+nmap <leader>a  <Plug>(coc-codeaction-selected)<CR>
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -197,3 +194,12 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 "Remove the extranous padding from bottom after commandline
 :set cmdheight=1
+"COC extensions.
+"coc-flutter
+"coc-json
+"coc-pairs
+"coc-prettier
+"coc-python
+"coc-snippets
+"coc-spell-checker
+"coc-tsserver
