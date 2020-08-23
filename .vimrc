@@ -1,4 +1,6 @@
 " Remapped CAPSLOCK to <Esc>
+"Autoreload a buffer when a file changes
+set autoread
 syntax on
 " Show line number
 set number
@@ -76,22 +78,25 @@ nnoremap <leader>r :source ~/.config/nvim/init.vim<CR>
 nmap <Leader>gs :Gstatus<cr>
 nmap <Leader>gb :Git branch<cr>
 nmap <Leader>gc :Gcommit -v<cr>
-nmap <Leader>ga :Git add -p<cr>
 nmap <Leader>gp :Gpush<cr>
+nmap <Leader>ga :Git add -p<cr>
 nmap <Leader>gd :Gdiff<cr>
 nmap <Leader>gw :Gwrite<cr>
 call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-repeat'
+Plug 'google/vim-maktaba'
+Plug 'google/vim-codefmt'
+Plug 'google/vim-glaive'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'tpope/vim-fugitive'
 Plug 'christoomey/vim-conflicted'
-Plug 'tpope/vim-rhubarb'
 Plug 'neovimhaskell/haskell-vim'
-Plug 'google/vim-maktaba'
-Plug 'google/vim-codefmt'
-Plug 'google/vim-glaive'
 Plug 'romainl/vim-cool' 
 Plug 'mhinz/vim-startify'
 Plug 'dart-lang/dart-vim-plugin'
@@ -100,8 +105,6 @@ Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'unblevable/quick-scope'
 Plug 'matze/vim-move'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'psliwka/vim-smoothie'
 Plug 'junegunn/goyo.vim'
 call plug#end()
@@ -110,18 +113,6 @@ let g:coc_global_extensions = [
       \'coc-snippets',
       \'coc-pairs',
       \]
-
-" Remove newbie crutches in Normal Mode
-nnoremap <Down> <Nop>
-nnoremap <Left> <Nop>
-nnoremap <Right> <Nop>
-nnoremap <Up> <Nop>
-
-" Remove newbie crutches in Visual Mode
-vnoremap <Down> <Nop>
-vnoremap <Left> <Nop>
-vnoremap <Right> <Nop>
-vnoremap <Up> <Nop>
 
 " Rename tmux window name with the name of currently open file.
 autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))
@@ -203,3 +194,8 @@ let g:airline#extensions#tabline#enabled = 1
 "coc-snippets
 "coc-spell-checker
 "coc-tsserver
+
+""" Customize colors for coc autocompletion popup.
+hi Pmenu ctermbg=black ctermfg=white
+"Change bracket highlighting colors
+highlight MatchParen ctermfg=red ctermbg=none cterm=NONE
