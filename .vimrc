@@ -1,4 +1,30 @@
 " Remapped CAPSLOCK to <Esc>
+call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-repeat'
+Plug 'google/vim-maktaba'
+Plug 'google/vim-codefmt'
+Plug 'google/vim-glaive'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'christoomey/vim-conflicted'
+Plug 'neovimhaskell/haskell-vim'
+Plug 'romainl/vim-cool' 
+Plug 'mhinz/vim-startify'
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'thosakwe/vim-flutter'
+Plug 'preservim/nerdcommenter'
+Plug 'tpope/vim-surround'
+Plug 'unblevable/quick-scope'
+Plug 'matze/vim-move'
+Plug 'psliwka/vim-smoothie'
+Plug 'junegunn/goyo.vim'
+call plug#end()
 "Autoreload a buffer when a file changes
 set autoread
 syntax on
@@ -82,32 +108,6 @@ nmap <Leader>gp :Gpush<cr>
 nmap <Leader>ga :Git add -p<cr>
 nmap <Leader>gd :Gdiff<cr>
 nmap <Leader>gw :Gwrite<cr>
-call plug#begin('~/.vim/plugged')
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-repeat'
-Plug 'google/vim-maktaba'
-Plug 'google/vim-codefmt'
-Plug 'google/vim-glaive'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'christoomey/vim-conflicted'
-Plug 'neovimhaskell/haskell-vim'
-Plug 'romainl/vim-cool' 
-Plug 'mhinz/vim-startify'
-Plug 'dart-lang/dart-vim-plugin'
-Plug 'thosakwe/vim-flutter'
-Plug 'preservim/nerdcommenter'
-Plug 'tpope/vim-surround'
-Plug 'unblevable/quick-scope'
-Plug 'matze/vim-move'
-Plug 'psliwka/vim-smoothie'
-Plug 'junegunn/goyo.vim'
-call plug#end()
 " coc config
 let g:coc_global_extensions = [
       \'coc-snippets',
