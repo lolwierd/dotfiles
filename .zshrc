@@ -5,9 +5,11 @@ export PATH=$HOME/Library/flutter/bin:$PATH
 export PATH=$HOME/Library/Android/sdk/platform-tools:$PATH
 export PATH=/opt/miniconda3/bin:$PATH
 export PATH=/Users/ayaan/Library/Android/sdk/build-tools/29.0.2:$PATH
+export PATH=/Applications/Julia-1.5.app/Contents/Resources/julia/bin/:$PATH
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/ayaan/.oh-my-zsh"
 export TERM=xterm-256color
+export EDITOR=nvim
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -111,6 +113,7 @@ source /usr/local/etc/profile.d/z.sh
 #
 # Example aliases
  alias zshconfig="mate ~/.zshrc"
+ setopt auto_cd
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export LDFLAGS="-L/usr/local/opt/openblas/lib"
 export CPPFLAGS="-I/usr/local/opt/openblas/include"

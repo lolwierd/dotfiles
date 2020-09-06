@@ -24,7 +24,9 @@ Plug 'unblevable/quick-scope'
 Plug 'matze/vim-move'
 Plug 'psliwka/vim-smoothie'
 Plug 'junegunn/goyo.vim'
+Plug 'vimwiki/vimwiki'
 call plug#end()
+
 "Autoreload a buffer when a file changes
 set autoread
 syntax on
@@ -49,7 +51,10 @@ set shiftwidth=2
 set shiftround  
 " Set auto indent spacing.
 set shiftwidth=2
+set autoindent
 set mouse=a
+"Stop new line coninutation of comments
+set formatoptions-=cro
 " Tmux inspired defaults for panes/windows.
 nnoremap <leader><bar> <C-w>v
 nnoremap <leader>- <C-w>s
@@ -78,7 +83,10 @@ nnoremap g* g*zz
 nnoremap g# g#zz
 " Press <leader> Enter to remove search highlights
 noremap <silent> <leader><cr> :noh<cr>
-:nnoremap <Leader>b :buffers<CR>:buffer<Space>
+nnoremap <Leader>b :buffers<CR>:buffer<Space>
+nnoremap <Leader>d :bd<CR>
+nnoremap <TAB> :bnext<CR>
+nnoremap <S-TAB> :bprevious<CR>
 " Switch between tabs
 nnoremap <Leader>1 1gt
 nnoremap <Leader>2 2gt
@@ -201,5 +209,5 @@ let g:airline_section_y = ''
 
 """ Customize colors for coc autocompletion popup.
 hi Pmenu ctermbg=black ctermfg=white
-"Change bracket highlighting colors
+""Change bracket highlighting colors
 highlight MatchParen ctermfg=red ctermbg=none cterm=NONE
