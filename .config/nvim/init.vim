@@ -25,6 +25,9 @@ Plug 'matze/vim-move'
 Plug 'psliwka/vim-smoothie'
 Plug 'junegunn/goyo.vim'
 Plug 'vimwiki/vimwiki'
+Plug 'mattn/emmet-vim'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'wfxr/minimap.vim'
 call plug#end()
 
 "Autoreload a buffer when a file changes
@@ -211,3 +214,5 @@ let g:airline_section_y = ''
 hi Pmenu ctermbg=black ctermfg=white
 ""Change bracket highlighting colors
 highlight MatchParen ctermfg=red ctermbg=none cterm=NONE
+nmap <leader>m :MinimapToggle<CR>
+let g:minimap_width = 15

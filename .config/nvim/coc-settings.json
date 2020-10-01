@@ -1,2 +1,2 @@
-{"coc.preferences.formatOnSaveFiletypes": ["dart","js", "haskell", "css", "markdown", "python"]}
+{"coc.preferences.formatOnSaveFiletypes": ["dart","js", "haskell", "css", "markdown", "python", "html", "css"]}
 

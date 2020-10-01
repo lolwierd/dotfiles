@@ -1,8 +1,13 @@
 {
-  "title": "Spacebar Enhancement",
+  "title": "Capslock Enhancement",
+  "author": "Vonng(fengruohang@outlook.com)",
+  "homepage": "https://github.com/Vonng/Capslock",
+  "hostpage": "https://ke-complex-modifications.pqrs.org/",
+  "manual": "https://github.com/Vonng/Capslock/tree/master/mac",
+  "import_url": "karabiner://karabiner/assets/complex_modifications/import?url=https://raw.githubusercontent.com/Vonng/Capslock/master/mac/capslock.json",
   "rules": [
     {
-      "description": "Capslock to Hyper",
+      "description": "CapsLock to Hyper/Escape",
       "manipulators": [
         {
           "from": {
@@ -25,7 +30,7 @@
           ],
           "to_if_alone": [
             {
-              "key_code": "caps_lock"
+              "key_code": "escape"
             }
           ],
           "type": "basic"
@@ -1851,11 +1856,7 @@
           },
           "to": [
             {
-              "key_code": "volume_decrement",
-              "modifiers": [
-                "left_shift",
-                "left_option"
-              ]
+              "key_code": "volume_decrement"
             }
           ],
           "type": "basic"
@@ -1874,11 +1875,7 @@
           },
           "to": [
             {
-              "key_code": "volume_increment",
-              "modifiers": [
-                "left_shift",
-                "left_option"
-              ]
+              "key_code": "volume_increment"
             }
           ],
           "type": "basic"
