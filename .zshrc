@@ -1,6 +1,6 @@
 export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -f -g \"\""
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:/usr/local/mysql/bin:$PATH
 export PATH=$HOME/Library/flutter/bin:$PATH
 export PATH=$HOME/Library/Android/sdk/platform-tools:$PATH
 export PATH=/Users/ayaan/Library/Android/sdk/build-tools/29.0.2:$PATH
@@ -10,6 +10,11 @@ export PATH=/Users/ayaan/opt/miniconda3/bin:$PATH
 export ZSH="/Users/ayaan/.oh-my-zsh"
 export TERM=xterm-256color
 export EDITOR=nvim
+
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export ANDROID_PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/emulator
+export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -143,3 +148,4 @@ eval "$(starship init zsh)"
 # Make everything vim. Fuck it going all in.
 bindkey -v
 if [ -e /Users/ayaan/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/ayaan/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+source ~/functions.zsh
