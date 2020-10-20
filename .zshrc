@@ -149,3 +149,6 @@ eval "$(starship init zsh)"
 bindkey -v
 if [ -e /Users/ayaan/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/ayaan/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 source ~/functions.zsh
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/ayaan/.sdkman"
+[[ -s "/Users/ayaan/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/ayaan/.sdkman/bin/sdkman-init.sh"

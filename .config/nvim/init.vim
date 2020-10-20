@@ -30,6 +30,7 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'wfxr/minimap.vim'
 " Plug 'asvetliakov/vim-easymotion'
 Plug 'easymotion/vim-easymotion'
+"Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 
 "Autoreload a buffer when a file changes
