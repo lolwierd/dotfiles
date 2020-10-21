@@ -1,2 +1,28 @@
-{"coc.preferences.formatOnSaveFiletypes": ["dart","js", "haskell", "css", "markdown", "python", "html", "css", "scala"]}
-
+{
+  "coc.preferences.formatOnSaveFiletypes": [
+    "dart",
+    "js",
+    "json",
+    "haskell",
+    "css",
+    "markdown",
+    "python",
+    "html",
+    "css",
+    "scala",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "tsserver.formatOnType": true,
+  "coc.preferences.formatOnType": true,
+  "eslint.autoFixOnSave": true,
+  "eslint.filetypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "prettier.disableSuccessMessage": true
+}

@@ -1,3 +1,4 @@
+"https://thoughtbot.com/blog/modern-typescript-and-react-development-in-vim
  "Remapped CAPSLOCK to <Esc>
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
@@ -30,7 +31,9 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'wfxr/minimap.vim'
 " Plug 'asvetliakov/vim-easymotion'
 Plug 'easymotion/vim-easymotion'
+Plug 'sheerun/vim-polyglot'
 Plug 'dracula/vim', { 'as': 'dracula' }
+"Plug 'yuezk/vim-js'
 "Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 
@@ -166,22 +169,32 @@ if exists('*complete_info')
 else
   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
-xmap <leader>a  <Plug>(coc-codeaction-selected)<CR>
-nmap <leader>a  <Plug>(coc-codeaction-selected)<CR>
+xmap <leader>a  <Plug>(coc-codeaction)<CR>
+nmap <leader>a  <Plug>(coc-codeaction)<CR>
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" Documentation shown if it exists. Else use K to show.
+function! ShowDocIfNoDiagnostic(timer_id)
+  if (coc#util#has_float() == 0)
+    silent call CocActionAsync('doHover')
   endif
 endfunction
+
+function! s:show_hover_doc()
+  call timer_start(500, 'ShowDocIfNoDiagnostic')
+endfunction
+
+autocmd CursorHoldI * :call <SID>show_hover_doc()
+autocmd CursorHold * :call <SID>show_hover_doc()
+"Space d to show COC diagnostics
+nnoremap <silent> <space>d :<C-u>CocList diagnostics<cr>
+"Space s to show symbols
+nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 " Symbol renaming.
@@ -215,11 +228,20 @@ nnoremap <silent> <Leader>h :call ToggleHideAll()<CR>
 "coc-tsserver
 "coc-metals
 
-""" Customize colors for coc autocompletion popup.
+"Customize colors for coc autocompletion popup.
 hi Pmenu ctermbg=black ctermfg=white
-""Change bracket highlighting colors
+"Change bracket highlighting colors
 highlight MatchParen ctermfg=red ctermbg=none cterm=NONE
 nmap <leader>m :MinimapToggle<CR>
 let g:minimap_width = 15
 "Adding this apparently messes up the colors
 "colorscheme dracula
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
