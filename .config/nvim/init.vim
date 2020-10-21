@@ -1,4 +1,4 @@
-" Remapped CAPSLOCK to <Esc>
+ "Remapped CAPSLOCK to <Esc>
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
@@ -30,6 +30,7 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'wfxr/minimap.vim'
 " Plug 'asvetliakov/vim-easymotion'
 Plug 'easymotion/vim-easymotion'
+Plug 'dracula/vim', { 'as': 'dracula' }
 "Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 
@@ -195,12 +196,12 @@ let g:move_key_modifier = 'C'
 let s:hidden_all=0
 nnoremap <silent> <Leader>h :call ToggleHideAll()<CR>
 "Airline specific config
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
+"let g:airline_powerline_fonts = 1
+"let g:airline#extensions#tabline#enabled = 1
 "Remove the annoying additional section from airline
-let g:airline#extensions#whitespace#enabled ='0'
+"let g:airline#extensions#whitespace#enabled ='0'
 "Remove section y which shows file encoding type
-let g:airline_section_y = ''
+"let g:airline_section_y = ''
 "Remove the extranous padding from bottom after commandline
 :set cmdheight=1
 "COC extensions.
@@ -212,6 +213,7 @@ let g:airline_section_y = ''
 "coc-snippets
 "coc-spell-checker
 "coc-tsserver
+"coc-metals
 
 """ Customize colors for coc autocompletion popup.
 hi Pmenu ctermbg=black ctermfg=white
@@ -219,3 +221,5 @@ hi Pmenu ctermbg=black ctermfg=white
 highlight MatchParen ctermfg=red ctermbg=none cterm=NONE
 nmap <leader>m :MinimapToggle<CR>
 let g:minimap_width = 15
+"Adding this apparently messes up the colors
+"colorscheme dracula
