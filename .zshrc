@@ -7,6 +7,8 @@ export PATH=/Users/ayaan/Library/Android/sdk/build-tools/29.0.2:$PATH
 export PATH=/Applications/Julia-1.5.app/Contents/Resources/julia/bin/:$PATH
 export PATH=/Users/ayaan/opt/miniconda3/bin:$PATH
 export PATH=$HOME/.emacs.d/bin:$PATH
+#For Flutter 
+export PATH="$PATH":"$HOME/.pub-cache/bin"
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/ayaan/.oh-my-zsh"
 export TERM=xterm-256color
