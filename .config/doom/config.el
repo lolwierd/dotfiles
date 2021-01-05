@@ -45,6 +45,11 @@
 (use-package! ttl-mode
   :hook (dart-mode . lsp))
 
+(setq inferior-lisp-program "/usr/local/bin/clisp")
+
+(setq geiser-chez-binary "chez")
+(setq geiser-active-implementations '(chez))
+
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
