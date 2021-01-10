@@ -49,7 +49,9 @@
 
 (setq geiser-chez-binary "chez")
 (setq geiser-active-implementations '(chez))
-
+(setq avy-all-windows t)
+(setq evil-snipe-scope 'buffer)
+(add-hook 'magit-mode-hook 'turn-off-evil-snipe-override-mode)
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
