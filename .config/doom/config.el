@@ -52,6 +52,13 @@
 (setq avy-all-windows t)
 (setq evil-snipe-scope 'buffer)
 (add-hook 'magit-mode-hook 'turn-off-evil-snipe-override-mode)
+
+(setq remote-file-name-inhibit-cache nil)
+(setq vc-ignore-dir-regexp
+      (format "%s\\|%s"
+                    vc-ignore-dir-regexp
+                    tramp-file-name-regexp))
+(setq tramp-verbose 1)
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
