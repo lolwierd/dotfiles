@@ -21,8 +21,8 @@ export ALTERNATE_EDITOR=""
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export ANDROID_PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/emulator
-#export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home"
-export JAVA_HOME="/usr/bin/"
+export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home"
+#export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-14.0.2.jdk/Contents/Home"
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
