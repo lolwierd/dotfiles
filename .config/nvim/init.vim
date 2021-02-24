@@ -1,5 +1,5 @@
-"https://thoughtbot.com/blog/modern-typescript-and-react-development-in-vim
- "Remapped CAPSLOCK to <Esc>
+" https://thoughtbot.com/blog/modern-typescript-and-react-development-in-vim
+" Remapped CAPSLOCK to <Esc>
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -12,13 +12,13 @@ Plug 'matze/vim-move'
 Plug 'sheerun/vim-polyglot'
 call plug#end()
 
-"Autoreload a buffer when a file changes
+" Autoreload a buffer when a file changes
 set autoread
 syntax on
 " Show line number
 set number
 " Set relative number by default
-set relativenumber
+" set relativenumber
 set encoding=UTF-8
 set wrap
 set linebreak
@@ -72,6 +72,7 @@ nnoremap <Leader>b :buffers<CR>:buffer<Space>
 nnoremap <Leader>d :bd<CR>
 nnoremap <TAB> :bnext<CR>
 nnoremap <S-TAB> :bprevious<CR>
+
 " Switch between tabs
 nnoremap <Leader>1 1gt
 nnoremap <Leader>2 2gt
@@ -83,19 +84,40 @@ nnoremap <Leader>7 7gt
 nnoremap <Leader>8 8gt
 nnoremap <Leader>9 9gt
 " Easily create a new tab.
-noremap <Leader>tn :tabnew<CR>
+noremap <Leader>tN :tabnew<CR>
 " Easily close a tab.
 noremap <Leader>tc :tabclose<CR>
 " Easily move a tab.
 noremap <Leader>tm :tabmove<CR>
 " Easily go to next tab.
-noremap <Leader>tN :tabnext<CR>
+noremap <Leader>tn :tabnext<CR>
 " Easily go to previous tab.
-noremap <Leader>tP :tabprevious<CR>
+noremap <Leader>tp :tabprevious<CR>
+
 " Quickly source .vimrc
 nnoremap <leader>r :source ~/.config/nvim/init.vim<CR>
+
 " Rename tmux window name with the name of currently open file.
 autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))
 " Rename window again when vim exists
 autocmd VimLeave * call system("tmux rename-window zsh")
 
+" Python Specific config
+au BufNewFile,BufRead *.py
+    \ set tabstop=4
+    \ set softtabstop=4
+    \ set shiftwidth=4
+    \ set textwidth=79
+    \ set expandtab
+    \ set autoindent
+    \ set fileformat=unix
+
+set laststatus=1
+let &statusline='%#Normal# '
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1

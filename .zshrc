@@ -127,6 +127,8 @@ source /usr/local/etc/profile.d/z.sh
 # Example aliases
 alias zshconfig="mate ~/.zshrc"
 alias scheme="chez"
+alias vim="nvim"
+alias vi="nvim"
 setopt auto_cd
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export LDFLAGS="-L/usr/local/opt/openblas/lib"
