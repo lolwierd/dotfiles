@@ -59,6 +59,21 @@
                     vc-ignore-dir-regexp
                     tramp-file-name-regexp))
 (setq tramp-verbose 1)
+
+(map! :leader
+      (
+       (:prefix ("m" . "Local Leader")
+        :desc "Go to Mark" "'" #'evil-goto-mark
+        )))
+
+(define-key evil-motion-state-map "'" 'evil-goto-mark)
+
+;; TS specific config
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
+(setq tide-tsserver-executable "/Users/ayaan/.config/yarn/global/node_modules/.bin/tsserver")
+(setq tide-node-executable "/Users/ayaan/.nvm/versions/node/v14.9.0/bin/node")
+(setq tide-tscompiler-executable "/Users/ayaan/.config/yarn/global/node_modules/.bin/tsc")
+
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
