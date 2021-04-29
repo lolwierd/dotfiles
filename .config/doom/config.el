@@ -74,6 +74,10 @@
 (setq tide-node-executable "/Users/ayaan/.nvm/versions/node/v14.9.0/bin/node")
 (setq tide-tscompiler-executable "/Users/ayaan/.config/yarn/global/node_modules/.bin/tsc")
 
+;; Word Wrap
+;; (global-visual-line-mode t)
+
+
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
