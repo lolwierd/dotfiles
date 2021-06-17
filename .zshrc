@@ -14,15 +14,16 @@ antigen apply
 
 export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -f -g \"\""
 # If you come from bash you might have to change your $PATH.
-export PATH=/Users/ayaan/opt/miniconda3/bin/python:$PATH
+export PATH=/Library/PostgreSQL/13/bin:$PATH
+export PATH=/Users/ayaan/opt/miniconda3/bin:$PATH
 export PATH=$HOME/bin:/usr/local/bin:/usr/local/mysql/bin:$PATH
 export PATH=$HOME/Library/flutter/bin:$PATH
 export PATH=$HOME/Library/Android/sdk/platform-tools:$PATH
 export PATH=/Users/ayaan/Library/Android/sdk/build-tools/29.0.2:$PATH
 export PATH=/Applications/Julia-1.5.app/Contents/Resources/julia/bin/:$PATH
-export PATH=/Users/ayaan/opt/miniconda3/bin:$PATH
 export PATH=$HOME/.emacs.d/bin:$PATH
 export PATH=$HOME/.composer/vendor/bin:$PATH
+export PATH=/Users/ayaan/.local/bin:$PATH
 
 #For Flutter 
 export PATH="$PATH":"$HOME/.pub-cache/bin"
@@ -47,29 +48,38 @@ alias vi="nvim"
 alias cabr="cargo build && cargo run"
 alias car="cargo run"
 alias cab="cargo build"
-alias dons="cat ~/imp | pbcopy"
+alias copy="tr -d '\n' | pbcopy"
+alias dons="cat ~/imp | copy"
+alias ls="exa --icons"
+alias l="exa --icons -al"
+alias c="code ."
+alias e=" open -a Emacs"
 setopt auto_cd
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export LDFLAGS="-L/usr/local/opt/openblas/lib"
 export CPPFLAGS="-I/usr/local/opt/openblas/include"
 export PKG_CONFIG_PATH="/usr/local/opt/openblas/lib/pkgconfig"
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+. "$NVM_DIR"/nvm.sh
+
 # To load nvm
 # Defer initialization of nvm until nvm, node or a node-dependent command is
 # run. Ensure this block is only run once if .bashrc gets sourced multiple times
 # by checking whether __init_nvm is a function.
- if [ -s "$HOME/.nvm/nvm.sh" ] && [ ! "$(type __init_nvm)" = function ]; then
-   export NVM_DIR="$HOME/.nvm"
-   [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
-   declare -a __node_commands=('nvm' 'node' 'npm' 'yarn' 'gulp' 'grunt' 'webpack')
-   function __init_nvm() {
-     for i in "${__node_commands[@]}"; do unalias $i; done
-     . "$NVM_DIR"/nvm.sh
-     unset __node_commands
-     unset -f __init_nvm
-   }
-   for i in "${__node_commands[@]}"; do alias $i='__init_nvm && '$i; done
- fi
+# Does not work with doom emacs
+# if [ -s "$HOME/.nvm/nvm.sh" ] && [ ! "$(type __init_nvm)" = function ]; then export NVM_DIR="$HOME/.nvm"
+  # [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+  # declare -a __node_commands=('nvm' 'node' 'npm' 'yarn' 'gulp' 'grunt' 'webpack')
+  # function __init_nvm() {
+    # for i in "${__node_commands[@]}"; do unalias $i; done
+    # . "$NVM_DIR"/nvm.sh
+    # unset __node_commands
+    # unset -f __init_nvm
+  # }
+# for i in "${__node_commands[@]}"; do alias $i='__init_nvm && '$i; done
+# fi
 
 # eval "$(starship init zsh)"
 

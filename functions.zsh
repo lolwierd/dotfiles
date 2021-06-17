@@ -9,3 +9,8 @@ function h() {
     fi
 }
 
+function mc(){
+    FOO=$1
+    FOO=${FOO:-'learn'}
+    mkdir "$FOO" && cd "$FOO"
+}
