@@ -53,7 +53,7 @@ alias dons="cat ~/imp | copy"
 alias ls="exa --icons"
 alias l="exa --icons -al"
 alias c="code ."
-alias e=" open -a Emacs"
+alias kille= "emacsclient -e '(save-buffers-kill-emacs)'"
 setopt auto_cd
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export LDFLAGS="-L/usr/local/opt/openblas/lib"
@@ -128,3 +128,21 @@ unset __conda_setup
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+if emacsclient -qnca false -e '(delete-frame)' > /dev/null
+then
+  echo "Emacs is runnin"
+else
+  echo "Emacs is not runnin"
+  echo "Booting Emacs now"
+  emacs --daemon
+fi
+
+e(){
+  if [ $# -eq 0 ]
+  then
+    emacsclient -nce  "(select-frame-set-input-focus (selected-frame))" > /dev/null
+  else
+    emacsclient -nc "$@"
+  fi
+}
