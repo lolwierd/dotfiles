@@ -30,6 +30,7 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
+;; (setq lsp-headerline-breadcrumb-enable t)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -37,12 +38,15 @@
 
 
 (setq doom-themes-treemacs-theme "doom-colors")
+(doom-themes-treemacs-config)
+;; (doom-themes-visual-bell-config)
 
-(after! company
-  (setq company-idle-delay 0.5
-        company-minimum-prefix-length 2)
-  (setq company-show-numbers t)
-  (add-hook 'evil-normal-state-entry-hook #'company-abort))
+
+;; (after! company
+;;   (setq company-idle-delay 0.5
+;;         company-minimum-prefix-length 2)
+;;   (setq company-show-numbers t)
+;;   (add-hook 'evil-normal-state-entry-hook #'company-abort))
 (setq-default history-length 1000)
 (setq-default prescient-history-length 1000)
 
@@ -93,16 +97,15 @@
       "C-<up>"         #'+evil/window-move-up
       "C-<right>"      #'+evil/window-move-right)
 
-(setq doom-font (font-spec :family "JetBrains Mono" :size 16)
+(setq doom-font (font-spec :family "JetBrains Mono" :size 15)
       doom-big-font (font-spec :family "JetBrains Mono" :size 18)
-      doom-variable-pitch-font (font-spec :family "Overpass")
+      doom-variable-pitch-font (font-spec :family "JetBrains Mono")
       doom-unicode-font (font-spec :family "JuliaMono")
       doom-serif-font (font-spec :family "IBM Plex Mono" :weight 'light))
 
-(setq doom-theme 'doom-vibrant)
 (remove-hook 'window-setup-hook #'doom-init-theme-h)
 (add-hook 'after-init-hook #'doom-init-theme-h 'append)
-(delq! t custom-theme-load-path)
+
 (custom-set-faces!
   '(doom-modeline-buffer-modified :foreground "orange"))
 (defun doom-modeline-conditional-buffer-encoding ()
@@ -114,8 +117,8 @@
                 t)))
 
 (add-hook 'after-change-major-mode-hook #'doom-modeline-conditional-buffer-encoding)
-(setq doom-fallback-buffer-name "► Doom"
-      +doom-dashboard-name "► Doom")
+(setq doom-fallback-buffer-name "Doom"
+      +doom-dashboard-name "Doom")
 
 (setq frame-title-format
       '(""
@@ -169,8 +172,34 @@
     '(bar window-number pdf-pages pdf-icon buffer-name)
     '(misc-info matches major-mode process vcs)))
 
+(setq centaur-tabs-cycle-scope 'tabs)
+;; (map! :after auto-yasnippet
+;;       :map aya-create
+;;       "<C-<tab>" nil)
+(map! "<C-tab>"  #'centaur-tabs-forward
+      "<C-S-tab>" #'centaur-tabs-backward)
+;; (setq centaur-tabs-plain-icons t)
+(setq centaur-tabs-set-bar 'under)
+(setq x-underline-at-descent-line t)
+(setq centaur-tabs-set-modified-marker t)
 
-(setq fancy-splash-image "/Users/ayaan/dotfiles/.config/doom/black-hole.png")
+
+(setq fancy-splash-image "~/.doom.d/black-hole.png")
+
+(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
+(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-footer)
+(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-loaded)
+;; No new workspaces on new emacsclient sessions
+(after! persp-mode
+  (setq persp-emacsclient-init-frame-behaviour-override "main"))
+
+(add-hook! '+doom-dashboard-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
+;; (setq-hook! '+doom-dashboard-mode-hook evil-normal-state-cursor (list nil))
+(custom-set-faces!
+  '(doom-dashboard-footer nil))
+
+
+(toggle-frame-maximized)
 
 
 
