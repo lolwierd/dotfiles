@@ -9,6 +9,7 @@ source ~/antigen.zsh
 antigen bundle git
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle "MichaelAquilina/zsh-autoswitch-virtualenv"
 antigen theme romkatv/powerlevel10k
 antigen apply
 
@@ -31,14 +32,18 @@ export PATH="$PATH":"$HOME/.pub-cache/bin"
 export ZSH="/Users/ayaan/.oh-my-zsh"
 export TERM=xterm-256color
 export EDITOR=nvim
+export WORKON_HOME="~/.virtualenvs"
 # To tell emacsclient to open emacs in daemon mode if not already running
 export ALTERNATE_EDITOR=""
+
+export CHROME_EXECUTABLE="/Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser"
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export ANDROID_PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/emulator
 export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home"
-source /usr/local/etc/profile.d/z.sh
+# source /usr/local/etc/profile.d/z.sh
+eval "$(zoxide init zsh)"
 
 # Example aliases
 alias zshconfig="mate ~/.zshrc"
@@ -53,7 +58,9 @@ alias dons="cat ~/imp | copy"
 alias ls="exa --icons"
 alias l="exa --icons -al"
 alias c="code ."
-alias kille= "emacsclient -e '(save-buffers-kill-emacs)'"
+alias kille="emacsclient -e '(save-buffers-kill-emacs)'"
+alias ed="emacs --daemon"
+alias python="python3"
 setopt auto_cd
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export LDFLAGS="-L/usr/local/opt/openblas/lib"
@@ -129,7 +136,7 @@ unset __conda_setup
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-if emacsclient -qnca false -e '(delete-frame)' > /dev/null
+if emacsclient -qnca false -e '(delete-frame)' > /dev/null 2> /dev/null
 then
   echo "Emacs is runnin"
 else
@@ -146,3 +153,4 @@ e(){
     emacsclient -nc "$@"
   fi
 }
+[ -f "/Users/ayaan/.ghcup/env" ] && source "/Users/ayaan/.ghcup/env" # ghcup-env
