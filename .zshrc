@@ -4,10 +4,15 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+export NVM_LAZY_LOAD=true
+export NVM_COMPLETION=true
+export NVM_LAZY_LOAD_EXTRA_COMMANDS=('e', 'ed')
+zmodload zsh/zprof
 
 source ~/antigen.zsh
-antigen bundle git
 antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle git
+antigen bundle lukechilds/zsh-nvm
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle "MichaelAquilina/zsh-autoswitch-virtualenv"
 antigen theme romkatv/powerlevel10k
@@ -67,9 +72,9 @@ export LDFLAGS="-L/usr/local/opt/openblas/lib"
 export CPPFLAGS="-I/usr/local/opt/openblas/include"
 export PKG_CONFIG_PATH="/usr/local/opt/openblas/lib/pkgconfig"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
-. "$NVM_DIR"/nvm.sh
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+# . "$NVM_DIR"/nvm.sh
 
 # To load nvm
 # Defer initialization of nvm until nvm, node or a node-dependent command is
@@ -116,13 +121,13 @@ lg()
     fi
 }
 
-eval $(thefuck --alias fuc)
+eval "$(thefuck --alias fuc)"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/Users/ayaan/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+    eval $__conda_setup
 else
     if [ -f "/Users/ayaan/opt/miniconda3/etc/profile.d/conda.sh" ]; then
         . "/Users/ayaan/opt/miniconda3/etc/profile.d/conda.sh"

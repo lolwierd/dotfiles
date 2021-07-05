@@ -4,7 +4,6 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'unblevable/quick-scope'
-Plug 'matze/vim-move'
 call plug#end()
 "Autoreload a buffer when a file changes
 set autoread
@@ -82,7 +81,3 @@ noremap <Leader>tN :tabnext<CR>
 noremap <Leader>tP :tabprevious<CR>
 " Quickly source .vimrc
 
-" Rename tmux window name with the name of currently open file.
-autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))
-" Rename window again when vim exists
-autocmd VimLeave * call system("tmux rename-window zsh")
