@@ -136,14 +136,14 @@ unset __conda_setup
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-if emacsclient -qnca false -e '(delete-frame)' > /dev/null 2> /dev/null
-then
-  echo "Emacs is runnin"
-else
-  echo "Emacs is not runnin"
-  echo "Booting Emacs now"
-  emacs --daemon
-fi
+# if emacsclient -qnca false -e '(delete-frame)' > /dev/null 2> /dev/null
+# then
+#   echo "Emacs is runnin"
+# else
+#   echo "Emacs is not runnin"
+#   echo "Booting Emacs now"
+#   emacs --daemon
+# fi
 
 e(){
   if [ $# -eq 0 ]
