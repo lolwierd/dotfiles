@@ -1,17 +1,3 @@
-" https://thoughtbot.com/blog/modern-typescript-and-react-development-in-vim
-" Remapped CAPSLOCK to <Esc>
-call plug#begin('~/.vim/plugged')
-Plug 'tpope/vim-repeat'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'preservim/nerdcommenter'
-Plug 'tpope/vim-surround'
-Plug 'unblevable/quick-scope'
-Plug 'matze/vim-move'
-Plug 'sheerun/vim-polyglot'
-call plug#end()
-
 " Autoreload a buffer when a file changes
 set autoread
 syntax on
@@ -45,9 +31,6 @@ nnoremap <leader><bar> <C-w>v
 nnoremap <leader>- <C-w>s
 " Better mapping for kill-pane
 nnoremap <C-w>x <C-w>c
-map <C-n> :NERDTreeToggle<CR>
-vmap gcc <plug>NERDCommenterToggle
-nmap gcc <plug>NERDCommenterToggle
 " Close NERDTree if it is the only pane open.
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 map <leader>f :Files<CR>
@@ -97,11 +80,6 @@ noremap <Leader>tp :tabprevious<CR>
 " Quickly source .vimrc
 nnoremap <leader>r :source ~/.config/nvim/init.vim<CR>
 
-" Rename tmux window name with the name of currently open file.
-autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))
-" Rename window again when vim exists
-autocmd VimLeave * call system("tmux rename-window zsh")
-
 " Python Specific config
 au BufNewFile,BufRead *.py
     \ set tabstop=4
@@ -114,10 +92,3 @@ au BufNewFile,BufRead *.py
 
 set laststatus=1
 let &statusline='%#Normal# '
-
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-" Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1

@@ -1,10 +1,3 @@
-" Remapped CAPSLOCK to <Esc>
-call plug#begin('~/.vim/plugged')
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'preservim/nerdcommenter'
-Plug 'tpope/vim-surround'
-Plug 'unblevable/quick-scope'
-call plug#end()
 "Autoreload a buffer when a file changes
 set autoread
 syntax on
@@ -35,11 +28,6 @@ nnoremap <leader><bar> <C-w>v
 nnoremap <leader>- <C-w>s
 " Better mapping for kill-pane
 nnoremap <C-w>x <C-w>c
-map <C-n> :NERDTreeToggle<CR>
-vmap gcc <plug>NERDCommenterToggle
-nmap gcc <plug>NERDCommenterToggle
-" Close NERDTree if it is the only pane open.
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 map <leader>f :Files<CR>
 " Enable Highlight Search
 set hlsearch
@@ -79,5 +67,3 @@ noremap <Leader>tm :tabmove<CR>
 noremap <Leader>tN :tabnext<CR>
 " Easily go to previous tab.
 noremap <Leader>tP :tabprevious<CR>
-" Quickly source .vimrc
-
