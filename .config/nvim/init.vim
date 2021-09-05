@@ -8,7 +8,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'unblevable/quick-scope'
-Plug 'matze/vim-move'
 Plug 'sheerun/vim-polyglot'
 call plug#end()
 

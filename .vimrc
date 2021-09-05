@@ -80,4 +80,3 @@ noremap <Leader>tN :tabnext<CR>
 " Easily go to previous tab.
 noremap <Leader>tP :tabprevious<CR>
 " Quickly source .vimrc
-

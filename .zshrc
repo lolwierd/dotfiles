@@ -158,4 +158,9 @@ e(){
     emacsclient -nc "$@"
   fi
 }
+lexRun(){
+  lex -o ./temp.c $1 && gcc -ll temp.c && ./a.out
+  rm temp.c a.out
+}
+
 [ -f "/Users/ayaan/.ghcup/env" ] && source "/Users/ayaan/.ghcup/env" # ghcup-env
