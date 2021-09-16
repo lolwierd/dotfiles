@@ -20,7 +20,8 @@ antigen apply
 export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -f -g \"\""
 
 #For Flutter 
-export PATH="$PATH":"$HOME/.pub-cache/bin"
+# export PATH="$PATH":"$HOME/.pub-cache/bin"
+export PATH="$PATH":"$HOME/.local/bin"
 
 export TERM=xterm-256color
 export EDITOR=nvim
@@ -41,7 +42,14 @@ setopt auto_cd
 
 # Make everything vim. Fuck it going all in.
 bindkey -v
-eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+# eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
+ 
+eval "$(zoxide init zsh)"
+
