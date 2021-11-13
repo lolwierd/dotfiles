@@ -22,6 +22,7 @@ export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -f -g \"\""
 #For Flutter 
 # export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH="$PATH":"$HOME/.local/bin"
+export PATH="/home/ayaan/.local/share/solana/install/active_release/bin:$PATH"
 
 export TERM=xterm-256color
 export EDITOR=nvim
@@ -29,6 +30,8 @@ export EDITOR=nvim
 # Example aliases
 alias vim="nvim"
 alias vi="nvim"
+alias wconf="vi ~/.zshrc"
+alias t="tmux a -t 0 || tmux"
 alias cabr="cargo build && cargo run"
 alias car="cargo run"
 alias cab="cargo build"
@@ -52,4 +55,3 @@ bindkey -v
 
  
 eval "$(zoxide init zsh)"
-

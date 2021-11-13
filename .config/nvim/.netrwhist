@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =8
+let g:netrw_dirhistcnt =9
+let g:netrw_dirhist_9='/home/ayaan'
 let g:netrw_dirhist_8='/Users/ayaan/Projects/mathpad'
 let g:netrw_dirhist_7='/Users/ayaan/Projects/CMS/hive2sql/lib/src'
 let g:netrw_dirhist_6='/Users/ayaan/Desktop'

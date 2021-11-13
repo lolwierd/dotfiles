@@ -1,0 +1,10 @@
+{
+	"optOut": false,
+	"lastUpdateCheck": 1636540504367,
+	"update": {
+		"latest": "4.1.1",
+		"current": "4.0.0",
+		"type": "minor",
+		"name": "gatsby-cli"
+	}
+}
