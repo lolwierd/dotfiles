@@ -51,7 +51,7 @@ export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/jdk/Contents/Hom
 eval "$(zoxide init zsh)"
 
 # Example aliases
-alias zshconfig="mate ~/.zshrc"
+alias zshconfig="vim ~/.zshrc"
 alias scheme="chez"
 alias vim="nvim"
 alias vi="nvim"
@@ -63,6 +63,7 @@ alias dons="cat ~/imp | copy"
 alias ls="exa --icons"
 alias l="exa --icons -al"
 alias c="code"
+alias e="open -a /Applications/Emacs.app"
 alias kille="emacsclient -e '(save-buffers-kill-emacs)'"
 alias ed="emacs --daemon"
 alias python="python3"
@@ -73,9 +74,9 @@ export LDFLAGS="-L/usr/local/opt/openblas/lib"
 export CPPFLAGS="-I/usr/local/opt/openblas/include"
 export PKG_CONFIG_PATH="/usr/local/opt/openblas/lib/pkgconfig"
 
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
-# . "$NVM_DIR"/nvm.sh
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+. "$NVM_DIR"/nvm.sh
 
 # To load nvm
 # Defer initialization of nvm until nvm, node or a node-dependent command is
@@ -151,14 +152,14 @@ unset __conda_setup
 #   emacs --daemon
 # fi
 
-e(){
-  if [ $# -eq 0 ]
-  then
-    emacsclient -nce  "(select-frame-set-input-focus (selected-frame))" > /dev/null
-  else
-    emacsclient -nc "$@"
-  fi
-}
+# e(){
+  # if [ $# -eq 0 ]
+  # then
+    # emacsclient -nce  "(select-frame-set-input-focus (selected-frame))" > /dev/null
+  # else
+    # emacsclient -nc "$@"
+  # fi
+# }
 lexRun(){
   lex -o ./temp.c $1 && gcc -ll temp.c && ./a.out
   rm temp.c a.out
