@@ -30,7 +30,7 @@ export EDITOR=nvim
 # Example aliases
 alias vim="nvim"
 alias vi="nvim"
-alias wconf="vi ~/.zshrc"
+alias zconf="vi ~/.zshrc"
 alias t="tmux a -t 0 || tmux"
 alias cabr="cargo build && cargo run"
 alias car="cargo run"
@@ -38,7 +38,7 @@ alias cab="cargo build"
 alias copy="tr -d '\n' | pbcopy"
 alias ls="exa "
 alias l="exa -al"
-alias c="code ."
+alias c="code"
 alias kille="emacsclient -e '(save-buffers-kill-emacs)'"
 alias ed="emacs --daemon"
 setopt auto_cd
