@@ -8,6 +8,11 @@ export NVM_LAZY_LOAD=true
 export NVM_COMPLETION=true
 export NVM_LAZY_LOAD_EXTRA_COMMANDS=('e', 'ed')
 
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt SHARE_HISTORY
+
 source ~/antigen.zsh
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle git
@@ -22,10 +27,18 @@ export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -f -g \"\""
 #For Flutter 
 # export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH="$PATH":"$HOME/.local/bin"
+export PATH="$PATH":"$HOME/.emacs.d/bin"
+export PATH="$PATH":"/home/ayaan/Android/Sdk/platform-tools/"
+export PATH="$PATH":"/home/ayaan/Android/Sdk/tools/bin"
 export PATH="/home/ayaan/.local/share/solana/install/active_release/bin:$PATH"
+
+export AWS_PROFILE=personal
+
+
 
 export TERM=xterm-256color
 export EDITOR=nvim
+export NVM_AUTO_USE_ACTIVE=true
 
 # Example aliases
 alias vim="nvim"
@@ -55,3 +68,27 @@ bindkey -v
 
  
 eval "$(zoxide init zsh)"
+export LC_ALL=en_IN.UTF-8
+export LANG=en_IN.UTF-8
+e(){
+  if [ $# -eq 0 ]
+    then
+      emacsclient -nce  "(select-frame-set-input-focus (selected-frame))" > /dev/null
+  else
+    emacsclient -nc "$@"
+ fi
+}
+
+
+# Added by serverless binary installer
+export PATH="$HOME/.serverless/bin:$PATH"
+
+export PNPM_HOME="/home/ayaan/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
+# Added by Amplify CLI binary installer
+export PATH="$HOME/.amplify/bin:$PATH"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+source /home/ayaan/.rvm/scripts/rvm

@@ -1,9 +1,35 @@
-source ~/.vimrc
 set showmode
 set ideajoin
 set showcmd
+set surround
+set easymotion
+set commentary
+set clipboard+=unnamed
+set clipboard+=ideaput
+set ReplaceWithRegister
+set idearefactormode=keep
+set number relativenumber
+
+let mapleader = " "
+
 nnoremap <leader>R :action RenameElement<CR>
-nnoremap <leader>r :action Run<CR>
-nnoremap <leader>fc :action flutter.clean<CR>
-nnoremap <leader>fr :action Flutter.Toolbar.RestartAction<CR>
-nnoremap <leader>fpg :action flutter.pub.get<CR>
+:map <leader>r <Action>(ReformatCode)
+
+" scrolling
+nmap <leader>d <C-d>
+nmap <leader>u <C-u>
+vmap <leader>d <C-d>
+vmap <leader>u <C-u>
+
+" actions
+nmap <leader>h <action>(PreviousTab)
+nmap <leader>l <action>(NextTab)
+nmap <leader>bd <action>(CloseEditor)
+nmap <leader>i <action>(Generate)
+nmap <leader>m <action>(Git.Menu)
+nmap <leader>s <action>(QuickChangeScheme)
+nmap <leader>/ <action>(ShowErrorDescription)
+nmap <leader>e <action>(GotoNextError)
+nnoremap <leader><leader> <C-Tab>
+
+
