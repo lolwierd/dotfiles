@@ -33,7 +33,12 @@ export PATH="$PATH":"/home/ayaan/Android/Sdk/tools/bin"
 export PATH="/home/ayaan/.local/share/solana/install/active_release/bin:$PATH"
 
 export AWS_PROFILE=personal
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/home/ayaan/go/bin
 
+export GO_PATH=/home/ayaan/go/bin
+export FLYCTL_INSTALL="/home/ayaan/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
 
 export TERM=xterm-256color
@@ -92,3 +97,4 @@ export PATH="$HOME/.amplify/bin:$PATH"
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 source /home/ayaan/.rvm/scripts/rvm
+. $HOME/.asdf/asdf.sh
