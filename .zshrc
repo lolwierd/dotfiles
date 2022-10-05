@@ -18,7 +18,7 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle git
 antigen bundle lukechilds/zsh-nvm
 antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle "MichaelAquilina/zsh-autoswitch-virtualenv"
+# antigen bundle "MichaelAquilina/zsh-autoswitch-virtualenv"
 antigen theme romkatv/powerlevel10k
 antigen apply
 
@@ -28,24 +28,24 @@ export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -f -g \"\""
 # export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH="$PATH":"$HOME/.local/bin"
 export PATH="$PATH":"$HOME/.emacs.d/bin"
-export PATH="$PATH":"/home/ayaan/Android/Sdk/platform-tools/"
-export PATH="$PATH":"/home/ayaan/Android/Sdk/tools/bin"
-export PATH="/home/ayaan/.local/share/solana/install/active_release/bin:$PATH"
+# export PATH="$PATH":"/home/ayaan/Android/Sdk/platform-tools/"
+# export PATH="$PATH":"/home/ayaan/Android/Sdk/tools/bin"
+# export PATH="/home/ayaan/.local/share/solana/install/active_release/bin:$PATH"
 
-export AWS_PROFILE=personal
+# export AWS_PROFILE=personal
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:/home/ayaan/go/bin
 
 export GO_PATH=/home/ayaan/go/bin
-export FLYCTL_INSTALL="/home/ayaan/.fly"
-export PATH="$FLYCTL_INSTALL/bin:$PATH"
+# export FLYCTL_INSTALL="/home/ayaan/.fly"
+# export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
+bindkey '^R' history-incremental-search-backward
 
 export TERM=xterm-256color
 export EDITOR=nvim
 export NVM_AUTO_USE_ACTIVE=true
 
-# Example aliases
 alias vim="nvim"
 alias vi="nvim"
 alias zconf="vi ~/.zshrc"
@@ -69,7 +69,7 @@ bindkey -v
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Generated for envman. Do not edit.
-[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+# [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
  
 eval "$(zoxide init zsh)"
@@ -86,15 +86,15 @@ e(){
 
 
 # Added by serverless binary installer
-export PATH="$HOME/.serverless/bin:$PATH"
+# export PATH="$HOME/.serverless/bin:$PATH"
 
-export PNPM_HOME="/home/ayaan/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+# export PNPM_HOME="/home/ayaan/.local/share/pnpm"
+# export PATH="$PNPM_HOME:$PATH"
 
 # Added by Amplify CLI binary installer
-export PATH="$HOME/.amplify/bin:$PATH"
+# export PATH="$HOME/.amplify/bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-source /home/ayaan/.rvm/scripts/rvm
-. $HOME/.asdf/asdf.sh
+# export PATH="$PATH:$HOME/.rvm/bin"
+# source /home/ayaan/.rvm/scripts/rvm
+# . $HOME/.asdf/asdf.sh
