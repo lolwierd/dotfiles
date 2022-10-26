@@ -87,6 +87,7 @@ lsp.rust_analyzer.setup({
     },
 })
 
+
 -- Angular
 -- 1. install @angular/language-server globally
 -- 2. install @angular/language-service inside project as dev dep
@@ -109,6 +110,8 @@ local servers = {
     'jsonls', -- Json
     'yamlls', -- YAML
     'emmet_ls', -- emmet-ls
+    'astro',
+    'tailwindcss'
     -- 'terraformls', -- Terraform
 }
 
@@ -117,6 +120,7 @@ for _, server in ipairs(servers) do
         flags = flags,
         capabilities = capabilities,
         on_attach = on_attach,
+        autostart= true,
     })
 end
 

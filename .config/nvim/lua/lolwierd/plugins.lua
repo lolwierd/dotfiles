@@ -164,14 +164,26 @@ return require('packer').startup({
           { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
           { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
           { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
-      })
-      use({
+        })
+        use({
             'windwp/nvim-autopairs',
             event = 'InsertCharPre',
             after = 'nvim-cmp',
             config = function()
                 require('lolwierd.plugins.pairs')
             end,
+        })
+        use({
+            'projekt0n/github-nvim-theme',
+            config = function()
+              require('github-theme').setup({ })
+            end
+        })
+        use({
+            "williamboman/mason.nvim",
+            config = function()
+                require("mason").setup()
+            end
         })
 
     end,

@@ -98,3 +98,5 @@ e(){
 # export PATH="$PATH:$HOME/.rvm/bin"
 # source /home/ayaan/.rvm/scripts/rvm
 # . $HOME/.asdf/asdf.sh
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
