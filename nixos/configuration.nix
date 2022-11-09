@@ -83,10 +83,10 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.kakkoii = {
+  users.users.lolwierd = {
     isNormalUser = true;
-    description = "kakkoii";
+    hashedPassword="$6$fd4fE6xc5f45nQ4X$zufpQPh6shSgNLyQQdt759koCXVgkUEvsN8jO9OadhfFn7NUFlN8LoSFz2K73rcSyhwosQMiYMVRe1ucX3Gj61";
+    description = "lolwierd";
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.fish;
     packages = with pkgs; [
