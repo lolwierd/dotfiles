@@ -16,6 +16,15 @@
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   nix.settings.auto-optimise-store = true;
+  nix.extraOptions = ''
+    keep-outputs = true
+    keep-derivations = true
+  '';
+
+  fonts.fonts = with pkgs; [
+    (nerdfonts.override { fonts = [ "FiraCode" "Meslo" ]; })
+  ];
+
 
   networking.hostName = "kakkoii"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -77,7 +86,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.kakkoii = {
     isNormalUser = true;
-    description = "kakkoii!!";
+    description = "kakkoii";
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.fish;
     packages = with pkgs; [
@@ -88,8 +97,8 @@
   };
 
   # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "kakkoii";
+  # services.xserver.displayManager.autoLogin.enable = true;
+  # services.xserver.displayManager.autoLogin.user = "kakkoii";
 
   # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
   systemd.services."getty@tty1".enable = false;
@@ -103,7 +112,6 @@
   environment.systemPackages = with pkgs; [
     neovim
     wget
-    tailscale
     fish
     zoxide
     exa
@@ -111,6 +119,20 @@
     stow
     rustup
     tmux
+    direnv
+    nix-direnv
+
+    # gnome extensions
+    gnomeExtensions.bluetooth-quick-connect
+
+  ];
+
+  environment.pathsToLink = [
+    "/share/nix-direnv"
+  ];
+  # Add support for flakes
+  nixpkgs.overlays = [
+    (self: super: { nix-direnv = super.nix-direnv.override { enableFlakes = true; }; } )
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -154,4 +176,6 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.05"; # Did you read the comment?
 
+  # to play nice with windows dualboot
+  time.hardwareClockInLocalTime = true;
 }
