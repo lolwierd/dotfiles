@@ -130,6 +130,12 @@
   environment.pathsToLink = [
     "/share/nix-direnv"
   ];
+  # firefox black screen on startup issue fix
+  environment.extraInit = ''
+    if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+        export MOZ_ENABLE_WAYLAND=1
+    fi
+  '';
   # Add support for flakes
   nixpkgs.overlays = [
     (self: super: { nix-direnv = super.nix-direnv.override { enableFlakes = true; }; } )
