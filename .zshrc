@@ -4,165 +4,75 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
 export NVM_LAZY_LOAD=true
 export NVM_COMPLETION=true
 export NVM_LAZY_LOAD_EXTRA_COMMANDS=('e', 'ed')
-zmodload zsh/zprof
+export NVM_AUTO_USE_ACTIVE=true
 
-source ~/antigen.zsh
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle git
-antigen bundle lukechilds/zsh-nvm
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle "MichaelAquilina/zsh-autoswitch-virtualenv"
-antigen theme romkatv/powerlevel10k
-antigen apply
-
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt SHARE_HISTORY
 export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -f -g \"\""
-# If you come from bash you might have to change your $PATH.
-export PATH=/Library/PostgreSQL/13/bin:$PATH
-export PATH=/Users/ayaan/opt/miniconda3/bin:$PATH
-export PATH=$HOME/bin:/usr/local/bin:/usr/local/mysql/bin:$PATH
-export PATH=$HOME/Library/flutter/bin:$PATH
-export PATH=$HOME/Library/Android/sdk/platform-tools:$PATH
-export PATH=/Users/ayaan/Library/Android/sdk/build-tools/29.0.2:$PATH
-export PATH=/Applications/Julia-1.5.app/Contents/Resources/julia/bin/:$PATH
-export PATH=$HOME/.emacs.d/bin:$PATH
-export PATH=$HOME/.composer/vendor/bin:$PATH
-export PATH=/Users/ayaan/.local/bin:$PATH
 
-#For Flutter 
-export PATH="$PATH":"$HOME/.pub-cache/bin"
-# Path to your oh-my-zsh installation.
-export ZSH="/Users/ayaan/.oh-my-zsh"
+export PATH="$PATH":"$HOME/.local/bin"
+export PATH="$PATH":"$HOME/.emacs.d/bin"
+export PATH="$PATH":"$HOME/go/bin"
+export PATH="$PATH":"/opt/homebrew/opt/mysql-client/bin"
+export PATH="$PATH":"$HOME/.emacs.d/bin"
 export TERM=xterm-256color
 export EDITOR=nvim
-export WORKON_HOME="~/.virtualenvs"
-# To tell emacsclient to open emacs in daemon mode if not already running
-export ALTERNATE_EDITOR=""
+#
+# Set bat as manpager
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-export CHROME_EXECUTABLE="/Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser"
 
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export ANDROID_PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
-export PATH=$PATH:$ANDROID_HOME/emulator
-export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home"
-# source /usr/local/etc/profile.d/z.sh
-eval "$(zoxide init zsh)"
-
-# Example aliases
-alias zshconfig="vim ~/.zshrc"
-alias scheme="chez"
 alias vim="nvim"
 alias vi="nvim"
+alias zconf="vi ~/.zshrc"
+alias nconf="cd ~/.config/nvim && nvim ."
+alias t="tmux a -t 0 || tmux"
 alias cabr="cargo build && cargo run"
 alias car="cargo run"
 alias cab="cargo build"
 alias copy="tr -d '\n' | pbcopy"
-alias dons="cat ~/imp | copy"
-alias ls="exa --icons"
-alias l="exa --icons -al"
+alias ls="exa "
+alias l="exa -al"
 alias c="code"
-alias e="open -a /Applications/Emacs.app"
+alias n="nvim ."
 alias kille="emacsclient -e '(save-buffers-kill-emacs)'"
 alias ed="emacs --daemon"
-alias python="python3"
-alias t="tmux a -t 0 || tmux"
+alias python="/opt/homebrew/opt/python@3.9/libexec/bin/python3"
 setopt auto_cd
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-export LDFLAGS="-L/usr/local/opt/openblas/lib"
-export CPPFLAGS="-I/usr/local/opt/openblas/include"
-export PKG_CONFIG_PATH="/usr/local/opt/openblas/lib/pkgconfig"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
-. "$NVM_DIR"/nvm.sh
-
-# To load nvm
-# Defer initialization of nvm until nvm, node or a node-dependent command is
-# run. Ensure this block is only run once if .bashrc gets sourced multiple times
-# by checking whether __init_nvm is a function.
-# Does not work with doom emacs
-# if [ -s "$HOME/.nvm/nvm.sh" ] && [ ! "$(type __init_nvm)" = function ]; then export NVM_DIR="$HOME/.nvm"
-  # [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
-  # declare -a __node_commands=('nvm' 'node' 'npm' 'yarn' 'gulp' 'grunt' 'webpack')
-  # function __init_nvm() {
-    # for i in "${__node_commands[@]}"; do unalias $i; done
-    # . "$NVM_DIR"/nvm.sh
-    # unset __node_commands
-    # unset -f __init_nvm
-  # }
-# for i in "${__node_commands[@]}"; do alias $i='__init_nvm && '$i; done
-# fi
-
-# eval "$(starship init zsh)"
-
-[ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
-#
-# Make everything vim. Fuck it going all in.
-bindkey -v
-if [ -e /Users/ayaan/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/ayaan/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-source ~/functions.zsh
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/ayaan/.sdkman"
-[[ -s "/Users/ayaan/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/ayaan/.sdkman/bin/sdkman-init.sh"
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-lg()
-{
-    export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
+eval "$(zoxide init zsh)"
 
-    lazygit "$@"
-
-    if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
-            cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
-            rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
-    fi
+e(){
+  if [ $# -eq 0 ]
+    then
+      emacsclient -nce  "(select-frame-set-input-focus (selected-frame))" > /dev/null
+  else
+    emacsclient -nc "$@"
+ fi
 }
 
-eval "$(thefuck --alias fuc)"
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/ayaan/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval $__conda_setup
-else
-    if [ -f "/Users/ayaan/opt/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/ayaan/opt/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/ayaan/opt/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+bindkey -v
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# if emacsclient -qnca false -e '(delete-frame)' > /dev/null 2> /dev/null
-# then
-#   echo "Emacs is runnin"
-# else
-#   echo "Emacs is not runnin"
-#   echo "Booting Emacs now"
-#   emacs --daemon
-# fi
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# e(){
-  # if [ $# -eq 0 ]
-  # then
-    # emacsclient -nce  "(select-frame-set-input-focus (selected-frame))" > /dev/null
-  # else
-    # emacsclient -nc "$@"
-  # fi
-# }
-lexRun(){
-  lex -o ./temp.c $1 && gcc -ll temp.c && ./a.out
-  rm temp.c a.out
-}
+# export DIRENV_LOG_FORMAT=
+eval "$(direnv hook zsh)"
+# export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+# export CPPFLAGS="-I/opt/homebrew/opt/openjdk@17/include"
+# export JAVA_HOME=`/usr/libexec/java_home`
 
-[ -f "/Users/ayaan/.ghcup/env" ] && source "/Users/ayaan/.ghcup/env" # ghcup-env
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
