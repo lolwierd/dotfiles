@@ -27,6 +27,7 @@ export EDITOR=nvim
 #
 # Set bat as manpager
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+BAT_PAGER="sh -c 'col -bx | bat -l man -p'"
 
 
 alias vim="nvim"
@@ -44,7 +45,9 @@ alias c="code"
 alias n="nvim ."
 alias kille="emacsclient -e '(save-buffers-kill-emacs)'"
 alias ed="emacs --daemon"
-alias python="/opt/homebrew/opt/python@3.9/libexec/bin/python3"
+alias s="kitty +kitten ssh"
+alias bathelp='bat --plain --language=help'
+# alias python="/opt/homebrew/opt/python@3.9/libexec/bin/python3"
 setopt auto_cd
 
 
@@ -58,8 +61,13 @@ e(){
     emacsclient -nc "$@"
  fi
 }
+help() {
+    "$@" --help 2>&1 | bathelp
+}
 
 bindkey -v
+bindkey '^R' history-incremental-search-backward
+
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -75,4 +83,3 @@ eval "$(direnv hook zsh)"
 # export JAVA_HOME=`/usr/libexec/java_home`
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
