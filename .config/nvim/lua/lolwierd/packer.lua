@@ -54,15 +54,7 @@ return require('packer').startup(function(use)
     requires = { 'nvim-tree/nvim-web-devicons', opt = true }
   }
 
-  use {
-    'folke/tokyonight.nvim',
-    config = function()
-      require('tokyonight').setup({
-        transparent = true
-      })
-      vim.cmd('colorscheme tokyonight-night')
-    end
-  }
+ use { "catppuccin/nvim", as = "catppuccin" } 
 
   use {
     'numToStr/Comment.nvim',

@@ -10,6 +10,8 @@ export NVM_COMPLETION=true
 export NVM_LAZY_LOAD_EXTRA_COMMANDS=('e', 'ed')
 export NVM_AUTO_USE_ACTIVE=true
 
+export LSP_USE_PLISTS=true
+
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
@@ -18,10 +20,11 @@ setopt SHARE_HISTORY
 export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -f -g \"\""
 
 export PATH="$PATH":"$HOME/.local/bin"
-export PATH="$PATH":"$HOME/.emacs.d/bin"
+# export PATH="$PATH":"$HOME/.emacs.d/bin"
 export PATH="$PATH":"$HOME/go/bin"
 export PATH="$PATH":"/opt/homebrew/opt/mysql-client/bin"
-export PATH="$PATH":"$HOME/.emacs.d/bin"
+export PATH="$PATH":"$HOME/.config/emacs/bin"
+export PATH="$PATH":"$HOME/Desktop/aspnetcore-runtime-7.0.9-osx-arm64"
 export TERM=xterm-256color
 export EDITOR=nvim
 #
@@ -29,6 +32,10 @@ export EDITOR=nvim
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 BAT_PAGER="sh -c 'col -bx | bat -l man -p'"
 
+alias bathelp='bat --plain --language=help'
+help() {
+    "$@" --help 2>&1 | bathelp
+}
 
 alias vim="nvim"
 alias vi="nvim"
@@ -64,6 +71,29 @@ e(){
 help() {
     "$@" --help 2>&1 | bathelp
 }
+function fcd {
+  cd $(find . \( \
+    -name ".git" -o \
+    -name ".dotnet" -o \
+    -name ".idea" -o \
+    -name ".fleet" -o \
+    -name ".terraform" -o \
+    -name ".local" -o \
+    -name ".nuget" -o \
+    -name ".npm" -o \
+    -name ".vscode" -o \
+    -name ".rustup" -o \
+    -name ".cargo" -o \
+    -name ".quokka" -o \
+    -name ".vscode-insiders" \
+    -name "node_modules" -o \
+    -name "volumes" -o \
+    -name "debug" -o \
+    -name "bin" -o \
+    -name "obj" -o \
+    -name "Library" \
+  \) -prune -false -o -type d -print | fzf)
+}
 
 bindkey -v
 bindkey '^R' history-incremental-search-backward
@@ -83,3 +113,4 @@ eval "$(direnv hook zsh)"
 # export JAVA_HOME=`/usr/libexec/java_home`
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
