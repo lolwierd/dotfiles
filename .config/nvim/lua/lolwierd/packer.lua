@@ -36,14 +36,7 @@ return require('packer').startup(function(use)
     }
   }
   use({ 'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" } })
-  use {
-    'akinsho/flutter-tools.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim',
-      'stevearc/dressing.nvim', -- optional for vim.ui.select
-    },
-    { run = require("flutter-tools").setup {} }
-  }
+
   use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
 
   use 'mbbill/undotree'
@@ -54,7 +47,7 @@ return require('packer').startup(function(use)
     requires = { 'nvim-tree/nvim-web-devicons', opt = true }
   }
 
- use { "catppuccin/nvim", as = "catppuccin" } 
+  use { "catppuccin/nvim", as = "catppuccin" }
 
   use {
     'numToStr/Comment.nvim',
@@ -88,4 +81,5 @@ return require('packer').startup(function(use)
   })
 
   use 'rcarriga/nvim-notify'
+  use 'xiyaowong/transparent.nvim'
 end)
