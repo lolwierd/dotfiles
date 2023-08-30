@@ -5,6 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+autoload -Uz compinit
+compinit
+
 export NVM_LAZY_LOAD=true
 export NVM_COMPLETION=true
 export NVM_LAZY_LOAD_EXTRA_COMMANDS=('e', 'ed')
@@ -114,3 +117,4 @@ eval "$(direnv hook zsh)"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+source ~/powerlevel10k/powerlevel10k.zsh-theme
