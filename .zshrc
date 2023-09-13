@@ -116,5 +116,8 @@ eval "$(direnv hook zsh)"
 # export JAVA_HOME=`/usr/libexec/java_home`
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 source ~/powerlevel10k/powerlevel10k.zsh-theme
+
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/libpq/include"

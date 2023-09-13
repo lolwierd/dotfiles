@@ -22,6 +22,8 @@ return require('packer').startup(function(use)
     requires = {
       -- LSP Support
       { 'neovim/nvim-lspconfig' },
+      { 'ray-x/go.nvim' },
+      { 'ray-x/guihua.lua' },
       {
         'williamboman/mason.nvim',
         run = function()
@@ -55,7 +57,6 @@ return require('packer').startup(function(use)
       require('Comment').setup()
     end
   }
-  use "numToStr/FTerm.nvim"
 
   use "lukas-reineke/indent-blankline.nvim"
 
