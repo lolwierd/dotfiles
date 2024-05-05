@@ -1,0 +1,5 @@
+^.git$
+^.gitignore$
+^nixos$
+^Makefile$
+^README.md$
