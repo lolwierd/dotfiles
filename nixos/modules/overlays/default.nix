@@ -1,7 +1,10 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
-  imports = [
-    ./vivaldi.nix
-  ];
+  imports = [ ./vivaldi.nix ];
 }

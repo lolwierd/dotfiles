@@ -1,5 +1,5 @@
 {
-  description = "oishii flake";
+  description = "NixOS Configuration for lolwierd";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -10,22 +10,31 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, ... }@inputs: {
-    nixosConfigurations = {
-      oishii = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          { nixpkgs.overlays = [ nur.overlay ]; }
-          ./hosts/oishii
-          home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = "hbk";
-            home-manager.extraSpecialArgs = inputs;
-            home-manager.users.lolwierd.imports = [ ./home ];
-          }
-        ];
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      nur,
+      ...
+    }@inputs:
+    {
+      nixosConfigurations = {
+        oishii = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            { nixpkgs.overlays = [ nur.overlay ]; }
+            ./hosts/oishii
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.backupFileExtension = "hbk";
+              home-manager.extraSpecialArgs = inputs;
+              home-manager.users.lolwierd.imports = [ ./home ];
+            }
+          ];
+        };
       };
     };
-  };
 }

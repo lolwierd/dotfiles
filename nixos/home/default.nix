@@ -2,9 +2,7 @@
 
 {
 
-  imports = [
-    ./programs
-  ];
+  imports = [ ./programs ];
 
   home.username = "lolwierd";
   home.homeDirectory = "/home/lolwierd";

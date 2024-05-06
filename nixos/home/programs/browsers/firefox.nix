@@ -8,25 +8,25 @@
       isDefault = true;
       # containers = {
       #   fn = {
-	     #    id = 1;
-	     #    color = "blue";
-	     #    icon = "fingerprint";
-	     #  };
+      #    id = 1;
+      #    color = "blue";
+      #    icon = "fingerprint";
+      #  };
       #   wrk = {
-	     #    id = 2;
-	     #    color = "yellow";
-	     #    icon = "briefcase";
-	     #  };
+      #    id = 2;
+      #    color = "yellow";
+      #    icon = "briefcase";
+      #  };
       #   msc = {
-	     #    id = 3;
-	     #    color = "green";
-	     #    icon = "fruit";
-	     #  };
+      #    id = 3;
+      #    color = "green";
+      #    icon = "fruit";
+      #  };
       # };
       settings = {
         "dom.security.https_only_mode" = true;
         "privacy.trackingprotection.enabled" = true;
-	      "app.normandy.first_run" = false;
+        "app.normandy.first_run" = false;
         # disable updates (pretty pointless with nix)
         "app.update.channel" = "default";
         "browser.contentblocking.category" = "standard"; # "strict"
@@ -104,7 +104,7 @@
         # "security.webauth.webauthn" = true;
         # "security.webauth.webauthn_enable_softtoken" = true;
         # "security.webauth.webauthn_enable_usbtoken" = true;
-	      "accessibility.force_disabled" = 1;
+        "accessibility.force_disabled" = 1;
         # disable Studies
         # disable Normandy/Shield [FF60+]
         # Shield is a telemetry system that can push and test "recipes"
@@ -165,17 +165,17 @@
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         bitwarden
         ublock-origin
-	      multi-account-containers
+        multi-account-containers
         vimium
-	      auto-tab-discard
+        auto-tab-discard
         i-dont-care-about-cookies
-	      sponsorblock
-	      plasma-integration
-	      raindropio
-	      mal-sync
-	      clearurls
-	      flagfox
-	      translate-web-pages
+        sponsorblock
+        plasma-integration
+        raindropio
+        mal-sync
+        clearurls
+        flagfox
+        translate-web-pages
       ];
       search = {
         force = true;
@@ -183,24 +183,40 @@
         # order = [ "Searx" "Google" ];
         engines = {
           "Nix Packages" = {
-            urls = [{
-              template = "https://search.nixos.org/packages";
-              params = [
-                { name = "channel"; value = "unstable"; }
-                { name = "type"; value = "packages"; }
-                { name = "query"; value = "{searchTerms}"; }
-              ];
-            }];
+            urls = [
+              {
+                template = "https://search.nixos.org/packages";
+                params = [
+                  {
+                    name = "channel";
+                    value = "unstable";
+                  }
+                  {
+                    name = "type";
+                    value = "packages";
+                  }
+                  {
+                    name = "query";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
             icon = "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = [ "@n" ];
           };
           "YouTube" = {
-            urls = [{
-              template = "https://www.youtube.com/results";
-              params = [
-                { name = "search_query"; value = "{searchTerms}"; }
-              ];
-            }];
+            urls = [
+              {
+                template = "https://www.youtube.com/results";
+                params = [
+                  {
+                    name = "search_query";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
             definedAliases = [ "@y" ];
           };
           "Bing".metaData.hidden = true;

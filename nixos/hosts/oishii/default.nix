@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   imports = [
@@ -16,12 +21,16 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    kernel = { sysctl."net.ipv6.mld_qrv" = lib.mkDefault "1"; };
+    kernel = {
+      sysctl."net.ipv6.mld_qrv" = lib.mkDefault "1";
+    };
   };
 
   networking = {
     hostName = "oishii";
-    networkmanager = { enable = true; };
+    networkmanager = {
+      enable = true;
+    };
   };
 
   hardware = {
@@ -48,8 +57,7 @@
   ];
 
   # Idk if i should put it in home manager.
-  environment.etc."chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json".source =
-    "${pkgs.kdePackages.plasma-browser-integration}/etc/chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json";
+  environment.etc."chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json".source = "${pkgs.kdePackages.plasma-browser-integration}/etc/chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -83,5 +91,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
 }

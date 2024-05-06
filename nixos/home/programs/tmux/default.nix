@@ -15,11 +15,9 @@
     plugins = with pkgs; [
       {
         plugin = tmuxPlugins.yank;
-	      extraConfig = "set -g @yank_selection_mouse 'clipboard'";
+        extraConfig = "set -g @yank_selection_mouse 'clipboard'";
       }
-      {
-        plugin = pkgs.tmuxPlugins.tmux-fzf;
-      }
+      { plugin = pkgs.tmuxPlugins.tmux-fzf; }
     ];
     extraConfig = ''
       bind-key C-a last-window

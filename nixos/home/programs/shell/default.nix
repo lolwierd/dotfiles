@@ -56,7 +56,7 @@
       export LANG=en_IN.UTF-8
       bindkey '^R' history-incremental-search-backward
       bindkey -s '^f' "tmux-sessionizer\n"
-      '';
+    '';
   };
 
   programs.direnv = {
@@ -71,13 +71,13 @@
   };
 
   # programs.starship = {
-    # enable = true;
-    # enableZshIntegration = true;
-    # # Configuration written to ~/.config/starship.toml
-    # settings = {
-      # add_newline = false;
-      # format = "$character";
-      # right_format = "$all";
-    # };
+  # enable = true;
+  # enableZshIntegration = true;
+  # # Configuration written to ~/.config/starship.toml
+  # settings = {
+  # add_newline = false;
+  # format = "$character";
+  # right_format = "$all";
+  # };
   # };
 }

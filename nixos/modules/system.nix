@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
@@ -19,7 +24,12 @@
   };
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+    (nerdfonts.override {
+      fonts = [
+        "FiraCode"
+        "DroidSansMono"
+      ];
+    })
   ];
 
   # Enable CUPS to print documents.
@@ -47,7 +57,10 @@
 
   nix = {
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       auto-optimise-store = true;
     };
     gc = {
@@ -63,7 +76,6 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
 
   programs.gnupg.agent = {
     enable = true;
