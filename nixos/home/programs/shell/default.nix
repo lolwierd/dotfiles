@@ -18,7 +18,7 @@
       # Here for historical purposes 🫡. Also cause i forget how rsync work.
       # ns = "sudo rsync -acv ~/dotfiles/nixos/* /etc/nixos/ --exclude=hardware-configuration.nix && sudo nixos-rebuild switch";
       # nsu = "sudo rsync -acv ~/dotfiles/nixos/* /etc/nixos/ --exclude=hardware-configuration.nix && sudo nixos-rebuild switch --upgrade";
-      ns = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos | nom";
+      ns = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos";
       nsu = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos --upgrade";
       t = "tmux-sessionizer";
       cabr = "cargo build && cargo run";
