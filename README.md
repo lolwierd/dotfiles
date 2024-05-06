@@ -1,11 +1,13 @@
 # dotfiles
 
-https://www.gnu.org/software/stow/
+just run ```nsu```.
+if you've already ran ```make nix``` from root folder once.
+
+~~https://www.gnu.org/software/stow/~~
 
 ~~using sudo mount --bind /etc/nixos/ ./nixos for now. doesn't feel right but works~~
 ~~BETTER: sudo ln -s (pwd)/nixos/configuration.nix /etc/nixos/configuration.nix~~
 
-just run ```nsu```. 
 
 ~~After manually copying and building the config first ofc.~~
 
@@ -13,7 +15,7 @@ just run ```nsu```.
 
 ~~At this point idc. ill just copy the files the first time i setup a new nixos machine :).~~
 
-```make link``` to stow nvim, kitty, doom config. zsh and tmux managed by nix.
+~~```make link``` to stow nvim, kitty, doom config. zsh and tmux managed by nix.~~
 
 
 ```
@@ -22,4 +24,5 @@ Therefore, if you use git for your flake, ensure to git add any project files af
 ```
 mb og.
 
-```nixos-rebuild switch --flake ~/dotfiles/nixos```
+```sudo nixos-rebuild switch --flake ./nixos``` or ``` make nix ```
+

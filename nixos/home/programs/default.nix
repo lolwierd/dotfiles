@@ -5,6 +5,8 @@
     ./browsers
     ./git
     ./nvim
+    ./kitty
+    ./doom
     ./shell
     ./tmux
   ];

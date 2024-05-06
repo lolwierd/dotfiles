@@ -1,3 +1,2 @@
-link:
-	stow .
-
+nix:
+	sudo nixos-rebuild switch --flake ./nixos
