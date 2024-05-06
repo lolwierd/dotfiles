@@ -16,12 +16,13 @@
         system = "x86_64-linux";
         modules = [
           { nixpkgs.overlays = [ nur.overlay ]; }
-          ./configuration.nix
+          ./hosts/oishii
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "hbk";
-            home-manager.users.lolwierd.imports = [ ./home.nix ];
+            home-manager.extraSpecialArgs = inputs;
+            home-manager.users.lolwierd.imports = [ ./home ];
           }
         ];
       };
