@@ -12,10 +12,10 @@
       vim = "nvim";
       vi = "nvim";
       zconf = "vi ~/.zshrc";
-      nconf = "cd ~/.config/nvim && nvim .";
+      nconf = "cd ~/dotfiles/nixos/home/programs/nvim/config && nvim .";
       dconf = "cd ~/dotfiles && nvim .";
       nixconf = "cd ~/dotfiles/nixos && nvim .";
-      # Here for hisrtorical purposes 🫡
+      # Here for historical purposes 🫡. Also cause i forget how rsync work.
       # ns = "sudo rsync -acv ~/dotfiles/nixos/* /etc/nixos/ --exclude=hardware-configuration.nix && sudo nixos-rebuild switch";
       # nsu = "sudo rsync -acv ~/dotfiles/nixos/* /etc/nixos/ --exclude=hardware-configuration.nix && sudo nixos-rebuild switch --upgrade";
       ns = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos";
