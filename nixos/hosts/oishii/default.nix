@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -44,6 +39,7 @@
   environment.systemPackages = with pkgs; [
     emacs
     nixfmt-rfc-style
+    nixd
     comma
     lua-language-server
     knot-dns

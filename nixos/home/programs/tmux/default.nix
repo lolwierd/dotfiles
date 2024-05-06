@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   programs.tmux = {
@@ -17,7 +17,7 @@
         plugin = tmuxPlugins.yank;
         extraConfig = "set -g @yank_selection_mouse 'clipboard'";
       }
-      { plugin = pkgs.tmuxPlugins.tmux-fzf; }
+      { plugin = tmuxPlugins.tmux-fzf; }
     ];
     extraConfig = ''
       bind-key C-a last-window
