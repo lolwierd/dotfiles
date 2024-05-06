@@ -279,8 +279,11 @@
       zconf = "vi ~/.zshrc";
       nconf = "cd ~/.config/nvim && nvim .";
       nixconf = "cd ~/dotfiles/nixos && nvim .";
-      ns = "sudo rsync -acv ~/dotfiles/nixos/* /etc/nixos/ --exclude=hardware-configuration.nix && sudo nixos-rebuild switch";
-      nsu = "sudo rsync -acv ~/dotfiles/nixos/* /etc/nixos/ --exclude=hardware-configuration.nix && sudo nixos-rebuild switch --upgrade";
+      # Here for hisrtorical purposes 🫡
+      # ns = "sudo rsync -acv ~/dotfiles/nixos/* /etc/nixos/ --exclude=hardware-configuration.nix && sudo nixos-rebuild switch";
+      # nsu = "sudo rsync -acv ~/dotfiles/nixos/* /etc/nixos/ --exclude=hardware-configuration.nix && sudo nixos-rebuild switch --upgrade";
+      ns = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos";
+      nsu = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos --upgrade";
       t = "tmux-sessionizer";
       cabr = "cargo build && cargo run";
       car = "cargo run";
