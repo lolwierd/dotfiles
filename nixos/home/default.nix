@@ -16,6 +16,7 @@
     jellyfin-media-player
     plex-media-player
     kdePackages.kdeconnect-kde
+    filezilla
   ];
 
   # Nicely reload system units when changing configs

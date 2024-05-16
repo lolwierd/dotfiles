@@ -219,7 +219,7 @@
             ];
             definedAliases = [ "@y" ];
           };
-          "Bing".metaData.hidden = true;
+          "Bing".metaData.alias = "@b";
           "Google".metaData.alias = "@g";
         };
       };
