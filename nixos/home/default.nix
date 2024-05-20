@@ -18,6 +18,7 @@
     kdePackages.kdeconnect-kde
     filezilla
     microsoft-edge
+    vivaldi
   ];
 
   # Nicely reload system units when changing configs
