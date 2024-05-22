@@ -37,6 +37,14 @@
 ;; start emacs maximized
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
+;; Keep buffers in sync always
+(global-auto-revert-mode t)
+
+;; Make treemacs always Projects
+(use-package! treemacs
+  :config
+  (treemacs-project-follow-mode t))
+
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
