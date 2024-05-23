@@ -33,7 +33,7 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-challenger-deep)
-(setq doom-theme 'doom-one-light)
+(setq doom-theme 'doom-nord-light)
 
 ;; start emacs maximized
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
