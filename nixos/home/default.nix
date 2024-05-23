@@ -19,6 +19,15 @@
     filezilla
     microsoft-edge
     vivaldi
+
+    # Need a version of these globally to make "things" easier.
+    go
+    go-outline
+    gopls
+    gopkgs
+    go-tools
+    goimports-reviser
+    delve
   ];
 
   # Nicely reload system units when changing configs
