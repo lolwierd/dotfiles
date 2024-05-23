@@ -19,6 +19,7 @@
     filezilla
     microsoft-edge
     vivaldi
+    gh
 
     # Need a version of these globally to make "things" easier.
     go
