@@ -20,6 +20,7 @@
     microsoft-edge
     vivaldi
     gh
+    postman
 
     # Need a version of these globally to make "things" easier.
     go
