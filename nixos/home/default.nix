@@ -21,6 +21,8 @@
     vivaldi
     gh
     postman
+    lazygit
+    lazydocker
 
     # Need a version of these globally to make "things" easier.
     go
