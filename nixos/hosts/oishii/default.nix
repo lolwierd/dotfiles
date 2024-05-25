@@ -5,7 +5,7 @@
     ./hardware-configuration.nix
     ../../modules/system.nix
     ../../modules/users.nix
-    ../../modules/services.nix
+    ../../modules/services
     ../../modules/overlays
     ../../modules/kde.nix
   ];

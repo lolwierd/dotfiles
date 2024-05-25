@@ -1,18 +1,6 @@
-{ config, pkgs, ... }:
+{ ... }
 
 {
-  services.tailscale.enable = true;
-  services.pcscd.enable = true;
-  services.logind = {
-    lidSwitch = "suspend-then-hibernate";
-    extraConfig = ''
-      HandlePowerKey=suspend-then-hibernate
-      IdleAction=suspend-then-hibernate
-      IdleActionSec=2m
-    '';
-  };
-  systemd.sleep.extraConfig = "HibernateDelaySec=1h";
-
   # builtin service does not work cause it starts before the graphical session. So the emacsclients cannot connect.
   systemd.user.services.emacs = {
     description = "Emacs: the extensible, self-documenting text editor";
