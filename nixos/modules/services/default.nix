@@ -1,9 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-    ./emacs.nix
-  ]
 
   services.tailscale.enable = true;
 
