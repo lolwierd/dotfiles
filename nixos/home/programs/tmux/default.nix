@@ -4,7 +4,8 @@
   programs.tmux = {
     enable = true;
     clock24 = true;
-    newSession = true;
+    # newSession = true;
+    baseIndex = 1;
     historyLimit = 10000;
     mouse = true;
     keyMode = "vi";
