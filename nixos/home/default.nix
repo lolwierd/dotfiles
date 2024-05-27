@@ -20,9 +20,11 @@
     microsoft-edge
     vivaldi
     gh
-    postman
     lazygit
     lazydocker
+    postman
+    httpie
+    httpie-desktop
 
     # Need a version of these globally to make "things" easier.
     go
