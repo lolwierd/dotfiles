@@ -47,3 +47,8 @@ vim.cmd('command! Gt :GoTestFile -v')
 
 vim.cmd('command! LG :LazyGit')
 
+function ToggleVExplorer()
+  vim.cmd('Lexplore')
+  vim.cmd('vertical resize 30')
+end
+vim.api.nvim_set_keymap('n', '<C-E>', ':lua ToggleVExplorer()<CR>', { noremap = true, silent = true })
