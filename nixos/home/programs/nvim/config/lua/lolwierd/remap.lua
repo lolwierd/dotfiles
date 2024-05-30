@@ -52,3 +52,7 @@ function ToggleVExplorer()
   vim.cmd('vertical resize 30')
 end
 vim.api.nvim_set_keymap('n', '<C-E>', ':lua ToggleVExplorer()<CR>', { noremap = true, silent = true })
+
+if vim.g.vscode then
+    vim.opt.clipboard:append { vim.g.vscode_clipboard }
+end
