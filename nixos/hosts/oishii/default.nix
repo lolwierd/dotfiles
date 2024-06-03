@@ -7,7 +7,7 @@
     ../../modules/users.nix
     ../../modules/services
     ../../modules/overlays
-    ../../modules/kde
+    ../../modules/gnome
   ];
 
   boot = {
