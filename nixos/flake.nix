@@ -30,6 +30,7 @@
           modules = [
             { nixpkgs.overlays = [ nur.overlay ]; }
             ./hosts/oishii
+            home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
