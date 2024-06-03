@@ -16,6 +16,7 @@
     jellyfin-media-player
     plex-media-player
     kdePackages.kdeconnect-kde
+    kdePackages.partitionmanager
     filezilla
     microsoft-edge
     vivaldi
