@@ -19,6 +19,7 @@
     {
       nixpkgs,
       home-manager,
+      plasma-manager,
       nur,
       ...
     }@inputs:
@@ -26,15 +27,18 @@
       nixosConfigurations = {
         oishii = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs = {inherit inputs;};
           modules = [
             { nixpkgs.overlays = [ nur.overlay ]; }
             ./hosts/oishii
-            home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.backupFileExtension = "hbk";
-              home-manager.extraSpecialArgs = inputs;
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+                plasma-manager = inputs.plasma-manager;
+              };
               home-manager.users.lolwierd.imports = [ ./home ];
             }
           ];
@@ -49,7 +53,10 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.backupFileExtension = "hbk";
-              home-manager.extraSpecialArgs = inputs;
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+                plasma-manager = inputs.plasma-manager;
+              };
               home-manager.users.lolwierd.imports = [ ./home ];
             }
           ];

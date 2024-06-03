@@ -1,8 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, plasma-manager, ... }:
 
 {
-
-  imports = [ ./programs ];
+  imports = [ 
+    plasma-manager.homeManagerModules.plasma-manager
+    ./programs
+    ./kde.nix
+  ];
 
   home.username = "lolwierd";
   home.homeDirectory = "/home/lolwierd";
@@ -38,6 +41,8 @@
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
+
+  # programs.plasma.enable = true;
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage
