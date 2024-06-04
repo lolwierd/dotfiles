@@ -53,7 +53,6 @@
 
     gnome.gnome-tweaks
     gnomeExtensions.appindicator
-    gnomeExtensions.spotify-tray
   ];
 
   # Idk if i should put it in home manager.

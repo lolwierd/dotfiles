@@ -65,7 +65,7 @@
 
     gnome.gnome-tweaks
     gnomeExtensions.appindicator
-    gnomeExtensions.spotify-tray
+    libgtop
   ];
 
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
