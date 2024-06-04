@@ -139,7 +139,6 @@
     pciutils
     nix-output-monitor
     tailscale
-    gparted
   ];
 
   # Not supported with flakes :(
