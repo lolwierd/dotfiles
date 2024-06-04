@@ -57,7 +57,7 @@
                 inherit inputs;
                 plasma-manager = inputs.plasma-manager;
               };
-              home-manager.users.lolwierd.imports = [ ./home/kde ];
+              home-manager.users.lolwierd.imports = [ ./home/gnome ];
             }
           ];
         };
