@@ -3,7 +3,7 @@
 {
   imports = [ 
     plasma-manager.homeManagerModules.plasma-manager
-    ./programs
+    ../programs
     ./kde.nix
   ];
 
