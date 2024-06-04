@@ -13,7 +13,7 @@
       vi = "nvim";
       zconf = "vi ~/.zshrc";
       nconf = "cd ~/dotfiles/nixos/home/programs/nvim/config && nvim .";
-      dconf = "cd ~/dotfiles && nvim .";
+      dotconf = "cd ~/dotfiles && nvim .";
       nixconf = "cd ~/dotfiles/nixos && nvim .";
       # Here for historical purposes 🫡. Also cause i forget how rsync work.
       # ns = "sudo rsync -acv ~/dotfiles/nixos/* /etc/nixos/ --exclude=hardware-configuration.nix && sudo nixos-rebuild switch";
