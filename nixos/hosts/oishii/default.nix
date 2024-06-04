@@ -50,6 +50,7 @@
     wireguard-tools
     epson-escpr
     libtool
+    gnome.gnome-tweaks
   ];
 
   # Idk if i should put it in home manager.
