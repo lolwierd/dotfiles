@@ -7,7 +7,7 @@
     ../../modules/users.nix
     ../../modules/services
     ../../modules/overlays
-    ../../modules/gnome
+    ../../modules/kde
   ];
 
   boot = {
@@ -63,12 +63,11 @@
     epson-escpr
     libtool
 
-    gnome.gnome-tweaks
-    gnomeExtensions.appindicator
-    libgtop
+    # gnome.gnome-tweaks
+    # gnomeExtensions.appindicator
   ];
 
-  services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+  # services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
   # Idk if i should put it in home manager.
   environment.etc."chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json".source = "${pkgs.kdePackages.plasma-browser-integration}/etc/chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json";

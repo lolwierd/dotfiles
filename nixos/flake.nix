@@ -37,7 +37,6 @@
               home-manager.backupFileExtension = "hbk";
               home-manager.extraSpecialArgs = {
                 inherit inputs;
-                plasma-manager = inputs.plasma-manager;
               };
               home-manager.users.lolwierd.imports = [ ./home/gnome ];
             }
@@ -57,7 +56,7 @@
                 inherit inputs;
                 plasma-manager = inputs.plasma-manager;
               };
-              home-manager.users.lolwierd.imports = [ ./home/gnome ];
+              home-manager.users.lolwierd.imports = [ ./home/kde ];
             }
           ];
         };

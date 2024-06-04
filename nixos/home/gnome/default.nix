@@ -1,4 +1,4 @@
-{ pkgs, plasma-manager, ... }:
+{ pkgs, ... }:
 
 {
   imports = [ 

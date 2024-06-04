@@ -46,6 +46,14 @@ with lib.hm.gvariant;
       xkb-options = [ "caps:swapescape" ];
     };
 
+    "org/gnome/desktop/notifications" = {
+      application-children = [ "spotify" ];
+    };
+
+    "org/gnome/desktop/notifications/application/spotify" = {
+      application-id = "spotify.desktop";
+    };
+
     "org/gnome/desktop/peripherals/keyboard" = {
       numlock-state = true;
     };
@@ -65,6 +73,11 @@ with lib.hm.gvariant;
 
     "org/gnome/desktop/session" = {
       idle-delay = mkUint32 600;
+    };
+
+    "org/gnome/desktop/sound" = {
+      event-sounds = false;
+      theme-name = "__custom";
     };
 
     "org/gnome/desktop/wm/keybindings" = {
