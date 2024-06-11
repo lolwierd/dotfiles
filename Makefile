@@ -6,3 +6,6 @@ init-nix-kakkoii:
 
 dump-dconf:
 	dconf dump / | nix run nixpkgs#dconf2nix > ./nixos/home/gnome/dconf.nix
+
+dump-plasma:
+	nix run github:pjones/plasma-manager > ./nixos/home/kde/kde.nix

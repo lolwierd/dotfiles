@@ -2,6 +2,7 @@
   programs.plasma = {
     enable = true;
     shortcuts = {
+      "ActivityManager"."switch-to-activity-63e9f594-ff54-4d57-99f5-c124224e816c" = [ ];
       "ActivityManager"."switch-to-activity-846aca80-1e10-460b-be5a-f4368555cd28" = [ ];
       "KDE Keyboard Layout Switcher"."Switch to Last-Used Keyboard Layout" = "Meta+Alt+L";
       "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = "Meta+Alt+K";
@@ -231,6 +232,7 @@
       "dolphinrc"."KFileDialog Settings"."Places Icons Auto-resize" = false;
       "dolphinrc"."KFileDialog Settings"."Places Icons Static Size" = 22;
       "dolphinrc"."Search"."Location" = "Everywhere";
+      "kactivitymanagerdrc"."activities"."63e9f594-ff54-4d57-99f5-c124224e816c" = "Default";
       "kactivitymanagerdrc"."activities"."846aca80-1e10-460b-be5a-f4368555cd28" = "Default";
       "kactivitymanagerdrc"."main"."currentActivity" = "846aca80-1e10-460b-be5a-f4368555cd28";
       "kcminputrc"."Libinput/1267/23/Elan Touchpad"."ScrollFactor" = 0.1;
@@ -296,6 +298,7 @@
       "kwinrc"."Plugins"."screenedgeEnabled" = false;
       "kwinrc"."TabBox"."MultiScreenMode" = 1;
       "kwinrc"."Tiling"."padding" = 4;
+      "kwinrc"."Tiling/45a0f516-005b-5b95-bd4e-fb037e5709b5"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
       "kwinrc"."Tiling/54a163c3-5681-52b8-99cb-e446ee91dbc5"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
       "kwinrc"."Tiling/6639566e-e5d7-56a0-bfb1-4c1d2f9794ad"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
       "kwinrc"."Tiling/852be61a-39ab-572c-9467-49c18f4c8464"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
@@ -386,9 +389,11 @@
       "kwinrulesrc"."ea9041e1-c7ab-4ba0-9d04-a139bc4a2be2"."wmclass" = "emacs Emacs";
       "kwinrulesrc"."ea9041e1-c7ab-4ba0-9d04-a139bc4a2be2"."wmclasscomplete" = true;
       "kwinrulesrc"."ea9041e1-c7ab-4ba0-9d04-a139bc4a2be2"."wmclassmatch" = 1;
-      "kxkbrc"."Layout"."Options" = "caps:swapescape";
+      "kxkbrc"."Layout"."Options" = "caps:escape";
       "kxkbrc"."Layout"."ResetOldOptions" = true;
       "plasma-localerc"."Formats"."LANG" = "en_IN";
+      "plasmanotifyrc"."Applications/slack"."ShowPopupsInDndMode" = true;
+      "plasmanotifyrc"."Services/powerdevil"."ShowPopupsInDndMode" = true;
     };
   };
 }
