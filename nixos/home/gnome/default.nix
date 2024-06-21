@@ -36,7 +36,7 @@
   ];
 
   # Nicely reload system units when changing configs
-  systemd.user.startServices = "sd-switch";
+  # systemd.user.startServices = "sd-switch";
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage
