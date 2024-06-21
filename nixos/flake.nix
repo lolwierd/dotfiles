@@ -51,7 +51,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "hbk";
+              home-manager.backupFileExtension = "bk";
               home-manager.extraSpecialArgs = {
                 inherit inputs;
                 plasma-manager = inputs.plasma-manager;

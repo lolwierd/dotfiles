@@ -1,13 +1,4 @@
 require("lazy").setup({
-  -- {
-  --   "nvim-neo-tree/neo-tree.nvim",
-  --   branch = "v3.x",
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     "nvim-tree/nvim-web-devicons",
-  --     "MunifTanjim/nui.nvim",
-  --   }
-  -- },
   {
     "nvim-telescope/telescope.nvim",
     branch = '0.1.x',
@@ -102,24 +93,24 @@ require("lazy").setup({
     }
   },
   "lambdalisue/suda.vim",
-  {
-    "shortcuts/no-neck-pain.nvim",
-    version = "*",
-    config = require("no-neck-pain").setup({
-      width = 120,
-      fallbackOnBufferDelete = true,
-      autocmds = {
-        enableOnVimEnter = true,
-        reloadOnColorSchemeChange = true,
-      },
-    }),
-  },
-  {
-    "nvim-tree/nvim-tree.lua",
-    version = "*",
-    lazy = false,
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-    },
-  }
+  -- {
+  --   "shortcuts/no-neck-pain.nvim",
+  --   version = "*",
+  --   config = require("no-neck-pain").setup({
+  --     width = 120,
+  --     fallbackOnBufferDelete = true,
+  --     autocmds = {
+  --       enableOnVimEnter = true,
+  --       reloadOnColorSchemeChange = true,
+  --     },
+  --   }),
+  -- },
+  -- {
+  --   "nvim-tree/nvim-tree.lua",
+  --   version = "*",
+  --   lazy = false,
+  --   dependencies = {
+  --     "nvim-tree/nvim-web-devicons",
+  --   },
+  -- }
 })
