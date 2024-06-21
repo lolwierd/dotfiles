@@ -104,7 +104,7 @@ require("lazy").setup({
   "lambdalisue/suda.vim",
   {
     "shortcuts/no-neck-pain.nvim",
-    version = "*"
+    version = "*",
     config = require("no-neck-pain").setup({
       width = 120,
       fallbackOnBufferDelete = true,

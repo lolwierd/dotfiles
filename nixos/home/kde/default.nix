@@ -1,7 +1,7 @@
 { pkgs, plasma-manager, ... }:
 
 {
-  imports = [ 
+  imports = [
     plasma-manager.homeManagerModules.plasma-manager
     ../programs
     ./kde.nix
@@ -26,8 +26,6 @@
     lazygit
     lazydocker
     postman
-    httpie
-    httpie-desktop
 
     # Need a version of these globally to make "things" easier.
     go
