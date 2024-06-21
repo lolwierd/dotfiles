@@ -93,24 +93,24 @@ require("lazy").setup({
     }
   },
   "lambdalisue/suda.vim",
-  -- {
-  --   "shortcuts/no-neck-pain.nvim",
-  --   version = "*",
-  --   config = require("no-neck-pain").setup({
-  --     width = 120,
-  --     fallbackOnBufferDelete = true,
-  --     autocmds = {
-  --       enableOnVimEnter = true,
-  --       reloadOnColorSchemeChange = true,
-  --     },
-  --   }),
-  -- },
-  -- {
-  --   "nvim-tree/nvim-tree.lua",
-  --   version = "*",
-  --   lazy = false,
-  --   dependencies = {
-  --     "nvim-tree/nvim-web-devicons",
-  --   },
-  -- }
+  {
+    "shortcuts/no-neck-pain.nvim",
+    version = "*",
+    config = require("no-neck-pain").setup({
+      width = 120,
+      fallbackOnBufferDelete = true,
+      autocmds = {
+        enableOnVimEnter = true,
+        reloadOnColorSchemeChange = true,
+      },
+    }),
+  },
+  {
+    "nvim-tree/nvim-tree.lua",
+    version = "*",
+    lazy = false,
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+  }
 })
