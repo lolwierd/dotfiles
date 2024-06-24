@@ -41,7 +41,7 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
 vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
 
--- vim.keymap.set('n', '<C-n>', "<cmd>Neotree reveal toggle<CR>zz")
+vim.keymap.set('n', '<C-n>', "<cmd>Neotree reveal toggle<CR>zz")
 
 vim.cmd('command! Gt :GoTestFile -v')
 
