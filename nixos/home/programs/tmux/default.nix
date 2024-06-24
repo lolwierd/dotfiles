@@ -1,5 +1,4 @@
 { pkgs, ... }:
-
 {
   programs.tmux = {
     enable = true;
@@ -36,15 +35,16 @@
       bind-key x kill-pane
       # don't exit from tmux when closing a session
       set -g detach-on-destroy off
-      set -g status-bg black
+      # set -g status-bg black
+      set-option -g status-style bg=default
       set -g status-fg colour137
       set -g status-left '#[bold][ #S ]'
       set -g status-right '#[bold][ %d/%m %H:%M ]'
       set -g status-right-length 50
       set -g status-left-length 50
       set -g status-justify centre
-      setw -g window-status-current-format ' #I#[fg=colour250]:#[fg=colour255]#W#[fg=colour50]#F '
-      setw -g window-status-format ' #I#[fg=colour237]:#[fg=colour250]#W#[fg=colour244] '
+      setw -g window-status-current-format ' #I#[fg=colour0]:#[fg=colour0]#W#[fg=colour0]#F '
+      setw -g window-status-format ' #I#[fg=colour240]:#[fg=colour240]#W#[fg=colour240] '
       set-option -sg escape-time 10
       set-option -g focus-events on
       set-option -sa terminal-overrides ',xterm-256color:RGB'
