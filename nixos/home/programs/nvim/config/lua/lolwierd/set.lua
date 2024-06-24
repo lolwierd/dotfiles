@@ -34,7 +34,7 @@ vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to de
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 
-vim.cmd.colorscheme "catppuccin-mocha"
+vim.cmd.colorscheme "catppuccin-latte"
 
 vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 

@@ -10,5 +10,6 @@
     settings = {
       hide_window_decorations = true;
     };
+    theme = "Catppuccin-Latte";
   };
 }
