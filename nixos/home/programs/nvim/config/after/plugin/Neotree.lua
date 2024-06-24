@@ -106,6 +106,7 @@ require("neo-tree").setup({
     use_libuv_file_watcher = true, -- This will use the OS level file watchers to detect changes
     -- instead of relying on nvim autocmd events.
     window = {
+      position = "float",
       mappings = {
         ["<bs>"] = "navigate_up",
         ["."] = "set_root",
