@@ -35,6 +35,8 @@
     go-tools
     goimports-reviser
     delve
+
+    wrangler
   ];
 
   # Nicely reload system units when changing configs
