@@ -24,6 +24,7 @@
     lazygit
     lazydocker
     postman
+    lutris
 
     # Need a version of these globally to make "things" easier.
     go
@@ -33,6 +34,8 @@
     go-tools
     goimports-reviser
     delve
+    
+    wrangler
   ];
 
   # Nicely reload system units when changing configs

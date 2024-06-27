@@ -26,6 +26,7 @@
     lazygit
     lazydocker
     postman
+    lutris
 
     # Need a version of these globally to make "things" easier.
     go
