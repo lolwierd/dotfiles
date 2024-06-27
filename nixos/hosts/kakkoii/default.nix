@@ -7,7 +7,7 @@
     ../../modules/users.nix
     ../../modules/services
     ../../modules/overlays
-    ../../modules/gnome
+    ../../modules/kde
   ];
 
   boot = {
@@ -41,6 +41,8 @@
       powerOnBoot = true;
       settings.General.Experimental = true;
     };
+    pulseaudio.enable = false;
+    graphics.enable32Bit = true;
   };
   fileSystems."/mnt/data" = {
     device = "/dev/disk/by-uuid/1F630037576BFA05";

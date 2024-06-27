@@ -52,11 +52,11 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.backupFileExtension = "bk";
-              # home-manager.extraSpecialArgs = {
-              #   inherit inputs;
-              #   plasma-manager = inputs.plasma-manager;
-              # };
-              home-manager.users.lolwierd.imports = [ ./home/gnome ];
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+                plasma-manager = inputs.plasma-manager;
+              };
+              home-manager.users.lolwierd.imports = [ ./home/kde ];
             }
           ];
         };
