@@ -31,7 +31,7 @@
         }];
       };
     };
-    defaultGateway = "192.168.29.2";
+    defaultGateway = "192.168.29.1";
     nameservers = ["8.8.8.8"];
   };
 
