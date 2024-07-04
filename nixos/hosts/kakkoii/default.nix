@@ -31,7 +31,7 @@
         }];
       };
     };
-    defaultGateway = "192.168.29.1";
+    defaultGateway = "192.168.29.2";
     nameservers = ["8.8.8.8"];
   };
 
@@ -44,11 +44,11 @@
     pulseaudio.enable = false;
     graphics.enable32Bit = true;
   };
-  fileSystems."/mnt/data" = {
-    device = "/dev/disk/by-uuid/1F630037576BFA05";
-    fsType = "ntfs-3g"; 
-    options = [ "rw" "uid="];
-  };
+  # fileSystems."/mnt/data" = {
+    # device = "/dev/disk/by-uuid/1F630037576BFA05";
+    # fsType = "ntfs-3g"; 
+    # options = [ "rw" "uid="];
+  # };
 
   environment.systemPackages = with pkgs; [
     emacs
