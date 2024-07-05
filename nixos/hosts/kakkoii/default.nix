@@ -44,11 +44,11 @@
     pulseaudio.enable = false;
     graphics.enable32Bit = true;
   };
-  # fileSystems."/mnt/data" = {
-    # device = "/dev/disk/by-uuid/1F630037576BFA05";
-    # fsType = "ntfs-3g"; 
-    # options = [ "rw" "uid="];
-  # };
+  fileSystems."/mnt/data" = {
+    device = "/dev/disk/by-uuid/1F630037576BFA05";
+    fsType = "ntfs-3g"; 
+    options = [ "nofail" "rw" "uid="];
+  };
 
   environment.systemPackages = with pkgs; [
     emacs
