@@ -15,7 +15,7 @@
     spotify
     slack
     vscode
-    discord
+    #discord
     jellyfin-media-player
     plex-media-player
     kdePackages.kdeconnect-kde
