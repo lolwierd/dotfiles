@@ -27,6 +27,7 @@
     lazydocker
     postman
     # lutris
+    zed-editor
 
     # Need a version of these globally to make "things" easier.
     go
