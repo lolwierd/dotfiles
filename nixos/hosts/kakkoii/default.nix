@@ -44,9 +44,9 @@
     graphics.enable32Bit = true;
   };
   fileSystems."/mnt/data" = {
-    device = "/dev/disk/by-uuid/1F630037576BFA05";
-    fsType = "ntfs-3g";
-    options = [ "nofail" "rw" "uid="];
+    device = "/dev/disk/by-uuid/12ad36de-4c5a-4c05-b657-11aecabb197f";
+    fsType = "ext4";
+    options = [ "nofail" "noatime" "nosuid" "nodev" "rw"];
   };
 
   environment.systemPackages = with pkgs; [
@@ -70,6 +70,10 @@
 
   # services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
   services.pulseaudio.enable = false;
+  services.logind.extraConfig = ''
+    IdleAction=ignore
+    IdleActionSec=0
+  '';
 
   # Idk if i should put it in home manager.
   environment.etc."chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json".source = "${pkgs.kdePackages.plasma-browser-integration}/etc/chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json";

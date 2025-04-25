@@ -10,6 +10,6 @@
     settings = {
       hide_window_decorations = true;
     };
-    theme = "Atom One Light";
+    themeFile = "Atom One Light";
   };
 }

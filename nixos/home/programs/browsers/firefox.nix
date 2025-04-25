@@ -220,7 +220,7 @@
             definedAliases = [ "@y" ];
           };
           bing.metaData.alias = "@b";
-          Google.metaData.alias = "@g";
+          google.metaData.alias = "@g";
         };
       };
     };
