@@ -162,7 +162,7 @@
         "toolkit.telemetry.shutdownPingSender.enabledFirstsession" = false;
         "browser.vpn_promo.enabled" = false;
       };
-      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+      extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
         bitwarden
         ublock-origin
         multi-account-containers
@@ -179,7 +179,7 @@
       ];
       search = {
         force = true;
-        default = "Google";
+        default = "google";
         # order = [ "Searx" "Google" ];
         engines = {
           "Nix Packages" = {
@@ -205,7 +205,7 @@
             icon = "''${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = [ "@n" ];
           };
-          "YouTube" = {
+          youtube = {
             urls = [
               {
                 template = "https://www.youtube.com/results";
@@ -219,8 +219,8 @@
             ];
             definedAliases = [ "@y" ];
           };
-          "Bing".metaData.alias = "@b";
-          "Google".metaData.alias = "@g";
+          bing.metaData.alias = "@b";
+          Google.metaData.alias = "@g";
         };
       };
     };

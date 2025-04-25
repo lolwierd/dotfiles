@@ -28,7 +28,7 @@
         oishii = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            { nixpkgs.overlays = [ nur.overlay ]; }
+            { nixpkgs.overlays = [ nur.overlays.default ]; }
             ./hosts/oishii
             home-manager.nixosModules.home-manager
             {
@@ -45,7 +45,7 @@
         kakkoii = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            { nixpkgs.overlays = [ nur.overlay ]; }
+            { nixpkgs.overlays = [ nur.overlays.default ]; }
             ./hosts/kakkoii
             home-manager.nixosModules.home-manager
             {

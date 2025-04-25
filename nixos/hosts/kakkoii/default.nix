@@ -41,12 +41,11 @@
       powerOnBoot = true;
       settings.General.Experimental = true;
     };
-    pulseaudio.enable = false;
     graphics.enable32Bit = true;
   };
   fileSystems."/mnt/data" = {
     device = "/dev/disk/by-uuid/1F630037576BFA05";
-    fsType = "ntfs-3g"; 
+    fsType = "ntfs-3g";
     options = [ "nofail" "rw" "uid="];
   };
 
@@ -70,6 +69,7 @@
   ];
 
   # services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+  services.pulseaudio.enable = false;
 
   # Idk if i should put it in home manager.
   environment.etc."chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json".source = "${pkgs.kdePackages.plasma-browser-integration}/etc/chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json";

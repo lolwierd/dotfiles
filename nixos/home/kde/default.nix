@@ -12,7 +12,7 @@
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
-    spotify
+    # spotify
     slack
     vscode
     #discord
@@ -20,13 +20,13 @@
     plex-media-player
     kdePackages.kdeconnect-kde
     filezilla
-    microsoft-edge
-    vivaldi
+    # microsoft-edge
+    # vivaldi
     gh
     lazygit
     lazydocker
     postman
-    lutris
+    # lutris
 
     # Need a version of these globally to make "things" easier.
     go
