@@ -49,6 +49,55 @@
     options = [ "nofail" "noatime" "nosuid" "nodev" "rw"];
   };
 
+  fileSystems."/mnt/backup" = {
+    device = "/dev/disk/by-uuid/9d1e73e4-88a9-46be-813c-a86cef744a7d";
+    fsType = "ext4";
+    options = [ "nofail" "noatime" "nosuid" "nodev" "rw"];
+  };
+
+  services.samba = {
+    enable = true;
+    package = pkgs.samba4Full; # Includes necessary VFS modules like 'fruit'
+    openFirewall = true;
+    securityType = "user";
+    settings = {
+      global = {
+        "workgroup" = "WORKGROUP";
+        "server string" = "Time Machine Backup Server";
+        "netbios name" = "kakkoii";
+        "security" = "user";
+        "map to guest" = "bad user";
+        "vfs objects" = "catia fruit streams_xattr";
+        "fruit:aapl" = "yes";
+        "fruit:time machine" = "yes";
+      };
+      "TimeMachine" = {
+        "path" = "/mnt/backup";
+        "valid users" = "lolwierd";
+        "read only" = "no";
+        "guest ok" = "no";
+        "browseable" = "yes";
+        "create mask" = "0600";
+        "directory mask" = "0700";
+        "force user" = "lolwierd";
+      };
+    };
+  };
+
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+    publish = {
+      enable = true;
+      userServices = true;
+    };
+  };
+
+  systemd.services.samba = {
+    after = [ "mnt-backup.mount" ];
+    requires = [ "mnt-backup.mount" ];
+  };
+
   environment.systemPackages = with pkgs; [
     emacs
     nixfmt-rfc-style
