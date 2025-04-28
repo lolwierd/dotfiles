@@ -98,6 +98,8 @@
     requires = [ "mnt-backup.mount" ];
   };
 
+  services.ratbagd.enable = true;
+
   environment.systemPackages = with pkgs; [
     emacs
     nixfmt-rfc-style
@@ -112,6 +114,8 @@
     wireguard-tools
     epson-escpr
     libtool
+    libratbag
+    piper
 
     # gnome.gnome-tweaks
     # gnomeExtensions.appindicator
