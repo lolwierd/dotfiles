@@ -116,6 +116,7 @@
     libtool
     libratbag
     piper
+    caddy
 
     # gnome.gnome-tweaks
     # gnomeExtensions.appindicator
