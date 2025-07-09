@@ -140,6 +140,9 @@
     pciutils
     nix-output-monitor
     tailscale
+    packer
+    qemu
+    cloud-utils
   ];
 
   # Not supported with flakes :(

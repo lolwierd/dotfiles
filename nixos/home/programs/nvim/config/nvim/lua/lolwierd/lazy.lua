@@ -41,7 +41,7 @@ require("lazy").setup({
     ft = { "go", 'gomod' },
     build = ':lua require("go.install").update_all_sync()'
   },
-  "kevinhwang91/nvim-ufo",
+  -- "kevinhwang91/nvim-ufo",
   "kevinhwang91/promise-async",
   "mbbill/undotree",
   "tpope/vim-fugitive",

@@ -35,6 +35,7 @@
     nameservers = ["8.8.8.8"];
   };
 
+
   hardware = {
     bluetooth = {
       enable = true;
@@ -42,6 +43,13 @@
       settings.General.Experimental = true;
     };
     graphics.enable32Bit = true;
+    opengl.enable = true;
+    opengl.extraPackages = with pkgs; [
+      vulkan-loader
+      vulkan-tools
+      vkd3d
+      mesa
+    ];
   };
   fileSystems."/mnt/data" = {
     device = "/dev/disk/by-uuid/12ad36de-4c5a-4c05-b657-11aecabb197f";
@@ -117,6 +125,10 @@
     libratbag
     piper
     caddy
+    containerlab
+    wireshark-cli
+    gns3-gui
+    gns3-server
 
     # gnome.gnome-tweaks
     # gnomeExtensions.appindicator
@@ -128,6 +140,12 @@
     IdleAction=ignore
     IdleActionSec=0
   '';
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  };
 
   # Idk if i should put it in home manager.
   environment.etc."chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json".source = "${pkgs.kdePackages.plasma-browser-integration}/etc/chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json";
