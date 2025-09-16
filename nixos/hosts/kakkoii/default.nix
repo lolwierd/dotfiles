@@ -43,14 +43,16 @@
       powerOnBoot = true;
       settings.General.Experimental = true;
     };
-    graphics.enable32Bit = true;
-    opengl.enable = true;
-    opengl.extraPackages = with pkgs; [
-      vulkan-loader
-      vulkan-tools
-      vkd3d
-      mesa
-    ];
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+      extraPackages = with pkgs; [
+        vulkan-loader
+        vulkan-tools
+        vkd3d
+        mesa
+      ];
+    };
   };
   # fileSystems."/mnt/data" = {
   #   device = "/dev/disk/by-uuid/12ad36de-4c5a-4c05-b657-11aecabb197f";
@@ -107,7 +109,7 @@
 
   services.avahi = {
     enable = true;
-    nssmdns = true;
+    nssmdns4 = true;
     publish = {
       enable = true;
       userServices = true;
