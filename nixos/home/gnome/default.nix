@@ -16,10 +16,9 @@
     vscode
     discord
     jellyfin-media-player
-    plex-media-player
     filezilla
     microsoft-edge
-    vivaldi
+    # vivaldi
     gh
     lazygit
     lazydocker

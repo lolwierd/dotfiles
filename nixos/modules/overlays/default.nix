@@ -1,5 +1,5 @@
 { ... }:
 
 {
-  imports = [ ./vivaldi.nix ];
+  # imports = [ ./vivaldi.nix ];
 }

@@ -25,16 +25,17 @@
     hostName = "kakkoii";
     interfaces = {
       enp2s0 = {
-        ipv4.addresses = [{
-          address = "192.168.29.150";
-          prefixLength = 24;
-        }];
+        ipv4.addresses = [
+          {
+            address = "192.168.29.150";
+            prefixLength = 24;
+          }
+        ];
       };
     };
     defaultGateway = "192.168.29.1";
-    nameservers = ["8.8.8.8"];
+    nameservers = [ "8.8.8.8" ];
   };
-
 
   hardware = {
     bluetooth = {
@@ -51,46 +52,58 @@
       mesa
     ];
   };
-  fileSystems."/mnt/data" = {
-    device = "/dev/disk/by-uuid/12ad36de-4c5a-4c05-b657-11aecabb197f";
-    fsType = "ext4";
-    options = [ "nofail" "noatime" "nosuid" "nodev" "rw"];
-  };
+  # fileSystems."/mnt/data" = {
+  #   device = "/dev/disk/by-uuid/12ad36de-4c5a-4c05-b657-11aecabb197f";
+  #   fsType = "ext4";
+  #   options = [
+  #     "nofail"
+  #     "noatime"
+  #     "nosuid"
+  #     "nodev"
+  #     "rw"
+  #   ];
+  # };
 
-  fileSystems."/mnt/backup" = {
-    device = "/dev/disk/by-uuid/9d1e73e4-88a9-46be-813c-a86cef744a7d";
-    fsType = "ext4";
-    options = [ "nofail" "noatime" "nosuid" "nodev" "rw"];
-  };
+  # fileSystems."/mnt/backup" = {
+  #   device = "/dev/disk/by-uuid/9d1e73e4-88a9-46be-813c-a86cef744a7d";
+  #   fsType = "ext4";
+  #   options = [
+  #     "nofail"
+  #     "noatime"
+  #     "nosuid"
+  #     "nodev"
+  #     "rw"
+  #   ];
+  # };
 
-  services.samba = {
-    enable = true;
-    package = pkgs.samba4Full; # Includes necessary VFS modules like 'fruit'
-    openFirewall = true;
-    securityType = "user";
-    settings = {
-      global = {
-        "workgroup" = "WORKGROUP";
-        "server string" = "Time Machine Backup Server";
-        "netbios name" = "kakkoii";
-        "security" = "user";
-        "map to guest" = "bad user";
-        "vfs objects" = "catia fruit streams_xattr";
-        "fruit:aapl" = "yes";
-        "fruit:time machine" = "yes";
-      };
-      "TimeMachine" = {
-        "path" = "/mnt/backup";
-        "valid users" = "lolwierd";
-        "read only" = "no";
-        "guest ok" = "no";
-        "browseable" = "yes";
-        "create mask" = "0600";
-        "directory mask" = "0700";
-        "force user" = "lolwierd";
-      };
-    };
-  };
+  # services.samba = {
+  #   enable = true;
+  #   package = pkgs.samba4Full; # Includes necessary VFS modules like 'fruit'
+  #   openFirewall = true;
+  #   securityType = "user";
+  #   settings = {
+  #     global = {
+  #       "workgroup" = "WORKGROUP";
+  #       "server string" = "Time Machine Backup Server";
+  #       "netbios name" = "kakkoii";
+  #       "security" = "user";
+  #       "map to guest" = "bad user";
+  #       "vfs objects" = "catia fruit streams_xattr";
+  #       "fruit:aapl" = "yes";
+  #       "fruit:time machine" = "yes";
+  #     };
+  #     "TimeMachine" = {
+  #       "path" = "/mnt/backup";
+  #       "valid users" = "lolwierd";
+  #       "read only" = "no";
+  #       "guest ok" = "no";
+  #       "browseable" = "yes";
+  #       "create mask" = "0600";
+  #       "directory mask" = "0700";
+  #       "force user" = "lolwierd";
+  #     };
+  #   };
+  # };
 
   services.avahi = {
     enable = true;
@@ -114,21 +127,21 @@
     nixd
     comma
     lua-language-server
-    knot-dns
+    # knot-dns
     nix-index
     postgresql
     wayland-utils
     wl-clipboard
     wireguard-tools
-    epson-escpr
-    libtool
-    libratbag
+    # epson-escpr
+    # libtool
+    # libratbag
     piper
-    caddy
-    containerlab
-    wireshark-cli
-    gns3-gui
-    gns3-server
+    # caddy
+    # containerlab
+    # wireshark-cli
+    # gns3-gui
+    # gns3-server
 
     # gnome.gnome-tweaks
     # gnomeExtensions.appindicator
@@ -136,19 +149,20 @@
 
   # services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
   services.pulseaudio.enable = false;
-  services.logind.extraConfig = ''
-    IdleAction=ignore
-    IdleActionSec=0
-  '';
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-  };
+  # services.logind.extraConfig = ''
+  # IdleAction=ignore
+  # IdleActionSec=0
+  # '';
+  # programs.steam = {
+  #   enable = true;
+  #   remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+  #   dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  #   localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  # };
 
   # Idk if i should put it in home manager.
-  environment.etc."chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json".source = "${pkgs.kdePackages.plasma-browser-integration}/etc/chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json";
+  environment.etc."chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json".source =
+    "${pkgs.kdePackages.plasma-browser-integration}/etc/chromium/native-messaging-hosts/org.kde.plasma.browser_integration.json";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

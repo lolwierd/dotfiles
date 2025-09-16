@@ -72,6 +72,11 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  # Some legacy packages (eg. qtwebengine-5.15.19) are marked insecure in newer
+  # nixpkgs. Permit specific insecure packages explicitly to allow building
+  # configurations that still depend on them. Prefer removing or replacing
+  # these packages when possible.
+  nixpkgs.config.permittedInsecurePackages = [ "qtwebengine-5.15.19" ];
 
   programs.gnupg.agent = {
     enable = true;
@@ -143,6 +148,7 @@
     packer
     qemu
     cloud-utils
+    ghostty
   ];
 
   # Not supported with flakes :(

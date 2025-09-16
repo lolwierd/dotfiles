@@ -2,7 +2,7 @@
 
 {
   imports = [
-    plasma-manager.homeManagerModules.plasma-manager
+    plasma-manager.homeModules.plasma-manager
     ../programs
     ./kde.nix
   ];
@@ -17,7 +17,6 @@
     vscode
     #discord
     jellyfin-media-player
-    plex-media-player
     kdePackages.kdeconnect-kde
     filezilla
     # microsoft-edge
