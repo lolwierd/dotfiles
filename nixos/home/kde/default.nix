@@ -13,23 +13,23 @@
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     # spotify
-    slack
+    # slack
     vscode
     #discord
-    jellyfin-media-player
-    kdePackages.kdeconnect-kde
-    filezilla
+    # jellyfin-media-player
+    # kdePackages.kdeconnect-kde
+    # filezilla
     # microsoft-edge
     # vivaldi
     gh
     lazygit
     lazydocker
-    postman
+    # postman
     # lutris
     zed-editor
-    jetbrains.goland
-    jetbrains.datagrip
-    windsurf
+    # jetbrains.goland
+    # jetbrains.datagrip
+    # windsurf
 
     # Need a version of these globally to make "things" easier.
     go
