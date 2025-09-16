@@ -149,6 +149,7 @@
     qemu
     cloud-utils
     ghostty
+    nodejs
   ];
 
   # Not supported with flakes :(
