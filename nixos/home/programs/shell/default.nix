@@ -42,6 +42,7 @@
       }
     ];
     initContent = ''
+      npm set prefix ~/.npm-global
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       test -f ~/.p10k.zsh && source ~/.p10k.zsh
       export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -f -g \"\""
@@ -50,6 +51,7 @@
       export PATH=$PATH:~/.local/scripts
       export PATH=$PATH:~/go/bin
       export PATH=$PATH:"$HOME/.emacs.d/bin"
+      export PATH=$PATH:"$HOME/.npm-global/bin"
       export TERM=xterm-256color
       export EDITOR=nvim
       export LC_ALL=en_IN.UTF-8
