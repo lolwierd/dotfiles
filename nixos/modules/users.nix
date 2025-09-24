@@ -6,8 +6,8 @@
     hashedPassword = "$6$9ferZG9Rd0VX.xF9$vossOtzoH6.REKjwJmlu21sleSiCXfGvOaeRGdHazSxcUT1C5hmpd3nVawLH4QHVrjs2XjSC2NyYeNjB1fVDz0";
     description = "oishii";
     extraGroups = [
-      "kvm",
-      "libvirtd",
+      "kvm"
+      "libvirtd"
       "networkmanager"
       "wheel"
       "docker"
