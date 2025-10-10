@@ -123,6 +123,9 @@
 
   services.ratbagd.enable = true;
 
+  services.openssh.enable = true;
+
+
   environment.systemPackages = with pkgs; [
     emacs
     nixfmt-rfc-style
