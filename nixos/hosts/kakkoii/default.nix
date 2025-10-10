@@ -134,6 +134,11 @@
       bash
       coreutils
       git
+      nodejs
+      python3
+      gnumake
+      gcc
+      pkg-config
     ];
     preStart = ''
       ${pkgs.nodejs}/bin/npm ci --omit=dev
