@@ -130,8 +130,13 @@
     wants = [ "network-online.target" ];
     after = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
+    path = with pkgs; [
+      bash
+      coreutils
+      git
+    ];
     preStart = ''
-      ${pkgs.nodejs}/bin/npm install --include=dev
+      ${pkgs.nodejs}/bin/npm ci --omit=dev
       ${pkgs.nodejs}/bin/npm run build
     '';
     serviceConfig = {
