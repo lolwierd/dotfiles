@@ -125,6 +125,28 @@
 
   services.openssh.enable = true;
 
+  systemd.services.console-app = {
+    description = "Console web terminal service";
+    wants = [ "network-online.target" ];
+    after = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
+    preStart = ''
+      ${pkgs.nodejs}/bin/npm install --include=dev
+      ${pkgs.nodejs}/bin/npm run build
+    '';
+    serviceConfig = {
+      Type = "simple";
+      WorkingDirectory = "/home/lolwierd/console";
+      User = "lolwierd";
+      Environment = [
+        "NODE_ENV=production"
+      ];
+      EnvironmentFile = "/etc/console-app.env";
+      ExecStart = "${pkgs.nodejs}/bin/node dist/server/server.js";
+      Restart = "on-failure";
+    };
+  };
+
 
   environment.systemPackages = with pkgs; [
     emacs
