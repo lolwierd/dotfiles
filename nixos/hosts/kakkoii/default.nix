@@ -141,7 +141,8 @@
       pkg-config
     ];
     preStart = ''
-      ${pkgs.nodejs}/bin/npm ci --omit=dev
+      export NODE_ENV=development
+      ${pkgs.nodejs}/bin/npm ci
       ${pkgs.nodejs}/bin/npm run build
     '';
     serviceConfig = {
