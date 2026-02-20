@@ -12,7 +12,7 @@ personality = "pragmatic"
 collaboration_modes = true
 unified_exec = true
 shell_snapshot = true
-collab = true
+multi_agent = true
 steer = true
 
 apps = false
