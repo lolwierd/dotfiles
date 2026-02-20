@@ -11,6 +11,7 @@ const EXTENSION_ID = "atelier";
 const THEME_DARK = "introspective-ink";
 const THEME_LIGHT = "introspective-paper";
 const POLL_MS = 2500;
+const CLOCK_TICK_MS = 1000;
 
 const ANSI = {
 	accent: "\x1b[38;2;209;154;102m",
@@ -30,6 +31,9 @@ let inFlight = false;
 let usage = { input: 0, output: 0, cost: 0 };
 let activeModel = "";
 let activeContextWindow = 0;
+let sessionStartedAt = Date.now();
+let currentTurnStartedAt: number | null = null;
+let lastTurnDurationMs = 0;
 
 type TokenEstimateMethod = "tiktoken" | "est";
 type TokenEstimate = { count: number; method: TokenEstimateMethod };
@@ -149,6 +153,23 @@ const estimatePromptTokens = (text: string, modelId: string): TokenEstimate => {
 	return lastTokenEstimateResult;
 };
 
+const formatDuration = (ms: number): string => {
+	const totalSeconds = Math.max(0, Math.floor(ms / 1000));
+	const hours = Math.floor(totalSeconds / 3600);
+	const minutes = Math.floor((totalSeconds % 3600) / 60);
+	const seconds = totalSeconds % 60;
+
+	if (hours > 0) return `${hours}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+	return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+};
+
+const getCurrentTurnDurationMs = (): number => {
+	if (!currentTurnStartedAt) return 0;
+	return Date.now() - currentTurnStartedAt;
+};
+
+const getSessionDurationMs = (): number => Math.max(0, Date.now() - sessionStartedAt);
+
 class AtelierEditor extends CustomEditor {
 	constructor(tui: ConstructorParameters<typeof CustomEditor>[0], theme: ConstructorParameters<typeof CustomEditor>[1], keybindings: ConstructorParameters<typeof CustomEditor>[2]) {
 		super(tui, theme, keybindings);
@@ -161,7 +182,8 @@ class AtelierEditor extends CustomEditor {
 		const tokenEstimate = estimatePromptTokens(text, activeModel);
 		const tokenLabel = tokenEstimate.method === "tiktoken" ? `${tokenEstimate.count} tok` : `~${tokenEstimate.count} tok`;
 		const methodLabel = tokenEstimate.method === "tiktoken" ? "tt" : "est";
-		const title = `${ANSI.accent}prompt${ANSI.reset}${ANSI.dim} ${tokenLabel} · ${methodLabel}${ANSI.reset}`;
+		const turnTimeLabel = inFlight && currentTurnStartedAt ? `turn ${formatDuration(getCurrentTurnDurationMs())}` : lastTurnDurationMs > 0 ? `last ${formatDuration(lastTurnDurationMs)}` : "turn --";
+		const title = `${ANSI.accent}prompt${ANSI.reset}${ANSI.dim} ${tokenLabel} · ${methodLabel} · ${turnTimeLabel}${ANSI.reset}`;
 		const hint = `${ANSI.dim}enter send · shift+enter newline${ANSI.reset}`;
 
 		if (text.trim().length === 0) {
@@ -331,8 +353,12 @@ const applyChrome = (pi: ExtensionAPI, ctx: ExtensionContext) => {
 
 	ctx.ui.setFooter((tui, theme, footerData) => {
 		const unsub = footerData.onBranchChange(() => tui.requestRender());
+		const ticker = setInterval(() => tui.requestRender(), CLOCK_TICK_MS);
 		return {
-			dispose: unsub,
+			dispose() {
+				unsub();
+				clearInterval(ticker);
+			},
 			invalidate() {},
 			render(width: number): string[] {
 				const branch = footerData.getGitBranch();
@@ -348,8 +374,8 @@ const applyChrome = (pi: ExtensionAPI, ctx: ExtensionContext) => {
 					if (windowLabel !== "?") return `?/${windowLabel}`;
 					return "?";
 				})();
-				const queue = ctx.hasPendingMessages() ? "queued" : "clear";
 				const autoThemeLabel = autoThemeEnabled && process.platform === "darwin" ? "auto-theme:on" : "auto-theme:off";
+				const sessionLabel = formatDuration(getSessionDurationMs());
 
 				const line1Left = theme.fg("dim", `cwd ${ctx.cwd}`);
 				const line1Right = theme.fg(
@@ -359,7 +385,7 @@ const applyChrome = (pi: ExtensionAPI, ctx: ExtensionContext) => {
 
 				const line2Left = theme.fg(
 					"dim",
-					`↑${formatCount(usage.input)} ↓${formatCount(usage.output)} $${usage.cost.toFixed(3)} · turns:${turns} · ctx:${contextLabel} · queue:${queue}`,
+					`↑${formatCount(usage.input)} ↓${formatCount(usage.output)} $${usage.cost.toFixed(3)} · turns:${turns} · ctx:${contextLabel} · session:${sessionLabel}`,
 				);
 				const line2Right = theme.fg("accent", autoThemeLabel);
 
@@ -402,6 +428,10 @@ export default function atelierChrome(pi: ExtensionAPI) {
 	pi.on("session_start", async (_event, ctx) => {
 		activeModel = ctx.model?.id || activeModel;
 		activeContextWindow = ctx.model?.contextWindow || activeContextWindow;
+		sessionStartedAt = Date.now();
+		currentTurnStartedAt = null;
+		lastTurnDurationMs = 0;
+		inFlight = false;
 		void ensureTokenizerLoaded();
 		recalcSessionStats(ctx);
 		startThemePolling(ctx);
@@ -415,6 +445,10 @@ export default function atelierChrome(pi: ExtensionAPI) {
 	pi.on("session_switch", async (_event, ctx) => {
 		activeModel = ctx.model?.id || activeModel;
 		activeContextWindow = ctx.model?.contextWindow || activeContextWindow;
+		sessionStartedAt = Date.now();
+		currentTurnStartedAt = null;
+		lastTurnDurationMs = 0;
+		inFlight = false;
 		void ensureTokenizerLoaded();
 		recalcSessionStats(ctx);
 		chromeLayoutMounted = false;
@@ -434,10 +468,15 @@ export default function atelierChrome(pi: ExtensionAPI) {
 
 	pi.on("agent_start", async (_event, ctx) => {
 		inFlight = true;
+		currentTurnStartedAt = Date.now();
 		if (chromeEnabled) applyChrome(pi, ctx);
 	});
 
 	pi.on("agent_end", async (_event, ctx) => {
+		if (currentTurnStartedAt) {
+			lastTurnDurationMs = Date.now() - currentTurnStartedAt;
+			currentTurnStartedAt = null;
+		}
 		inFlight = false;
 		recalcSessionStats(ctx);
 		if (chromeEnabled) applyChrome(pi, ctx);

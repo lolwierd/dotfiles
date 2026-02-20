@@ -2,6 +2,17 @@
 
 All notable changes to this repository will be documented in this file.
 
+## [Unreleased]
+
+### Added
+- Added live session and turn duration indicators to the Pi `atelier-chrome` extension (footer and prompt header).
+- Added explicit Pi `enabledModels` defaults for Codex, Claude Opus/Sonnet, and Gemini 3 Pro preview.
+- Added Codex command allowlist rules for `swift test` and `qmd collection add` workflows.
+
+### Changed
+- Updated Codex trusted projects to include `~/Projects/personal/cb-manager`.
+- Replaced footer queue status with session runtime in the Pi `atelier-chrome` status line.
+
 ## [1.0.0] - 2026-02-20
 
 ### Added

@@ -4,5 +4,11 @@
   "defaultModel": "gpt-5.3-codex",
   "defaultThinkingLevel": "high",
   "theme": "introspective-ink",
-  "quietStartup": true
+  "quietStartup": true,
+  "enabledModels": [
+    "openai-codex/gpt-5.3-codex",
+    "anthropic/claude-opus-4-6",
+    "anthropic/claude-sonnet-4-6",
+    "google-gemini-cli/gemini-3-pro-preview"
+  ]
 }
