@@ -1,0 +1,11 @@
+background-opacity=0.875
+background-blur-radius=8
+copy-on-select=true
+shell-integration=zsh
+# shell-integration-features = no-title
+window-save-state=always
+# macos-titlebar-proxy-icon=hidden
+# title=" "
+# keybind = global:ctrl+grave_accent=toggle_quick_terminal
+theme = light:Flexoki Light,dark:Catppuccin Mocha
+macos-titlebar-style = tabs

@@ -1,0 +1,165 @@
+disable_response_storage = true
+model = "gpt-5.3-codex"
+model_reasoning_effort = "high"
+model_reasoning_summary_format = "experimental"
+
+tool_output_token_limit = 25000
+
+web_search = "live"
+personality = "pragmatic"
+
+[features]
+collaboration_modes = true
+unified_exec = true
+shell_snapshot = true
+collab = true
+steer = true
+
+apps = false
+[projects."/Users/lolwierd/Projects/excloud/diskengine"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/.codex/sessions/2025/08/27"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/microsoftweighing-new"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/iamapi"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/frontend_dev"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/kubeapi"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/billingapi"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/computeapi"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/frontend-test"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/databases"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/cpu-scraper"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/vmengine"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/weave"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/databaseapi"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/leadbot"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/virtualfriend"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/terraform-provider-excloud"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/dnsapi"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/goflow2"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/misc/types"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud"]
+trust_level = "untrusted"
+
+[projects."/Users/lolwierd/Projects/excloud/dbconsole"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/r2s"]
+trust_level = "untrusted"
+
+[projects."/Users/lolwierd/Projects/personal/logbook"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/tachiyomi"]
+trust_level = "untrusted"
+
+[projects."/Users/lolwierd/Projects/misc/misc"]
+trust_level = "untrusted"
+
+[projects."/Users/lolwierd/.claude"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/gpt-being-gpt"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/expense-tracker-webapp"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/.config/tmux"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/.local/scripts"]
+trust_level = "untrusted"
+
+[projects."/Users/lolwierd/Projects/personal/mcqs"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/MCQs"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/upsc-learning"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/snrly"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/codex"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/gen-cli-sdk"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/diskengine/vmengine"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/picture-manager"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/proctora"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/.codex"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/pyqs"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/diskengine/diskengine"]
+trust_level = "trusted"
+
+[notice]
+"hide_gpt-5.1-codex-max_migration_prompt" = true
+hide_rate_limit_model_nudge = true
+
+[notice.model_migrations]
+"gpt-5.2" = "gpt-5.2-codex"
+"gpt-5.1-codex-mini" = "gpt-5.2-codex"
+"gpt-5.2-codex" = "gpt-5.3-codex"
+
+[tui]
+status_line = ["model-with-reasoning", "current-dir", "git-branch", "context-remaining", "five-hour-limit", "weekly-limit", "context-window-size", "used-tokens", "total-input-tokens", "total-output-tokens"]
+
+# [mcp_servers.expense_tracker]
+# url = "https://expense-tracker-worker.lolwierd.workers.dev/mcp"
+# bearer_token_env_var = "EXPENSE_TRACKER_MCP_TOKEN"

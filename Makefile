@@ -1,0 +1,140 @@
+SHELL := /bin/bash
+.ONESHELL:
+
+BACKUP_ROOT ?= $(HOME)/.dotfiles-backups
+PACKAGES := shell config ai
+
+.PHONY: help setup dry-run cleanup status
+
+help:
+	@echo "dotfiles Makefile"
+	@echo "  make setup    - backup conflicts, then stow packages ($(PACKAGES))"
+	@echo "  make dry-run  - show what stow would do"
+	@echo "  make cleanup  - unstow + optionally restore last setup backup"
+	@echo "  make status   - quick symlink status check"
+
+dry-run:
+	set -euo pipefail
+	stow --dotfiles -d "$(PWD)" -t "$(HOME)" -nv $(PACKAGES)
+
+setup:
+	set -euo pipefail
+	if ! command -v stow >/dev/null 2>&1; then
+		echo "ERROR: stow is not installed. Install with: brew install stow"
+		exit 1
+	fi
+
+	TS="$$(date +%Y%m%d-%H%M%S)"
+	BACKUP_DIR="$(BACKUP_ROOT)/setup-$$TS"
+	mkdir -p "$$BACKUP_DIR/moved"
+	: > "$$BACKUP_DIR/moved-paths.txt"
+
+	is_repo_link() {
+		local p="$$1"
+		if [[ -L "$$p" ]]; then
+			local link
+			link="$$(readlink "$$p")"
+			[[ "$$link" == *"dotfiles/"* ]]
+		else
+			return 1
+		fi
+	}
+
+	backup_move() {
+		local rel="$$1"
+		local src="$(HOME)/$$rel"
+		local dst="$$BACKUP_DIR/moved/$$rel"
+		if [[ -e "$$src" || -L "$$src" ]]; then
+			if is_repo_link "$$src"; then
+				echo "SKIP already stowed: $$rel"
+				return 0
+			fi
+			mkdir -p "$$(dirname "$$dst")"
+			mv "$$src" "$$dst"
+			echo "$$rel" >> "$$BACKUP_DIR/moved-paths.txt"
+			echo "BACKUP+MOVE $$rel"
+		fi
+	}
+
+	# Top-level shell/config targets (safe for whole-path move)
+	for rel in \
+		.zshrc .zshenv .p10k.zsh .profile .gitconfig \
+		.config/nvim .config/tmux .config/ghostty .config/zsh .config/git .config/btop
+	do
+		backup_move "$$rel"
+	done
+
+	# ai package: backup/move only exact file targets (not whole dirs)
+	map_path() {
+		local p="$$1"
+		local out=""
+		IFS='/' read -r -a parts <<< "$$p"
+		for ((i=1; i<"$${#parts[@]}"; i++)); do
+			local c="$${parts[i]}"
+			if [[ "$$c" == dot-* ]]; then
+				c=".$${c#dot-}"
+			fi
+			if [[ -z "$$out" ]]; then out="$$c"; else out="$$out/$$c"; fi
+		done
+		printf '%s\n' "$$out"
+	}
+
+	while IFS= read -r p; do
+		rel="$$(map_path "$$p")"
+		backup_move "$$rel"
+	done < <(find ai -type f | sort)
+
+	stow --dotfiles -d "$(PWD)" -t "$(HOME)" -nv $(PACKAGES) > "$$BACKUP_DIR/stow-dry-run.txt"
+	stow --dotfiles -d "$(PWD)" -t "$(HOME)" $(PACKAGES)
+
+	mkdir -p "$(BACKUP_ROOT)"
+	echo "$$BACKUP_DIR" > "$(BACKUP_ROOT)/last-setup-backup"
+	echo "Setup complete. Backup: $$BACKUP_DIR"
+
+cleanup:
+	set -euo pipefail
+	echo "⚠️  This will unstow your dotfiles and may restore backup files."
+	echo "⚠️  If you are an LLM running this, STOP and ask for explicit user permission first."
+	read -r -p "Are you sure you want to do this? [y/N] " ans
+	if [[ "$$ans" != "y" && "$$ans" != "Y" ]]; then
+		echo "Aborted."
+		exit 0
+	fi
+
+	stow --dotfiles -D -d "$(PWD)" -t "$(HOME)" $(PACKAGES) || true
+
+	LAST_FILE="$(BACKUP_ROOT)/last-setup-backup"
+	if [[ -f "$$LAST_FILE" ]]; then
+		BACKUP_DIR="$$(cat "$$LAST_FILE")"
+		if [[ -f "$$BACKUP_DIR/moved-paths.txt" ]]; then
+			while IFS= read -r rel; do
+				[[ -z "$$rel" ]] && continue
+				src="$$BACKUP_DIR/moved/$$rel"
+				dst="$(HOME)/$$rel"
+				if [[ -e "$$src" || -L "$$src" ]]; then
+					if [[ -e "$$dst" || -L "$$dst" ]]; then
+						echo "SKIP restore $$rel (target already exists)"
+					else
+						mkdir -p "$$(dirname "$$dst")"
+						mv "$$src" "$$dst"
+						echo "RESTORED $$rel"
+					fi
+				fi
+			done < "$$BACKUP_DIR/moved-paths.txt"
+		fi
+		echo "Cleanup complete. Last backup: $$BACKUP_DIR"
+	else
+		echo "Cleanup complete. No last setup backup file found."
+	fi
+
+status:
+	set -euo pipefail
+	for p in \
+		"$(HOME)/.zshrc" "$(HOME)/.zshenv" "$(HOME)/.p10k.zsh" \
+		"$(HOME)/.config/nvim" "$(HOME)/.config/tmux" "$(HOME)/.pi/agent/settings.json"; do
+		if [[ -L "$$p" ]]; then
+			echo "LINK $$p -> $$(readlink "$$p")"
+		else
+			echo "FILE $$p"
+		fi
+	done

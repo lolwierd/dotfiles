@@ -1,0 +1,69 @@
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[core]
+	fileMode = false
+[author]
+	name = lolwierd
+	email = lolwierd@outlook.com
+[auser]
+	email = lolwierd@outlook.com
+[user]
+	email = lolwierd@outlook.com
+	name = lolwierd
+[push]
+	autoSetupRemote = true
+[url "git@github.com:excloud-in"]
+	insteadOf = https://github.com/excloud-in
+[pull]
+	rebase = true
+
+[alias]
+	# Checkout & Branches
+	co = checkout
+	cb = checkout -b
+	cm = checkout main
+	br = branch
+	bra = branch -a
+	bd = branch -d
+	bD = branch -D
+
+	# Commits & Staging
+	a = add
+	cmsg = commit -m
+	cam = commit -a -m
+	ca = commit -a --verbose
+	amend = commit --amend --no-edit
+	fixup = commit --amend -a --no-edit
+	wip = commit -am "WIP"
+
+	# Push/Pull/Fetch
+	p = push
+	pl = pull
+	pf = push --force-with-lease
+	f = fetch
+	fa = fetch --all
+	l = pull
+
+	# Fancy Logs (Eye Candy)
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+
+	# Diff & Viewing
+	dc = diff --cached
+	ds = diff --staged
+	last = log -1 HEAD
+	show = show
+
+	# Power Moves
+	unstage = restore --staged
+	undo = reset HEAD~1 --mixed
+	nuke = !git reset --hard && git clean -fd
+
+	# Stash Operations
+	sta = stash
+	stp = stash pop
+	stl = stash list
+	staa = stash apply
+	std = stash drop

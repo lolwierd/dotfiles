@@ -1,0 +1,34 @@
+{
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  },
+  "ui": {
+    "theme": "Default",
+    "showStatusInTitle": true,
+    "hideTips": false,
+    "footer": {
+      "hideContextPercentage": false
+    },
+    "showMemoryUsage": true,
+    "showModelInfoInChat": true
+  },
+  "general": {
+    "previewFeatures": true,
+    "vimMode": false
+  },
+  "tools": {
+    "shell": {
+      "showColor": true
+    },
+    "autoAccept": true
+  },
+  "hasSeenIdeIntegrationNudge": true,
+  "ide": {
+    "enabled": true
+  },
+  "model": {
+    "name": "gemini-3-pro-preview"
+  }
+}

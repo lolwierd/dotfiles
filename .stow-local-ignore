@@ -1,5 +1,5 @@
-\.git
-\.gitignore
-
-nvim_backup
-nvim.tmux
+(^|/)\.git(/|$)
+^README\.md$
+^\.gitignore$
+^\.stow-local-ignore$
+^\.DS_Store$

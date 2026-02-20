@@ -1,0 +1,188 @@
+# zmodload zsh/zprof
+fpath+=($HOME/.zsh/completions)
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# History settings
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_EXPIRE_DUPS_FIRST
+
+# FZF
+export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -f -g \"\""
+
+# Enable autocd
+setopt autocd
+
+# Set vi mode
+bindkey -v
+
+# kubectl aliases
+alias c='codex'
+alias g='gemini'
+alias cl='claude'
+alias oc='opencode'
+alias k='kubectl'
+alias ks='stern api'
+alias ked='kubectl edit deploy'
+alias kgp='kubectl get pods'
+alias kga='kubectl get all'
+alias kdp='kubectl delete pod'
+alias kds='kubectl describe pod'
+
+# Context and Cluster
+alias kc='kubectl config current-context'
+alias kcs='kubectx'
+alias kctx='kubectl config use-context'
+alias kcl='kubectl config get-contexts'
+
+# Logs and Debugging
+alias kl='kubectl logs'
+alias kexec='kubectl exec -it'
+alias kdash='kubectl proxy'
+
+# Apply and Get
+alias kapply='kubectl apply -f'
+alias kget='kubectl get'
+
+# Resource-Specific
+alias kgc='kubectl get configmaps'
+alias kgn='kubectl get namespaces'
+alias kdescribe='kubectl describe'
+alias kgsvc='kubectl get svc'
+
+# Aliases
+alias vi='nvim'
+alias zconf='vi ~/.zshrc'
+alias sconf='vi ~/.config/sway/config'
+alias nconf='cd ~/.config/nvim && nvim .'
+alias hconf='cd ~/.config/hypr && nvim .'
+alias dotconf='cd ~/dotfiles && nvim .'
+alias t='tmux-sessionizer'
+alias s='tmux-fuzzy-sessions'
+alias cabr='cargo build && cargo run'
+alias car='cargo run'
+alias cab='cargo build'
+alias copy='tr -d "\n" | pbcopy'
+alias ls='eza'
+alias l='eza -al'
+alias n='nvim .'
+
+# Git super-shortcuts (most used commands)
+alias gs='git status -sb'      # Short status with branch
+alias gd='git diff'             # Show changes
+alias gc='git commit -v'        # Commit with verbose diff
+alias gaa='git add --all'       # Stage everything
+
+# lg <pattern> -> ls -al | grep <pattern>
+lg() {
+  # Fuzzy-find a directory (filenames only) and cd into it.
+  # Usage: lg [query] [depth]
+  local query=""
+  local depth="${LG_DEPTH:-4}"
+  if [[ $# -ge 1 ]]; then
+    query="$1"
+  fi
+  if [[ $# -ge 2 && "$2" == <-> ]]; then
+    depth="$2"
+  fi
+
+  local dir=""
+  if command -v fd >/dev/null 2>&1; then
+    dir="$(fd --type d --hidden --follow --max-depth "$depth" . 2>/dev/null \
+      | fzf --query "$query" --no-multi --prompt="dir> " --height=40% --reverse)"
+  else
+    dir="$(find . -maxdepth "$depth" -type d -not -path '*/.git/*' 2>/dev/null \
+      | fzf --query "$query" --no-multi --prompt="dir> " --height=40% --reverse)"
+  fi
+
+  if [[ -n "$dir" ]]; then
+    cd -- "$dir"
+  fi
+}
+
+# Environment variables
+export GOPATH="$HOME/go"
+export TERM="xterm-256color"
+export EDITOR="nvim"
+
+# PATH
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="$PATH:/usr/local/go/bin:$HOME/.local/bin:$HOME/.local/scripts:$HOME/.config/emacs/bin"
+export PATH="$PATH:$HOME/.emacs.d/bin:$GOPATH/bin:$HOME/Library/Python/3.9/bin"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export PATH="$PATH:$HOME/.lmstudio/bin:$HOME/.opencode/bin:$HOME/.antigravity/antigravity/bin:$HOME/.amp/bin"
+export PATH="/Users/lolwierd/.codeium/windsurf/bin:$PATH"
+
+# Load secrets (kept in a separate file)
+[[ -f ~/.config/zsh/keys.zsh ]] && source ~/.config/zsh/keys.zsh
+
+# Key bindings
+bindkey '^R' history-incremental-search-backward
+bindkey -s '^f' "tmux-sessionizer\n"
+
+# Load zoxide
+eval "$(zoxide init zsh)"
+
+# Load direnv
+eval "$(direnv hook zsh)"
+
+export NVM_DIR="$HOME/.nvm"
+# Expose nvm global binaries (e.g. codex) without loading full nvm on startup.
+if [[ -f "$NVM_DIR/alias/default" ]]; then
+  _nvm_default_alias="$(<"$NVM_DIR/alias/default")"
+  if [[ "$_nvm_default_alias" == v* && -d "$NVM_DIR/versions/node/$_nvm_default_alias/bin" ]]; then
+    export PATH="$NVM_DIR/versions/node/$_nvm_default_alias/bin:$PATH"
+  else
+    typeset -a _nvm_bins
+    _nvm_bins=("$NVM_DIR"/versions/node/v*/bin(Nn))
+    (( ${#_nvm_bins} )) && export PATH="${_nvm_bins[-1]}:$PATH"
+  fi
+  unset _nvm_default_alias _nvm_bins
+fi
+
+# Lazy-load nvm/node toolchain on first use to avoid shell startup lag.
+_lazy_load_nvm() {
+  unset -f nvm node npm npx corepack pnpm yarn _lazy_load_nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+}
+nvm() { _lazy_load_nvm; nvm "$@"; }
+node() { _lazy_load_nvm; node "$@"; }
+npm() { _lazy_load_nvm; npm "$@"; }
+npx() { _lazy_load_nvm; npx "$@"; }
+corepack() { _lazy_load_nvm; corepack "$@"; }
+pnpm() { _lazy_load_nvm; pnpm "$@"; }
+yarn() { _lazy_load_nvm; yarn "$@"; }
+
+fpath+=("$(brew --prefix)/share/zsh/site-functions")
+zstyle ':completion:*' rehash true
+autoload -U compinit && compinit -C
+zstyle ':completion::complete:*' gain-privileges 1
+
+test -e /Users/lolwierd/.iterm2_shell_integration.zsh && source /Users/lolwierd/.iterm2_shell_integration.zsh || true
+
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+
+# Added by Antigravity
+export PATH="/Users/lolwierd/.antigravity/antigravity/bin:$PATH"
+
+# opencode
+export PATH=/Users/lolwierd/.opencode/bin:$PATH
+
+# OpenRouter/Anthropic bridge (optional; set in ~/.config/zsh/keys.local.zsh)
+# export ANTHROPIC_BASE_URL="https://openrouter.ai/api"
+# export ANTHROPIC_AUTH_TOKEN="$OPENROUTER_API_KEY"
+# export ANTHROPIC_API_KEY="" # Important: must be explicitly empty

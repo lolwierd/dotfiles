@@ -1,0 +1,88 @@
+# macOS noise
+.DS_Store
+
+# local backups/temp
+*.bak.*
+*.backup*
+*.tmp
+
+# local plugin checkouts
+config/dot-config/tmux/plugins/
+
+# local machine secrets
+config/dot-config/zsh/keys.local.zsh
+
+# secrets/auth (never commit)
+**/auth.json
+**/oauth_creds.json
+**/google_accounts.json
+**/token.json
+
+# pi
+.pi/agent/auth.json
+.pi/agent/extensions/node_modules/
+.pi/agent/memory/
+.pi/agent/sessions/
+
+# codex runtime/state
+.codex/.codex-global-state.json
+.codex/.personality_migration
+.codex/auth.json
+.codex/history.json
+.codex/history.jsonl
+.codex/internal_storage.json
+.codex/models_cache.json
+.codex/update-check.json
+.codex/archived_sessions/
+.codex/sessions/
+.codex/log/
+.codex/sqlite/
+.codex/shell_snapshots/
+.codex/vendor_imports/
+.codex/skills/
+
+# claude runtime/state
+.claude/debug/
+.claude/cache/
+
+# gemini runtime/state
+.gemini/oauth_creds.json
+.gemini/google_accounts.json
+.gemini/state.json
+.gemini/installation_id
+.gemini/antigravity/
+.gemini/antigravity-browser-profile/
+.gemini/tmp/
+
+# stow package paths (ai)
+ai/dot-pi/agent/auth.json
+ai/dot-pi/agent/extensions/node_modules/
+ai/dot-pi/agent/memory/
+ai/dot-pi/agent/sessions/
+
+ai/dot-codex/.codex-global-state.json
+ai/dot-codex/.personality_migration
+ai/dot-codex/auth.json
+ai/dot-codex/history.json
+ai/dot-codex/history.jsonl
+ai/dot-codex/internal_storage.json
+ai/dot-codex/models_cache.json
+ai/dot-codex/update-check.json
+ai/dot-codex/archived_sessions/
+ai/dot-codex/sessions/
+ai/dot-codex/log/
+ai/dot-codex/sqlite/
+ai/dot-codex/shell_snapshots/
+ai/dot-codex/vendor_imports/
+ai/dot-codex/skills/
+
+ai/dot-claude/debug/
+ai/dot-claude/cache/
+
+ai/dot-gemini/oauth_creds.json
+ai/dot-gemini/google_accounts.json
+ai/dot-gemini/state.json
+ai/dot-gemini/installation_id
+ai/dot-gemini/antigravity/
+ai/dot-gemini/antigravity-browser-profile/
+ai/dot-gemini/tmp/
