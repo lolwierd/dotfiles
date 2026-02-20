@@ -374,7 +374,6 @@ const applyChrome = (pi: ExtensionAPI, ctx: ExtensionContext) => {
 					if (windowLabel !== "?") return `?/${windowLabel}`;
 					return "?";
 				})();
-				const autoThemeLabel = autoThemeEnabled && process.platform === "darwin" ? "auto-theme:on" : "auto-theme:off";
 				const sessionLabel = formatDuration(getSessionDurationMs());
 
 				const line1Left = theme.fg("dim", `cwd ${ctx.cwd}`);
@@ -387,9 +386,8 @@ const applyChrome = (pi: ExtensionAPI, ctx: ExtensionContext) => {
 					"dim",
 					`↑${formatCount(usage.input)} ↓${formatCount(usage.output)} $${usage.cost.toFixed(3)} · turns:${turns} · ctx:${contextLabel} · session:${sessionLabel}`,
 				);
-				const line2Right = theme.fg("accent", autoThemeLabel);
 
-				return [joinLR(line1Left, line1Right, width), joinLR(line2Left, line2Right, width)];
+				return [joinLR(line1Left, line1Right, width), line2Left];
 			},
 		};
 	});
