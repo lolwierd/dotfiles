@@ -184,6 +184,25 @@ ls -la ~/.agents/skills/surf    # should show symlink → dotfiles/
 readlink ~/.agents/skills/surf
 ```
 
+## Changelog & Versioning
+
+**Always update `~/dotfiles/CHANGELOG.md` before committing any meaningful change.**
+
+- Move the `[Unreleased]` content into a new versioned section (e.g. `## [1.2.0] - YYYY-MM-DD`) when cutting a release.
+- For day-to-day changes that aren't a release yet, add entries to the `## [Unreleased]` section at the top.
+- After updating the changelog, create a git tag to mark the release:
+
+```bash
+cd ~/dotfiles
+# update CHANGELOG.md first, then:
+git add -A
+git commit -m "docs(changelog): release v1.2.0"
+git tag v1.2.0
+git push origin macos --tags
+```
+
+Use semantic versioning: bump **patch** for fixes/tweaks, **minor** for new skills/features, **major** for breaking restructure.
+
 ## What NOT to Do
 
 - ❌ Don't edit files directly at `~/.zshrc`, `~/.config/nvim/`, etc. — always go through `~/dotfiles/`

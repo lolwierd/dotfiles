@@ -4,16 +4,26 @@ All notable changes to this repository will be documented in this file.
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-02-20
+
 ### Added
+- Added `surf` browser automation skill: replaces the custom CDP scripts with the `surf` CLI for browser control, screenshots, form filling, network inspection, and AI assistant queries (ChatGPT, Gemini, Perplexity, Grok).
+- Added `dotfiles` agent skill: explains the GNU Stow layout, `dot-` prefix convention, and the correct process for adding or editing any config file through dotfiles.
 - Added `visual-explainer` agent skill: turns complex terminal output, architecture discussions, diffs, and plans into self-contained styled HTML pages opened in the browser.
+- Added `design` agent skill for UI/visual design tasks (renamed from `frontend-design`).
 - Added five Pi prompt templates from `visual-explainer`: `/generate-web-diagram`, `/diff-review`, `/plan-review`, `/project-recap`, and `/fact-check`.
 - Added live session and turn duration indicators to the Pi `atelier-chrome` extension (footer and prompt header).
 - Added explicit Pi `enabledModels` defaults for Codex, Claude Opus/Sonnet, and Gemini 3 Pro preview.
 - Added Codex command allowlist rules for `swift test` and `qmd collection add` workflows.
 
 ### Changed
+- Switched Pi default provider and model from `openai-codex / gpt-5.3-codex` to `anthropic / claude-sonnet-4-6`.
 - Updated Codex trusted projects to include `~/Projects/personal/cb-manager`.
 - Replaced footer queue status with session runtime in the Pi `atelier-chrome` status line.
+- Normalised all agent skill symlinks to stow-managed relative symlinks; removed manually-created absolute symlinks.
+
+### Removed
+- Removed `web-browser` CDP skill and all associated Node scripts (`cdp.js`, `nav.js`, `screenshot.js`, etc.); browser automation now handled by `surf`.
 
 ## [1.0.0] - 2026-02-20
 
