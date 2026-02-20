@@ -5,6 +5,8 @@ All notable changes to this repository will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- Added `visual-explainer` agent skill: turns complex terminal output, architecture discussions, diffs, and plans into self-contained styled HTML pages opened in the browser.
+- Added five Pi prompt templates from `visual-explainer`: `/generate-web-diagram`, `/diff-review`, `/plan-review`, `/project-recap`, and `/fact-check`.
 - Added live session and turn duration indicators to the Pi `atelier-chrome` extension (footer and prompt header).
 - Added explicit Pi `enabledModels` defaults for Codex, Claude Opus/Sonnet, and Gemini 3 Pro preview.
 - Added Codex command allowlist rules for `swift test` and `qmd collection add` workflows.
