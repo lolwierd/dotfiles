@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.54.0",
-  "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.3-codex",
+  "defaultProvider": "anthropic",
+  "defaultModel": "claude-sonnet-4-6",
   "defaultThinkingLevel": "high",
   "theme": "introspective-ink",
   "quietStartup": true,
