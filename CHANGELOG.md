@@ -4,6 +4,14 @@ All notable changes to this repository will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+- Added stronger ignore rules for sensitive/runtime files in public dotfiles, including `rig.json`, `.env*`, cert/key files, and expanded `.pi`/`.claude`/`.codex`/`.gemini` runtime paths.
+
+### Changed
+- Made shared shell config cross-platform (macOS + Linux) by guarding platform-specific PATH entries and optional tools (`brew`, `pbcopy`, `zoxide`, `direnv`).
+- Updated setup docs/messages to include Ubuntu prerequisites (`stow`, `make`) while keeping one shared branch workflow.
+- Made `dot-zshenv` and `dot-profile` robust when `~/.cargo/env` is absent.
+
 ## [1.1.0] - 2026-02-20
 
 ### Added

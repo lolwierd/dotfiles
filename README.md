@@ -1,6 +1,6 @@
-# dotfiles (macOS)
+# dotfiles (macOS + Linux)
 
-Managed with GNU Stow.
+Managed with GNU Stow (single shared branch, cross-platform configs).
 
 ## Layout
 - `shell/` → `~/.zshrc`, `~/.zshenv`, `~/.p10k.zsh`, `~/.profile`, `~/.gitconfig`
@@ -9,7 +9,13 @@ Managed with GNU Stow.
 
 Auth/runtime/state files are ignored via `.gitignore`.
 
-## First-time setup on a new Mac
+## First-time setup
+
+### Prereqs
+- macOS: `brew install stow`
+- Ubuntu: `sudo apt update && sudo apt install -y stow make`
+
+### Run setup
 ```bash
 cd ~/dotfiles
 make setup
@@ -45,6 +51,6 @@ git diff --stat
 
 # commit + push
 git add -A
-git commit -m "chore(dotfiles): sync macOS config"
+git commit -m "chore(dotfiles): sync shared config"
 git push origin macos
 ```

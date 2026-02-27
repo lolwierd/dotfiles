@@ -20,7 +20,9 @@ dry-run:
 setup:
 	set -euo pipefail
 	if ! command -v stow >/dev/null 2>&1; then
-		echo "ERROR: stow is not installed. Install with: brew install stow"
+		echo "ERROR: stow is not installed."
+		echo "  macOS:  brew install stow"
+		echo "  Ubuntu: sudo apt update && sudo apt install -y stow"
 		exit 1
 	fi
 

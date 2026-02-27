@@ -6,6 +6,9 @@
 *.backup*
 *.tmp
 
+# local pi runtime metadata (never commit from this repo)
+.pi/
+
 # local plugin checkouts
 config/dot-config/tmux/plugins/
 
@@ -17,12 +20,24 @@ config/dot-config/zsh/keys.local.zsh
 **/oauth_creds.json
 **/google_accounts.json
 **/token.json
+**/rig.json
+**/.env
+**/.env.*
+**/*.pem
+**/*.p12
+**/*.pfx
+**/*credentials*.json
 
 # pi
 .pi/agent/auth.json
+.pi/agent/rig.json
 .pi/agent/extensions/node_modules/
 .pi/agent/memory/
 .pi/agent/sessions/
+.pi/agent/bin/
+.pi/agent/skills/
+.pi/session-control/
+.pi/todos/
 
 # codex runtime/state
 .codex/.codex-global-state.json
@@ -33,6 +48,7 @@ config/dot-config/zsh/keys.local.zsh
 .codex/internal_storage.json
 .codex/models_cache.json
 .codex/update-check.json
+.codex/state_*.sqlite
 .codex/archived_sessions/
 .codex/sessions/
 .codex/log/
@@ -42,23 +58,42 @@ config/dot-config/zsh/keys.local.zsh
 .codex/skills/
 
 # claude runtime/state
+.claude/.credentials.json
 .claude/debug/
 .claude/cache/
+.claude/downloads/
+.claude/file-history/
+.claude/history.jsonl
+.claude/settings.json
+.claude/paste-cache/
+.claude/projects/
+.claude/session-env/
+.claude/shell-snapshots/
+.claude/stats-cache.json
+.claude/tasks/
+.claude/todos/
 
 # gemini runtime/state
 .gemini/oauth_creds.json
 .gemini/google_accounts.json
 .gemini/state.json
 .gemini/installation_id
+.gemini/trustedFolders.json
+.gemini/history/
 .gemini/antigravity/
 .gemini/antigravity-browser-profile/
 .gemini/tmp/
 
 # stow package paths (ai)
 ai/dot-pi/agent/auth.json
+ai/dot-pi/agent/rig.json
 ai/dot-pi/agent/extensions/node_modules/
 ai/dot-pi/agent/memory/
 ai/dot-pi/agent/sessions/
+ai/dot-pi/agent/bin/
+ai/dot-pi/agent/skills/
+ai/dot-pi/session-control/
+ai/dot-pi/todos/
 
 ai/dot-codex/.codex-global-state.json
 ai/dot-codex/.personality_migration
@@ -68,6 +103,7 @@ ai/dot-codex/history.jsonl
 ai/dot-codex/internal_storage.json
 ai/dot-codex/models_cache.json
 ai/dot-codex/update-check.json
+ai/dot-codex/state_*.sqlite
 ai/dot-codex/archived_sessions/
 ai/dot-codex/sessions/
 ai/dot-codex/log/
@@ -76,13 +112,27 @@ ai/dot-codex/shell_snapshots/
 ai/dot-codex/vendor_imports/
 ai/dot-codex/skills/
 
+ai/dot-claude/.credentials.json
 ai/dot-claude/debug/
 ai/dot-claude/cache/
+ai/dot-claude/downloads/
+ai/dot-claude/file-history/
+ai/dot-claude/history.jsonl
+ai/dot-claude/settings.json
+ai/dot-claude/paste-cache/
+ai/dot-claude/projects/
+ai/dot-claude/session-env/
+ai/dot-claude/shell-snapshots/
+ai/dot-claude/stats-cache.json
+ai/dot-claude/tasks/
+ai/dot-claude/todos/
 
 ai/dot-gemini/oauth_creds.json
 ai/dot-gemini/google_accounts.json
 ai/dot-gemini/state.json
 ai/dot-gemini/installation_id
+ai/dot-gemini/trustedFolders.json
+ai/dot-gemini/history/
 ai/dot-gemini/antigravity/
 ai/dot-gemini/antigravity-browser-profile/
 ai/dot-gemini/tmp/

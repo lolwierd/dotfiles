@@ -17,7 +17,11 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_EXPIRE_DUPS_FIRST
 
 # FZF
-export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -f -g \"\""
+if command -v ag >/dev/null 2>&1; then
+  export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -f -g ""'
+elif command -v fd >/dev/null 2>&1; then
+  export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
+fi
 
 # Enable autocd
 setopt autocd
@@ -71,7 +75,13 @@ alias s='tmux-fuzzy-sessions'
 alias cabr='cargo build && cargo run'
 alias car='cargo run'
 alias cab='cargo build'
-alias copy='tr -d "\n" | pbcopy'
+if command -v pbcopy >/dev/null 2>&1; then
+  alias copy='tr -d "\n" | pbcopy'
+elif command -v xclip >/dev/null 2>&1; then
+  alias copy='tr -d "\n" | xclip -selection clipboard'
+elif command -v wl-copy >/dev/null 2>&1; then
+  alias copy='tr -d "\n" | wl-copy'
+fi
 alias ls='eza'
 alias l='eza -al'
 alias n='nvim .'
@@ -114,13 +124,29 @@ export GOPATH="$HOME/go"
 export TERM="xterm-256color"
 export EDITOR="nvim"
 
-# PATH
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="$PATH:/usr/local/go/bin:$HOME/.local/bin:$HOME/.local/scripts:$HOME/.config/emacs/bin"
-export PATH="$PATH:$HOME/.emacs.d/bin:$GOPATH/bin:$HOME/Library/Python/3.9/bin"
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-export PATH="$PATH:$HOME/.lmstudio/bin:$HOME/.opencode/bin:$HOME/.antigravity/antigravity/bin:$HOME/.amp/bin"
-export PATH="/Users/lolwierd/.codeium/windsurf/bin:$PATH"
+# PATH (cross-platform: macOS + Linux)
+path_prepend_if_dir() { [[ -d "$1" ]] && export PATH="$1:$PATH"; }
+path_append_if_dir() { [[ -d "$1" ]] && export PATH="$PATH:$1"; }
+
+# common
+path_append_if_dir "/usr/local/go/bin"
+path_append_if_dir "$HOME/.local/bin"
+path_append_if_dir "$HOME/.local/scripts"
+path_append_if_dir "$HOME/.config/emacs/bin"
+path_append_if_dir "$HOME/.emacs.d/bin"
+path_append_if_dir "$GOPATH/bin"
+path_append_if_dir "$HOME/.lmstudio/bin"
+path_append_if_dir "$HOME/.opencode/bin"
+path_append_if_dir "$HOME/.antigravity/antigravity/bin"
+path_append_if_dir "$HOME/.amp/bin"
+
+# macOS-only
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  path_prepend_if_dir "/opt/homebrew/bin"
+  path_prepend_if_dir "/opt/homebrew/opt/libpq/bin"
+  path_append_if_dir "$HOME/Library/Python/3.9/bin"
+  path_prepend_if_dir "$HOME/.codeium/windsurf/bin"
+fi
 
 # Load secrets (kept in a separate file)
 [[ -f ~/.config/zsh/keys.zsh ]] && source ~/.config/zsh/keys.zsh
@@ -130,10 +156,14 @@ bindkey '^R' history-incremental-search-backward
 bindkey -s '^f' "tmux-sessionizer\n"
 
 # Load zoxide
-eval "$(zoxide init zsh)"
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
 
 # Load direnv
-eval "$(direnv hook zsh)"
+if command -v direnv >/dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+fi
 
 export NVM_DIR="$HOME/.nvm"
 # Expose nvm global binaries (e.g. codex) without loading full nvm on startup.
@@ -163,12 +193,14 @@ corepack() { _lazy_load_nvm; corepack "$@"; }
 pnpm() { _lazy_load_nvm; pnpm "$@"; }
 yarn() { _lazy_load_nvm; yarn "$@"; }
 
-fpath+=("$(brew --prefix)/share/zsh/site-functions")
+if command -v brew >/dev/null 2>&1; then
+  fpath+=("$(brew --prefix)/share/zsh/site-functions")
+fi
 zstyle ':completion:*' rehash true
 autoload -U compinit && compinit -C
 zstyle ':completion::complete:*' gain-privileges 1
 
-test -e /Users/lolwierd/.iterm2_shell_integration.zsh && source /Users/lolwierd/.iterm2_shell_integration.zsh || true
+test -e "$HOME/.iterm2_shell_integration.zsh" && source "$HOME/.iterm2_shell_integration.zsh" || true
 
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -176,11 +208,9 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
 
-# Added by Antigravity
-export PATH="/Users/lolwierd/.antigravity/antigravity/bin:$PATH"
-
-# opencode
-export PATH=/Users/lolwierd/.opencode/bin:$PATH
+# Added by Antigravity / opencode (user-local, cross-platform)
+path_prepend_if_dir "$HOME/.antigravity/antigravity/bin"
+path_prepend_if_dir "$HOME/.opencode/bin"
 
 # OpenRouter/Anthropic bridge (optional; set in ~/.config/zsh/keys.local.zsh)
 # export ANTHROPIC_BASE_URL="https://openrouter.ai/api"
