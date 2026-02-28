@@ -110,7 +110,8 @@ ai/dot-codex/log/
 ai/dot-codex/sqlite/
 ai/dot-codex/shell_snapshots/
 ai/dot-codex/vendor_imports/
-ai/dot-codex/skills/
+ai/dot-codex/skills/*
+!ai/dot-codex/skills/visual-explainer/
 
 ai/dot-claude/.credentials.json
 ai/dot-claude/debug/
