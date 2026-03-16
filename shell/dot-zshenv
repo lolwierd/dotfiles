@@ -1,1 +1,4 @@
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+
+export LANG="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"

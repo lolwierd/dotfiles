@@ -16,6 +16,7 @@ All notable changes to this repository will be documented in this file.
 
 ### Changed
 - Updated `visual-explainer` skill from v0.1.1 to v0.2.0 — adds slide deck support (`generate-slides` prompt, `slide-patterns` reference, `slide-deck` template), updated CSS patterns and Mermaid libraries.
+- Forced UTF-8 locale defaults in `zshenv` and tmux (`LANG` / `LC_CTYPE`) so remote tmux sessions render Unicode reliably.
 - Made shared shell config cross-platform (macOS + Linux) by guarding platform-specific PATH entries and optional tools (`brew`, `pbcopy`, `zoxide`, `direnv`).
 - Updated setup docs/messages to include Ubuntu prerequisites (`stow`, `make`) while keeping one shared branch workflow.
 - Made `dot-zshenv` and `dot-profile` robust when `~/.cargo/env` is absent.
