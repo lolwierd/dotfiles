@@ -9,6 +9,10 @@ All notable changes to this repository will be documented in this file.
 - Installed `pi-design-deck` package (git) for Pi — adds `/deck`, `/deck-plan`, and `/deck-discover` slash commands.
 - Added `visual-explainer` skill to `.codex` (previously only in `.agents`).
 - Added stronger ignore rules for sensitive/runtime files in public dotfiles, including `rig.json`, `.env*`, cert/key files, and expanded `.pi`/`.claude`/`.codex`/`.gemini` runtime paths.
+- Added a Pi `oracle` extension inspired by Amp's built-in oracle tool for deep debugging, code review, architecture advice, and implementation planning with optional file attachments.
+- Upgraded the Pi `oracle` extension to run as an isolated read-only subagent, allowing it to inspect the codebase with `read`/`grep`/`find`/`ls` before giving advice.
+- Hardened the Pi `oracle` extension with proper cancellation handling, safer completion checks, stable file-error classification, explicit reporting of skipped file inputs, a subagent timeout, and stricter workspace-bound path validation.
+- Added richer Pi `oracle` tool rendering with a compact/expanded subagent transcript view, visible tool-call timeline, inspected files list, explicit default `high` thinking for oracle runs, skill discovery inside oracle subagent sessions, stricter isolation/guardrails for oracle tool execution, and a configurable `oracle.defaultModel` setting in Pi settings.
 
 ### Changed
 - Updated `visual-explainer` skill from v0.1.1 to v0.2.0 — adds slide deck support (`generate-slides` prompt, `slide-patterns` reference, `slide-deck` template), updated CSS patterns and Mermaid libraries.
