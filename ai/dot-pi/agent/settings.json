@@ -1,27 +1,29 @@
 {
-  "lastChangelogVersion": "0.54.0",
-  "defaultProvider": "github-copilot",
-  "defaultModel": "claude-haiku-4.5",
-  "defaultThinkingLevel": "low",
+  "lastChangelogVersion": "0.58.1",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.4",
+  "defaultThinkingLevel": "medium",
   "oracle.defaultModel": "openai-codex/gpt-5.4",
   "oracle.defaultThinkingLevel": "high",
   "theme": "introspective-ink",
   "quietStartup": true,
   "enabledModels": [
-    "openai-codex/gpt-5.3-codex",
     "anthropic/claude-opus-4-6",
     "anthropic/claude-sonnet-4-6",
     "google-gemini-cli/gemini-3-pro-preview",
     "github-copilot/gemini-3.1-pro-preview",
-    "github-copilot/gpt-5.2",
     "github-copilot/grok-code-fast-1",
     "github-copilot/claude-sonnet-4.6",
     "github-copilot/claude-opus-4.6",
-    "github-copilot/gpt-4.1",
     "github-copilot/gpt-5-mini",
-    "github-copilot/gemini-3-flash-preview"
+    "github-copilot/gemini-3-flash-preview",
+    "github-copilot/gpt-5.4",
+    "openai-codex/gpt-5.4"
   ],
   "packages": [
-    "https://github.com/nicobailon/pi-design-deck"
+    {
+      "source": "https://github.com/nicobailon/pi-design-deck",
+      "skills": []
+    }
   ]
 }

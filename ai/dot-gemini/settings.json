@@ -5,7 +5,7 @@
     }
   },
   "ui": {
-    "theme": "Default",
+    "theme": "GitHub",
     "showStatusInTitle": true,
     "hideTips": false,
     "footer": {
@@ -16,7 +16,12 @@
   },
   "general": {
     "previewFeatures": true,
-    "vimMode": false
+    "vimMode": false,
+    "sessionRetention": {
+      "warningAcknowledged": true,
+      "enabled": true,
+      "maxAge": "120d"
+    }
   },
   "tools": {
     "shell": {

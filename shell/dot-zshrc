@@ -33,6 +33,7 @@ bindkey -v
 alias c='codex'
 alias g='gemini'
 alias cl='claude'
+alias cly='claude --dangerously-skip-permissions'
 alias oc='opencode'
 alias k='kubectl'
 alias ks='stern api'

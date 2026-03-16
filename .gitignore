@@ -87,6 +87,7 @@ config/dot-config/zsh/keys.local.zsh
 # stow package paths (ai)
 ai/dot-pi/agent/auth.json
 ai/dot-pi/agent/rig.json
+ai/dot-pi/agent/models.json
 ai/dot-pi/agent/extensions/node_modules/
 ai/dot-pi/agent/memory/
 ai/dot-pi/agent/sessions/
