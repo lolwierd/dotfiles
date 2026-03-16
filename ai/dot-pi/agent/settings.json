@@ -4,6 +4,7 @@
   "defaultModel": "claude-haiku-4.5",
   "defaultThinkingLevel": "low",
   "oracle.defaultModel": "openai-codex/gpt-5.4",
+  "oracle.defaultThinkingLevel": "high",
   "theme": "introspective-ink",
   "quietStartup": true,
   "enabledModels": [

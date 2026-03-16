@@ -54,6 +54,8 @@ const ORACLE_SETTINGS_PATH = path.join(os.homedir(), ".pi", "agent", "settings.j
 const MAX_FILES = 12;
 const ORACLE_TIMEOUT_MS = 180_000;
 
+const THINKING_LEVELS = ["off", "minimal", "low", "medium", "high", "xhigh"] as const;
+type OracleThinkingLevel = (typeof THINKING_LEVELS)[number];
 type OracleAttachmentStatus = "ok" | "missing" | "directory" | "error" | "skipped-limit";
 
 const OracleParams = Type.Object({
@@ -81,7 +83,7 @@ interface OracleAttachment {
 interface OracleResultDetails {
 	ok: boolean;
 	model?: string;
-	thinkingLevel?: "off" | "minimal" | "low" | "medium" | "high" | "xhigh";
+	thinkingLevel?: OracleThinkingLevel;
 	mode: "subagent";
 	attachments: OracleAttachment[];
 	inspectedFiles: string[];
@@ -93,24 +95,34 @@ interface OracleResultDetails {
 	finalText?: string;
 }
 
-async function getConfiguredOracleModel(): Promise<{ provider: string; modelId: string } | undefined> {
+async function getOracleSettings(): Promise<Record<string, unknown>> {
 	try {
 		const raw = await fs.readFile(ORACLE_SETTINGS_PATH, "utf8");
-		const parsed = JSON.parse(raw) as Record<string, unknown>;
-		const configured = parsed["oracle.defaultModel"];
-		if (typeof configured !== "string") return undefined;
-		const value = configured.trim();
-		if (!value) return undefined;
-		const slash = value.indexOf("/");
-		if (slash <= 0 || slash === value.length - 1) return undefined;
-		return { provider: value.slice(0, slash), modelId: value.slice(slash + 1) };
+		return JSON.parse(raw) as Record<string, unknown>;
 	} catch {
-		return undefined;
+		return {};
 	}
 }
 
-async function selectOracleModel(ctx: ExtensionContext): Promise<Model<Api> | undefined> {
-	const configured = await getConfiguredOracleModel();
+function parseConfiguredOracleModel(settings: Record<string, unknown>): { provider: string; modelId: string } | undefined {
+	const configured = settings["oracle.defaultModel"];
+	if (typeof configured !== "string") return undefined;
+	const value = configured.trim();
+	if (!value) return undefined;
+	const slash = value.indexOf("/");
+	if (slash <= 0 || slash === value.length - 1) return undefined;
+	return { provider: value.slice(0, slash), modelId: value.slice(slash + 1) };
+}
+
+function parseConfiguredThinkingLevel(settings: Record<string, unknown>): OracleThinkingLevel {
+	const configured = settings["oracle.defaultThinkingLevel"];
+	if (typeof configured !== "string") return "high";
+	const value = configured.trim() as OracleThinkingLevel;
+	return THINKING_LEVELS.includes(value) ? value : "high";
+}
+
+async function selectOracleModel(ctx: ExtensionContext, settings: Record<string, unknown>): Promise<Model<Api> | undefined> {
+	const configured = parseConfiguredOracleModel(settings);
 	if (configured) {
 		const configuredModel = ctx.modelRegistry.find(configured.provider, configured.modelId);
 		if (configuredModel) {
@@ -444,7 +456,9 @@ export default function (pi: ExtensionAPI) {
 		parameters: OracleParams,
 
 		async execute(_toolCallId, params, signal, onUpdate, ctx) {
-			const model = await selectOracleModel(ctx);
+			const settings = await getOracleSettings();
+			const thinkingLevel = parseConfiguredThinkingLevel(settings);
+			const model = await selectOracleModel(ctx, settings);
 			if (!model) {
 				return {
 					content: [{ type: "text", text: "No oracle model is available. Configure credentials for a supported model first." }],
@@ -458,9 +472,9 @@ export default function (pi: ExtensionAPI) {
 			const skippedFileCount = attachments.filter((file) => file.status === "skipped-limit").length;
 			const { loader, cleanup } = await makeIsolatedLoader(ctx.cwd);
 
-			emitProgress(onUpdate, `Starting oracle subagent with ${model.provider}/${model.id} (thinking: high)...`, {
+			emitProgress(onUpdate, `Starting oracle subagent with ${model.provider}/${model.id} (thinking: ${thinkingLevel})...`, {
 				model: `${model.provider}/${model.id}`,
-				thinkingLevel: "high",
+				thinkingLevel,
 				mode: "subagent",
 				requestedFileCount: params.files?.length ?? 0,
 				skippedFileCount,
@@ -514,7 +528,7 @@ export default function (pi: ExtensionAPI) {
 				const sessionCreation = createAgentSession({
 					cwd: ctx.cwd,
 					model,
-					thinkingLevel: "high",
+					thinkingLevel,
 					modelRegistry: ctx.modelRegistry,
 					resourceLoader: loader,
 					sessionManager: SessionManager.inMemory(ctx.cwd),
@@ -585,7 +599,7 @@ export default function (pi: ExtensionAPI) {
 						details: {
 							ok: false,
 							model: `${model.provider}/${model.id}`,
-							thinkingLevel: "high",
+							thinkingLevel,
 							mode: "subagent",
 							attachments,
 							requestedFileCount: params.files?.length ?? 0,
@@ -604,7 +618,7 @@ export default function (pi: ExtensionAPI) {
 						details: {
 							ok: false,
 							model: `${model.provider}/${model.id}`,
-							thinkingLevel: "high",
+							thinkingLevel,
 							mode: "subagent",
 							attachments,
 							inspectedFiles: collectInspectedFiles(messages),
@@ -622,7 +636,7 @@ export default function (pi: ExtensionAPI) {
 				const details: OracleResultDetails = {
 					ok: true,
 					model: `${model.provider}/${model.id}`,
-					thinkingLevel: "high",
+					thinkingLevel,
 					mode: "subagent",
 					attachments,
 					inspectedFiles: collectInspectedFiles(messages),
@@ -647,7 +661,7 @@ export default function (pi: ExtensionAPI) {
 					details: {
 						ok: false,
 						model: `${model.provider}/${model.id}`,
-						thinkingLevel: "high",
+						thinkingLevel,
 						mode: "subagent",
 						attachments,
 						requestedFileCount: params.files?.length ?? 0,
