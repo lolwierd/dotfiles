@@ -29,6 +29,7 @@ let editorMounted = false;
 let turns = 0;
 let inFlight = false;
 let usage = { input: 0, output: 0, cost: 0 };
+let activeProvider = "";
 let activeModel = "";
 let activeContextWindow = 0;
 let sessionStartedAt = Date.now();
@@ -204,6 +205,33 @@ const formatCount = (n: number): string => {
 	return `${(n / 1_000_000).toFixed(1)}m`;
 };
 
+const formatProviderModel = (provider?: string, modelId?: string): string => {
+	const p = (provider || "").trim();
+	const m = (modelId || "").trim();
+	if (!m) return "no-model";
+	if (m.includes("/")) return m;
+	return p ? `${p}/${m}` : m;
+};
+
+const renderThinkingLevel = (theme: { fg: (color: string, text: string) => string }, thinking: string): string => {
+	switch (thinking.toLowerCase()) {
+		case "off":
+			return theme.fg("thinkingOff", thinking);
+		case "minimal":
+			return theme.fg("thinkingMinimal", thinking);
+		case "low":
+			return theme.fg("thinkingLow", thinking);
+		case "medium":
+			return theme.fg("thinkingMedium", thinking);
+		case "high":
+			return theme.fg("thinkingHigh", thinking);
+		case "xhigh":
+			return theme.fg("thinkingXhigh", thinking);
+		default:
+			return theme.fg("muted", thinking);
+	}
+};
+
 const joinLR = (left: string, right: string, width: number): string => {
 	const pad = " ".repeat(Math.max(1, width - visibleWidth(left) - visibleWidth(right)));
 	return truncateToWidth(`${left}${pad}${right}`, width);
@@ -323,7 +351,7 @@ const applyChrome = (pi: ExtensionAPI, ctx: ExtensionContext) => {
 
 		ctx.ui.setHeader((_tui, theme) => ({
 		render(width: number): string[] {
-			const model = activeModel || ctx.model?.id || "no-model";
+			const model = formatProviderModel(activeProvider || ctx.model?.provider, activeModel || ctx.model?.id);
 			const thinking = pi.getThinkingLevel();
 			const sessionName = pi.getSessionName() || "unnamed-session";
 			const resourcesExpanded = ctx.ui.getToolsExpanded();
@@ -377,10 +405,21 @@ const applyChrome = (pi: ExtensionAPI, ctx: ExtensionContext) => {
 				const sessionLabel = formatDuration(getSessionDurationMs());
 
 				const line1Left = theme.fg("dim", `cwd ${ctx.cwd}`);
-				const line1Right = theme.fg(
-					"muted",
-					`${activeModel || ctx.model?.id || "no-model"} · ${thinking}${branch ? ` (${branch})` : ""} · ${inFlight ? "thinking" : "idle"}`,
-				);
+				const providerModel = formatProviderModel(activeProvider || ctx.model?.provider, activeModel || ctx.model?.id);
+				const slash = providerModel.indexOf("/");
+				const providerLabel = slash > 0 ? providerModel.slice(0, slash) : "";
+				const modelLabel = slash > 0 ? providerModel.slice(slash + 1) : providerModel;
+				const modelDisplay = providerLabel
+					? `${theme.fg("dim", providerLabel)}${theme.fg("muted", "/")}${theme.fg("accent", modelLabel)}`
+					: theme.fg("accent", modelLabel);
+				const thinkingDisplay = renderThinkingLevel(theme, thinking);
+				const pulseOn = Math.floor(Date.now() / CLOCK_TICK_MS) % 2 === 0;
+				const statusDisplay = inFlight
+					? pulseOn
+						? theme.fg("accent", "thinking")
+						: theme.fg("muted", "thinking")
+					: theme.fg("dim", "idle");
+				const line1Right = `${modelDisplay}${theme.fg("dim", " · ")}${thinkingDisplay}${branch ? `${theme.fg("dim", " (")}${theme.fg("muted", branch)}${theme.fg("dim", ")")}` : ""}${theme.fg("dim", " · ")}${statusDisplay}`;
 
 				const line2Left = theme.fg(
 					"dim",
@@ -424,6 +463,7 @@ const setChrome = (pi: ExtensionAPI, ctx: ExtensionContext, enabled: boolean) =>
 
 export default function atelierChrome(pi: ExtensionAPI) {
 	pi.on("session_start", async (_event, ctx) => {
+		activeProvider = ctx.model?.provider || activeProvider;
 		activeModel = ctx.model?.id || activeModel;
 		activeContextWindow = ctx.model?.contextWindow || activeContextWindow;
 		sessionStartedAt = Date.now();
@@ -441,6 +481,7 @@ export default function atelierChrome(pi: ExtensionAPI) {
 	});
 
 	pi.on("session_switch", async (_event, ctx) => {
+		activeProvider = ctx.model?.provider || activeProvider;
 		activeModel = ctx.model?.id || activeModel;
 		activeContextWindow = ctx.model?.contextWindow || activeContextWindow;
 		sessionStartedAt = Date.now();
@@ -458,6 +499,7 @@ export default function atelierChrome(pi: ExtensionAPI) {
 	});
 
 	pi.on("model_select", async (event, ctx) => {
+		activeProvider = event.model.provider;
 		activeModel = event.model.id;
 		activeContextWindow = event.model.contextWindow || activeContextWindow;
 		void ensureTokenizerLoaded();
