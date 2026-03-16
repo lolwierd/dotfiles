@@ -5,6 +5,7 @@ All notable changes to this repository will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- Added `manuscript` agent skill for treatise-style / codex-inspired visual design work with paper, serif typography, margin notes, and SDF-generated ornamental friezes.
 - Added `design-deck` agent skill to `.agents` and `.codex` for visual option comparison workflows.
 - Installed `pi-design-deck` package (git) for Pi — adds `/deck`, `/deck-plan`, and `/deck-discover` slash commands.
 - Added `visual-explainer` skill to `.codex` (previously only in `.agents`).
