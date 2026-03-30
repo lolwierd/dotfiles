@@ -126,10 +126,11 @@ cd ~/dotfiles && git add -A && git commit -m "chore(shell): ..."
 ### Editing AI tool configs
 
 ```bash
-# pi settings / extensions / keybindings / themes
+# pi settings / extensions / keybindings / themes / pi-only skills
 ~/dotfiles/ai/dot-pi/agent/settings.json
 ~/dotfiles/ai/dot-pi/agent/keybindings.json
 ~/dotfiles/ai/dot-pi/agent/extensions/
+~/dotfiles/ai/dot-pi/agent/skills/
 
 # Claude system prompt
 ~/dotfiles/ai/dot-claude/CLAUDE.md

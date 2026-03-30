@@ -3,6 +3,8 @@ name: design-deck
 description: Present visual options for architecture, UI, and code decisions with high-fidelity side-by-side previews. For comparing approaches visually — code diffs, diagrams, UI mockups, images — not for gathering structured input (use interview for that). Supports previewBlocks (code, mermaid, image, html), previewHtml, generate-more loops, and plan/PRD-driven flows.
 ---
 
+> **`design_deck` is a direct tool — call it directly, not via MCP.**
+
 # Design Deck Workflow
 
 Use this skill when the task requires presenting multiple visual directions and collecting explicit user choices. Load this skill before building any deck to get the full format reference.
@@ -42,7 +44,7 @@ Build 1 decision per slide.
 
 Provide 2-4 options per slide that are genuinely distinct in direction, not tiny variants.
 
-Each slide supports an optional `columns` property (1, 2, or 3) to override the auto-detected grid. **Omit `columns` by default** — the auto-layout picks 2 or 3 columns based on option count, which is correct for most content. Only override to `columns: 1` when options contain wide architecture diagrams or detailed code that genuinely needs full viewport width. Never use `columns: 1` for text comparisons or simple previews.
+Each slide supports an optional `columns` property (1, 2, 3, or 4) to override the auto-detected grid. **Omit `columns` by default** — the auto-layout picks 2 or 3 columns based on option count, which is correct for most content. Only override to `columns: 1` when options contain wide architecture diagrams or detailed code that genuinely needs full viewport width. Use `columns: 4` when presenting many small, comparable items (e.g., icon sets, color swatches).
 
 Each slide supports an optional `context` property — a string displayed below the title that frames the decision for the user.
 
@@ -201,6 +203,40 @@ surf gemini "isometric database cluster, dark theme, blue nodes" \
 **Combine images with other blocks:**
 An image showing the visual direction paired with a code block showing the implementation approach, or a mermaid diagram showing data flow alongside a generated image showing the UI that flow produces.
 
+### Component Gallery Reference
+
+When generating UI component options (tabs, accordions, tree views, buttons, etc.), read `./references/component-gallery/components.md` for best practices, common layouts, and aliases for 60 UI components.
+
+The reference enables three things:
+- **Discovery** — list, find, and suggest components for a use case ("I need expandable content" → accordion, disclosure, details)
+- **Cross-referencing** — connect related terms (collapse = accordion = disclosure = expander; notification = alert = banner)
+- **Design vocabulary** — know what design systems look like (Blueprint = dense, dark-native; Ant = clean, blue primary)
+
+The `INDEX.md` provides a design system vocabulary table (Ant Design, Blueprint, Carbon, Material, etc.) and guidance on when to use distinct systems vs variations.
+
+**Decide based on context:**
+- **Distinct systems** (Blueprint vs Ant vs 98.css) when exploring the design space with no established aesthetic
+- **Variations within a system** when the project already has a design direction or the user specifies a style
+
+See `./references/component-gallery/INDEX.md` for the decision table and examples.
+
+**Proactively browse real examples:** When you need visual inspiration for a component, fetch the component.gallery page directly:
+
+- https://component.gallery/components/tabs/ — 80+ real tab implementations
+- https://component.gallery/components/accordion/ — 100+ accordion examples
+- https://component.gallery/components/button/ — 120+ button styles
+
+Each page shows real screenshots from Ant Design, Blueprint, Carbon, Material, Shopify Polaris, and 90+ other design systems. Useful when you need concrete visual references — not required for every deck.
+
+**When user vocabulary is unclear or ambiguous:** Read `./references/component-gallery/LOOKUP.md` to resolve user terms to canonical component names. The lookup file provides:
+
+1. **Alias Index** — Direct mappings like `collapse → Accordion`, `snackbar → Toast`
+2. **Disambiguation** — Rules for ambiguous terms like `dropdown` (Select? Combobox? Dropdown menu?) or `popup` (Modal? Popover? Tooltip?)
+3. **Intent Clusters** — When users describe what they're trying to do ("I need users to pick from options"), maps constraints to components
+4. **Clarification Templates** — Suggested questions when disambiguation is needed
+
+Use the lookup before generating options if the user's component vocabulary seems imprecise or you're unsure which component they mean.
+
 ### For Mixed Previews
 
 Many slides benefit from combining block types — a mermaid diagram showing structure alongside a code block showing usage, or an HTML mockup with a code block showing the component API.
@@ -220,27 +256,27 @@ Use these selections as the implementation contract for the final build.
 
 ## Generate-More Loop
 
-When the user clicks generate-more, `design_deck` returns a result instructing which slide needs another option and listing existing option labels.
+When the user clicks generate-more, `design_deck` returns a result instructing which slide needs options and how many, along with the existing option labels.
 
-Generate one new option that is meaningfully distinct from the listed options.
+Generate the requested number of new options, each meaningfully distinct from the existing ones.
 
-Re-invoke:
+Re-invoke with all options in a single call:
 
-`design_deck({ action: "add-option", slideId: "...", option: "{...json string...}" })`
+`design_deck({ action: "add-options", slideId: "...", options: "[{...}, {...}]" })`
 
-The `add-option` call pushes the new option into the live deck and blocks again for the next user action.
+The `add-options` call pushes all options into the live deck and blocks for the next user action. Use `add-options` (plural) for generate-more requests — it takes an array and handles blocking automatically.
 
 ### Model Override
 
 The deck shows a model dropdown below the header (when 2+ models are available). Users can pick which model generates new options and optionally save it as the default.
 
-When the generate-more result includes a model instruction (e.g. "Generate using model X via deck_generate"), use the built-in `deck_generate` tool to generate the option with that model:
+When the generate-more result includes a model instruction (e.g. "Generate using model X via deck_generate"), use the built-in `deck_generate` tool to generate the options with that model:
 
 ```
-deck_generate({ model: "google/gemini-3.1-pro", task: "Generate a JSON deck option..." })
+deck_generate({ model: "google/gemini-3.1-pro", task: "Generate JSON deck options..." })
 ```
 
-Parse the output as the option JSON and pass it to `add-option`.
+Parse the output as the options JSON array and pass it to `add-options`.
 
 The default model can also be set in `~/.pi/agent/settings.json`:
 

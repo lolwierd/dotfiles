@@ -92,7 +92,8 @@ ai/dot-pi/agent/extensions/node_modules/
 ai/dot-pi/agent/memory/
 ai/dot-pi/agent/sessions/
 ai/dot-pi/agent/bin/
-ai/dot-pi/agent/skills/
+ai/dot-pi/agent/skills/*
+!ai/dot-pi/agent/skills/design-deck/
 ai/dot-pi/session-control/
 ai/dot-pi/todos/
 
@@ -113,7 +114,6 @@ ai/dot-codex/shell_snapshots/
 ai/dot-codex/vendor_imports/
 ai/dot-codex/skills/*
 !ai/dot-codex/skills/visual-explainer/
-!ai/dot-codex/skills/design-deck/
 !ai/dot-codex/skills/cloudflare-deploy/
 !ai/dot-codex/skills/frontend-skill/
 
