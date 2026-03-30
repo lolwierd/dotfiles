@@ -1,11 +1,11 @@
 {
-  "lastChangelogVersion": "0.58.1",
+  "lastChangelogVersion": "0.64.0",
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.4",
   "defaultThinkingLevel": "medium",
   "oracle.defaultModel": "openai-codex/gpt-5.4",
   "oracle.defaultThinkingLevel": "high",
-  "theme": "introspective-ink",
+  "theme": "introspective-paper",
   "quietStartup": true,
   "enabledModels": [
     "anthropic/claude-opus-4-6",

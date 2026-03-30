@@ -8,6 +8,7 @@ tool_output_token_limit = 25000
 web_search = "live"
 personality = "pragmatic"
 plan_mode_reasoning_effort = "high"
+approvals_reviewer = "user"
 
 [features]
 collaboration_modes = true
@@ -185,6 +186,27 @@ trust_level = "trusted"
 [projects."/Users/lolwierd/Projects/excloud/imdsapi"]
 trust_level = "trusted"
 
+[projects."/Users/lolwierd/Projects/excloud/qemu-image-builder"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/sanskrit-study"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/bg"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/syncer"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/examples"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/sanskrit-grammer"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/design"]
+trust_level = "trusted"
+
 [notice]
 "hide_gpt-5.1-codex-max_migration_prompt" = true
 hide_rate_limit_model_nudge = true
@@ -196,6 +218,9 @@ hide_rate_limit_model_nudge = true
 
 [tui]
 status_line = ["model-with-reasoning", "current-dir", "git-branch", "context-remaining", "five-hour-limit", "weekly-limit", "context-window-size", "used-tokens", "total-input-tokens", "total-output-tokens"]
+
+[plugins."github@openai-curated"]
+enabled = true
 
 # [mcp_servers.expense_tracker]
 # url = "https://expense-tracker-worker.lolwierd.workers.dev/mcp"

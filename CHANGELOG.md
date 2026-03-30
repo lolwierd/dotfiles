@@ -6,6 +6,8 @@ All notable changes to this repository will be documented in this file.
 
 ### Added
 - Added Pi `webfetch` and `websearch` extension tools, with OpenCode-style URL fetching plus Exa-backed live web search.
+- Added `exc-cli-resource-manager` to dotfiles-managed agent skills so Excloud CLI guidance is versioned and syncable.
+- Added `cloudflare-deploy` and `frontend-skill` to dotfiles-managed Codex skills so local Codex-only skills are backed up in dotfiles.
 - Added `manuscript` agent skill for treatise-style / codex-inspired visual design work with paper, serif typography, margin notes, and SDF-generated ornamental friezes.
 - Added `design-deck` agent skill to `.agents` and `.codex` for visual option comparison workflows.
 - Installed `pi-design-deck` package (git) for Pi — adds `/deck`, `/deck-plan`, and `/deck-discover` slash commands.
@@ -18,6 +20,8 @@ All notable changes to this repository will be documented in this file.
 
 ### Changed
 - Updated `visual-explainer` skill from v0.1.1 to v0.2.0 — adds slide deck support (`generate-slides` prompt, `slide-patterns` reference, `slide-deck` template), updated CSS patterns and Mermaid libraries.
+- Synced live agent skills with dotfiles by restoring the missing `search` skill link and normalizing `exc-cli-resource-manager` to dotfiles-managed files.
+- Documented the current Codex skill-sync caveat: keep `~/.codex/skills` as real directories because symlink-based discovery has been flaky, while `~/.agents/skills` symlinks are working.
 - Forced UTF-8 locale defaults in `zshenv` and tmux (`LANG` / `LC_CTYPE`) so remote tmux sessions render Unicode reliably.
 - Updated `atelier-chrome` to show provider/model explicitly in the Pi chrome and improved thinking/status color treatment in the footer.
 - Expanded the `search` skill to use both `ddgr` and `surf` for lightweight web search plus AI-assisted search.

@@ -65,11 +65,14 @@ dotfiles/ai/dot-gemini/         → ~/.gemini/
 
 Stow normally links at the **file level** (creates real dirs, symlinks files). But when a directory has no conflicts in `~`, stow may "fold" it and symlink the **whole directory**.
 
-In this repo, some skill dirs are whole-dir symlinks (surf, visual-explainer); others are real dirs with individual file symlinks. Both work fine.
+In this repo, some agent skill dirs are whole-dir symlinks (surf, visual-explainer); others are real dirs with individual file symlinks. Both work fine for `~/.agents/skills`.
+
+**Codex caveat:** keep `~/.codex/skills` as real directories/files copied from dotfiles rather than whole-dir symlinks. Codex skill discovery has been flaky with symlinked skill dirs, so treat dotfiles as the source of truth and sync Codex skill contents into the live `~/.codex/skills/` tree.
 
 **Check what's a symlink vs real dir:**
 ```bash
 ls -la ~/.agents/skills/
+ls -la ~/.codex/skills/
 ls -la ~/.pi/agent/
 ```
 
@@ -79,18 +82,33 @@ ls -la ~/.pi/agent/
 
 The live paths are symlinks (or contain symlinks) — editing the dotfiles source is the correct way to make persistent, version-controlled changes.
 
-### Adding a new skill (e.g. `foo`)
+### Adding a new agent skill (e.g. `foo`)
 
 ```bash
 # 1. Create it in dotfiles
 mkdir -p ~/dotfiles/ai/dot-agents/skills/foo
 # write SKILL.md there
 
-# 2. Symlink it (match the pattern of surf/visual-explainer)
+# 2. Symlink it into ~/.agents/skills
 ln -s ~/dotfiles/ai/dot-agents/skills/foo ~/.agents/skills/foo
 
 # 3. Commit
 cd ~/dotfiles && git add -A && git commit -m "feat(ai): add foo skill"
+```
+
+### Adding a new Codex skill (e.g. `bar`)
+
+```bash
+# 1. Create/copy it in dotfiles
+mkdir -p ~/dotfiles/ai/dot-codex/skills/bar
+# write or copy SKILL.md and support files there
+
+# 2. Sync the contents into live ~/.codex/skills (avoid whole-dir symlinks)
+mkdir -p ~/.codex/skills/bar
+rsync -a --delete ~/dotfiles/ai/dot-codex/skills/bar/ ~/.codex/skills/bar/
+
+# 3. Commit
+cd ~/dotfiles && git add -A && git commit -m "feat(codex): add bar skill"
 ```
 
 ### Editing an existing config (e.g. zshrc, nvim, tmux)

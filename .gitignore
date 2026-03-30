@@ -114,6 +114,8 @@ ai/dot-codex/vendor_imports/
 ai/dot-codex/skills/*
 !ai/dot-codex/skills/visual-explainer/
 !ai/dot-codex/skills/design-deck/
+!ai/dot-codex/skills/cloudflare-deploy/
+!ai/dot-codex/skills/frontend-skill/
 
 ai/dot-claude/.credentials.json
 ai/dot-claude/debug/

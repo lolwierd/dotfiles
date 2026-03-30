@@ -1,6 +1,6 @@
 ---
 name: manuscript
-description: "Build in the Manuscript visual language — a design system that presents digital content through the grammar of Renaissance natural philosophy treatises, woodblock-printed codices, and scholarly manuscripts. Use when the user asks for 'manuscript design', 'treatise style', 'codex aesthetic', or anything that should feel like a printed document from a world where code and scholarship coexist."
+description: "ONLY INVOKE IF I EXPLICITLY TELL YOU TO INVOKE THIS. Build in the Manuscript visual language — a design system that presents digital content through the grammar of Renaissance natural philosophy treatises, woodblock-printed codices, and scholarly manuscripts. Use when the user asks for 'manuscript design', 'treatise style', 'codex aesthetic', or anything that should feel like a printed document from a world where code and scholarship coexist."
 ---
 
 # The Manuscript Language

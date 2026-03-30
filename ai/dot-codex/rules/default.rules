@@ -22,3 +22,7 @@ prefix_rule(pattern=["git", "add", "licensing-api/tests/helpers.js", "licensing-
 prefix_rule(pattern=["pnpm", "test:e2e"], decision="allow")
 prefix_rule(pattern=["curl", "-I"], decision="allow")
 prefix_rule(pattern=["curl", "-sS", "-o", "/dev/null", "-D", "-"], decision="allow")
+prefix_rule(pattern=["perl", "-0pi", "-e", "s#// ImageListGetResponse is the response type for listing available images\\.\\ntype ImageListGetResponse \\[\\]Image\\n\\n// ComputeSerialLogLineResponse#// ImageListGetResponse is the response type for listing available images.\\ntype ImageListGetResponse []Image\\n\\n// SerialLogsDirection identifies the pagination direction for serial log retrieval.\\ntype SerialLogsDirection string\\n\\nconst (\\n\\tSerialLogsDirectionOlder SerialLogsDirection = \"older\"\\n\\tSerialLogsDirectionNewer SerialLogsDirection = \"newer\"\\n)\\n\\n// ComputeSerialLogLineResponse#", "../types/computeapi.go"], decision="allow")
+prefix_rule(pattern=["curl", "-i", "-X", "OPTIONS"], decision="allow")
+prefix_rule(pattern=["curl", "-i", "-X", "POST"], decision="allow")
+prefix_rule(pattern=["perl", "-0pi", "-e"], decision="allow")

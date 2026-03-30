@@ -1,3 +1,5 @@
 {
-  "expandTools": ["ctrl+o"]
+  "app.tools.expand": [
+    "ctrl+o"
+  ]
 }

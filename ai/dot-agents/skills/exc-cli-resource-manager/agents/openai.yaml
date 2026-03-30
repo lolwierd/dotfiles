@@ -1,0 +1,4 @@
+interface:
+  display_name: "Exc CLI Resource Manager"
+  short_description: "Manage Excloud resources via exc CLI safely"
+  default_prompt: "Use the exc CLI to manage Excloud resources and execute VM commands safely."

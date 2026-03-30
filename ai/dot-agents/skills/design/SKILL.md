@@ -5,151 +5,64 @@ description: "Design with strong aesthetic direction and intentionality. Use whe
 
 # Design Skill
 
-Design anything that feels like **a poet's cluttered desk** — warm, layered, full of meaning, where every object earned its place. The user values **intentionality above all else**. No element exists without a reason. No choice is made because "that's what everyone does."
+The user believes that everything worth making should have thought behind it — thought that the experiencer can extract if they're motivated enough. This is the single principle that drives everything below.
 
-This skill is about **thinking deeply, then executing with craft**.
+## How to Think
 
-## The User's Design Philosophy
+**Every choice must be derived, not defaulted.** Typography, color, layout, structure, animation, detail — none of these have correct answers in the abstract. They have correct answers *for this specific project, this audience, this medium, this mood*. If you find yourself reaching for something because it worked last time or because it's the convention, stop. Ask what THIS project needs and reason from there.
 
-Internalize these principles. They override any generic design instinct:
+**Density with clarity.** The user's taste lives in a specific tension: rich information presented through smart architecture so nothing feels overwhelming. Progressive disclosure, thoughtful hierarchy, clever structure. A well-organized bookshelf, not a pile of books and not an empty shelf.
 
-- **Every choice must earn its place.** If you can't articulate *why* this color, *why* this font, *why* this layout — it doesn't belong. The user will notice thoughtless defaults instantly.
-- **Originality over trend.** The user explicitly dislikes when things copy popular aesthetics. Do not replicate whatever's trending in the medium you're working in, even if it "looks good." Think from first principles based on what the project *needs*.
-- **Minimal but info-rich.** This sounds contradictory but it's the core tension that defines the user's taste. They want *density with clarity* — lots of information presented through clever architecture, progressive disclosure, unique representations, and smart hierarchy so nothing feels overwhelming. Think: a well-organized bookshelf vs. a pile of books.
-- **Quiet depth, not loud flash.** Designs should reward attention. The surface is approachable; the details are rich. Layers reveal themselves over time. Don't shout — have something worth saying and let people lean in.
-- **A bit of attitude.** Not sterile, not corporate-safe. The design can have personality, grit, edge, a wink. Think Seedhe Maut — there's rawness *and* craft coexisting. The "introspective maiden" has opinions.
-- **Both product AND experience.** It should be polished enough to *use* well, and interesting enough to *linger on*. Never sacrifice usability for aesthetics, but never sacrifice soul for usability either.
-- **Context dictates everything.** There are no fixed rules on warm vs. cool, serif vs. sans, caps vs. lowercase, geometric vs. organic. The project's purpose, audience, medium, and mood determine the right answer. Always reason from context, never from preset preferences.
+**Quiet depth over loud flash.** The surface should be approachable. The details should reward attention. Layers reveal themselves to people who look closely. Design for the person who lingers, not just the person who glances.
 
-## Reference Points
+**Personality is non-negotiable, but it's not decoration.** The design should have a voice — opinions embedded in the choices themselves. What that sounds like depends entirely on context: an opinionated error message in a CLI, an unexpected detail that breaks a grid, a hand-drawn edge on a diagram, an unconventional axis on a data viz. The principle is that the thing was made by someone with a point of view, and you can feel it without being told.
 
-The user admires **ampcode.com** — but for its *principles*, not its pixels. What makes ampcode good:
-- Confident typography that carries the personality (large display type, structural labels)
-- Warm palette with depth (not cold, not sterile)
-- Editorial layout thinking (content dictates its own shape)
-- Mixing playful and serious without losing credibility
+**No house style.** If consecutive projects start resembling each other — same type, same palette, same structural patterns — something has gone wrong. Each project should look like it was designed for itself. Before any major choice, ask: am I choosing this because it's right here, or because it's familiar?
 
-**⚠️ CRITICAL: ampcode is ONE reference from ONE medium, not THE template.** These are patterns that worked for ampcode's specific context (a developer tool marketing page). They are NOT universal defaults. Do NOT fall into these traps:
-- Reaching for the same type system on every project. A mobile app, a data visualization, a slide deck, a terminal UI — these might want completely different typographic voices. Ask *what does THIS project's voice sound like?*
-- Defaulting to the same color temperature every time. A pomodoro timer could be stark and minimal. A music player could be vibrant and saturated. A diagram could be clinical and precise. Let the project's mood dictate the palette, not a memorized one.
-- Recycling the same structural patterns as defaults on everything. Specific layout tools suit specific contexts — they're not a universal information architecture.
-- Making everything feel like the same genre. Some things should feel like tools. Some should feel like spaces. Some should feel like events. Some should feel like documents. Some should feel like toys.
+**The 7/10 test.** Before committing to a major decision, ask: if 10 people got this same brief, would 7 of them make this choice? If yes, dig deeper. Find the answer that's still *right* for the project but isn't the default one. This isn't about being strange for its own sake. It's about thinking past the first idea.
 
-**The real lesson from ampcode:** they made design choices that are *specific to who they are and what they're selling*. That specificity is what makes it good. Copy the specificity-of-thinking, not the specific choices.
+## Taste and Judgment
 
-## When to Use
+Following the process doesn't guarantee the result is good. You can derive a concept, justify every choice, pass the 7/10 test, and still produce something that's merely *correct* — thoughtful on paper but lifeless in practice. The skill's process is necessary but not sufficient. What bridges the gap is taste: the ability to evaluate whether your own output has something alive in it, or whether it's just well-reasoned furniture.
 
-Use this skill when the user wants to:
-- Design or build any visual or digital artifact — web pages, apps, dashboards, mobile UIs, CLI/terminal interfaces, data visualizations, diagrams, presentations, posters, or anything with a designed surface
-- Rethink the look, feel, or structure of something that already exists
-- Improve typography, layout, color, motion, information hierarchy, or overall visual polish
-- Convert a concept or brief into a realized, crafted design
+**Treat your output as evidence, not as a conclusion.** The concept is a hypothesis about what this project needs. The first draft is an experiment. Look at the result the way you'd look at data: what is it actually telling you? Does it have energy, or does it just have logic? If the answer is "I followed the process and it all makes sense but something feels inert," trust that feeling over the paperwork. The process is a scaffold, not a guarantee.
 
-## Before You Begin
+**The material talks back.** A concept might sound right in the abstract and then fall apart when you see it rendered. A color palette that seemed warm on a mood board might feel muddy in context. A type pairing that seemed distinctive might fight the layout. This isn't a failure of planning — it's the artifact giving you information your plan couldn't anticipate. The concept serves the design, not the other way around. If the execution is revealing that the concept needs to shift, shift it. Clinging to a concept that the material has outgrown produces designs that are ideologically coherent but experientially dead.
 
-### 1. Understand the Project
+**Build range deliberately.** The 7/10 test catches industry defaults, but there's a subtler version: your *own* defaults. If you tend toward quiet, restrained, warm — and a project genuinely calls for loud, confrontational, cold — the discomfort you feel is a signal to push forward, not retreat to familiar ground. Taste isn't having one mode and executing it well. It's having a wide enough vocabulary that you can match the right register to the right context. When a project calls for something outside your comfort zone, sit with it. The stuckness is where the growth is.
 
-Identify (ask if unclear, but keep it to 2–3 sharp questions max):
-- **What is this thing and who is it for?** Purpose, audience, medium, context.
-- **What mood/feeling should it evoke?** Not "modern and clean" — something specific.
-- **Any hard constraints?** Tools, platform, existing systems, accessibility needs, content requirements.
+**Ask: would I remember this tomorrow?** Not "is this well-designed" or "is this thoughtful" — those are process questions. The taste question is simpler and harder: if I saw this for thirty seconds and moved on, would anything stay with me? If the answer is no, the design needs more heat. Not more elements, not more decoration — more conviction. Something that couldn't exist in any other version of this project.
 
-### 2. Think From First Principles
+## How to Work
 
-Do NOT reach for a pre-baked aesthetic ("let's go brutalist" / "let's do glassmorphism" / "let's make it minimal"). Instead, reason through:
+**Start with the soul of the project.** Before choosing any visual element, identify: what is this thing, who is it for, and what should it feel like? Not "modern and clean" — something with actual texture. Then find the concept (one sentence on *why* the visual direction serves this project), and the hook (the single memorable thing about this design).
 
-- **What is the soul of this project?** A finance dashboard has different DNA than a poetry site has different DNA than a conference slide deck. Start there.
-- **What would be the *unexpected but right* choice?** The obvious choice is probably what everyone else would do. Push past it. What's the choice that makes someone pause and think "oh, that's interesting"?
-- **What's the one thing someone should remember?** Every great design has a hook — a single element or idea that sticks. Find it before you start making things.
+**Derive everything from the concept.** The typeface should sound like the project's voice. The palette should emerge from the project's mood. The layout should reflect the content's own logic. If any of these feel interchangeable — like they could belong to a different project without anyone noticing — they haven't been thought through.
 
-Then define your system:
-1. **Concept** — one sentence that captures the *why* behind the visual direction (not just "dark and moody" but *why* dark and moody serves this project)
-2. **The hook** — the memorable thing, the detail people notice
-3. **Typography** — chosen to match the project's voice, not because the font is trendy
-4. **Color** — derived from the concept, not a random palette generator
-5. **Information architecture** — how density and clarity coexist in this specific design
-6. **Motion & time** — if the medium supports it: subtle, meaningful, rewarding
+**Scale the ceremony to the stakes.** The philosophy always applies; the process flexes. A quick diagram in conversation still deserves intentional choices, but it doesn't need a design system or a rationale document. A landing page does. Use judgment. The soul is constant; the apparatus around it is proportional.
 
-### 3. The "Would Everyone Else Do This?" Test
+## Embedded Intent
 
-Before finalizing any major design decision, ask: *"If 10 other people got this same brief, would 7 of them make this same choice?"* If yes, dig deeper. Find the choice that's still *right* for the project but isn't the default answer.
+The thought behind a design should be legible *within the artifact itself*. A motivated person examining the source, the structure, or the details should be able to reconstruct the reasoning without needing a companion explanation.
 
-This doesn't mean being weird for weird's sake. It means thinking harder.
+Name things semantically: `--reading-lamp-amber` communicates intent, `--color-warm-3` communicates nothing. Comment at decision points, not obvious lines — explain *why* the grid breaks here, not what the code does. Let structure reflect logic so that hierarchy is visible without labels. The artifact should teach you about itself if you pay attention.
 
-## Design Execution
+## Iteration
 
-### Typography
-- **The type choice must be derived from the project, not from a default instinct.** A cooking app might want a warm humanist sans + handwritten accent. A CLI tool might want monospace everywhere. A literary site might want serif. A conference talk might want a bold geometric display face. Don't default to whatever worked last time.
-- **Display type should be confident.** Whatever the typeface, don't be timid with heading sizes. Let the typography carry personality and set the voice.
-- **Always justify the font choice.** If you can't explain *why this font for this project*, you haven't thought hard enough. "Because it looks nice" is not a reason. "Because this is a technical document and monospace is native to the subject matter" IS a reason.
-- **Variety across projects matters.** If designing multiple things, actively resist using the same pairing twice. The user values originality — seeing the same type system on a pomodoro timer AND a recipe page AND a wiki defeats the purpose.
-- Build hierarchy through whatever tools the chosen typeface offers: size, weight, spacing, case, color, position. There are many ways to create hierarchy beyond the obvious.
+When feedback comes — from the user or from the work itself — the key question is: is the concept wrong, or is the execution off?
 
-### Color
-- **The palette must emerge from the project's concept.** A timer counting down might use stark contrast and a single warning color. A recipe page might use spice tones. A 404 could be almost monochromatic. A data viz might need functional color that communicates before it decorates. Don't default to the same palette on everything.
-- **Range is good.** The user appreciates warm palettes but also cool, saturated, desaturated, monochromatic, high-contrast — when there's a *reason*. A music player could be vibrant. A terminal could be cold phosphor green. An event poster could use bold accent colors.
-- **If the medium has modes (light/dark), both should feel intentional.** A technical tool's dark mode might be cool and precise. A literary page's dark mode might be warm and soft. Match the mood. Dark mode is not just "invert the colors." Light mode is not always warm off-white.
-- Avoid palettes that feel like they came from a generator (5 evenly-spaced hues with no relationship to the content).
+If the concept is right but a surface treatment isn't landing, adjust within the existing system. Don't blow everything up. If the concept itself isn't holding — the mood feels wrong at a fundamental level, or the material keeps resisting the direction — acknowledge it and rethink from first principles rather than patching your way to a different idea. Either way, identify what's working and protect it.
 
-### Layout & Information Architecture
-- This is where the user's "minimal but info-rich" philosophy lives.
-- **Clever information density:** progressive disclosure, well-structured compositions, smart use of interaction states to reveal detail, compact but readable layouts.
-- **Unique representations:** Don't default to the obvious container for everything. Consider: editorial layouts, data-driven compositions, asymmetric grids, timeline structures, nested/collapsible sections, spatial arrangements that match the content's logic. The right structure depends on what the content *is*.
-- **Whitespace is a tool, not a rule.** Use enough to breathe, not so much that it feels empty. The balance point is: "I can see everything I need without feeling overwhelmed."
-
-### Detail & Texture
-- Add detail that rewards closer inspection — subtle textures, thoughtful micro-interactions, considered border treatments, unexpected but purposeful decorative elements.
-- Every detail should connect back to the concept. No random noise overlays or gratuitous decoration.
-- Consider the *materiality* of the design — should it feel like paper? like a screen? like something physical? like something ethereal? like a tool? like a space?
-
-### Motion & Animation
-- Where the medium supports it, the user loves subtle animation. Lean into this.
-- **Meaningful transitions:** state changes, reveals, responses that feel alive.
-- **Subtle ambient motion:** gentle breathing effects, soft parallax, elements that feel like they exist in a living space.
-- **Never gratuitous.** Every animation should either communicate state, guide attention, or add warmth. If it does none of these, cut it.
-- Always respect user preferences for reduced motion.
-
-## Hard Avoids
-
-These will immediately make the user think "this looks like everything else":
-
-- ❌ **Copying the dominant trend of the medium.** Every era and every medium has its "default good" — the aesthetic everyone reaches for because it's safe and proven. In web it's the SaaS gradient-blur-card look. In slides it's the startup pitch template. In mobile it's whatever Apple's latest HIG looks like verbatim. In data viz it's the D3 gallery default. Identify what "generic good" looks like in YOUR medium, then don't do that.
-- ❌ **Cookie-cutter structures.** Don't reach for the expected layout just because it's expected. Think about what structure the *content* actually needs, not what the medium's conventions assume.
-- ❌ **The safe default choice.** Whatever the "Inter/system-ui/Roboto" equivalent is in your medium — the thing people pick because it's inoffensive — push past it. If you're making that choice, at least make it *deliberately*.
-- ❌ **Unmotivated decoration.** Gradient blobs, random geometric shapes, floating elements that don't mean anything. If a decorative element exists, it should connect to the design's concept. This applies everywhere — in a slide deck, a poster, a UI, a diagram.
-- ❌ **Unstyled defaults from tools/libraries.** Whatever tool you're using has defaults. Those defaults are not a design. If using a tool, restyle it until it doesn't look like the tool anymore.
-- ❌ **"Clean and modern"** as a design direction. That's not a direction. That's the absence of one.
-- ❌ **Falling into a house style.** If every project starts looking the same — same type system, same color temperature, same structural patterns, same vibe — that's not "intentional design," that's a template. Each project should look like it was designed *for itself*. If you catch yourself reaching for the same patterns, stop and ask: "am I choosing this because it's right for THIS project, or because it's comfortable?"
+Be honest about what the feedback is actually saying. "I don't like the color" might mean the color is wrong, or it might mean the color is revealing that the whole mood is wrong. "This feels generic" might mean the execution is too safe, or it might mean the concept wasn't distinctive enough to begin with. Diagnose before you act.
 
 ## Deliverables
 
-Adapt to the medium, but always:
-- **Working, complete output.** Not a sketch or a description — the real thing, as finished as the medium allows.
-- **Systematic.** Use tokens, variables, or whatever the medium's equivalent is to make the design system tweakable and coherent.
-- **Accessible.** Whatever accessibility means in the medium — semantic structure, readable contrast, keyboard/screen reader support, alt text, legible type sizes. Non-negotiable.
-- **If the design involves a non-obvious choice, explain the *why*.** The user appreciates seeing the thought. A brief comment or note on reasoning goes a long way.
-- **DESIGN.md — always, without exception.** Every design must be accompanied by a `DESIGN.md` file placed alongside the design output. This is not optional. This file bares the soul of the design — not a README, not documentation, not a feature list. It's the design's inner monologue: why this and not something else, what it's trying to feel like, where the ideas came from, what the hook is, what was rejected and why. Write it like you're explaining the design to someone who wants to *understand* it, not just use it. It should include:
-  - **The concept** — one or two sentences on the animating idea behind the whole thing
-  - **The hook** — the one thing this design does that you'd remember
-  - **Typography rationale** — why this typeface (or type system) and not another
-  - **Color rationale** — where the palette came from and what it's meant to evoke
-  - **Layout/structure rationale** — why the information is arranged the way it is
-  - **What was rejected** — at least one major direction considered and discarded, and why
-  - **Tone and texture** — what the design is trying to feel like at a gut level; what it should remind you of, what mood it holds
-  - **Anything else worth saying** — the stray thought, the small detail that nobody will notice but you put there anyway, the thing that connects it all
+Working, complete output — the real thing, not a description of it. Systematic enough to be tweakable (tokens, variables, whatever the medium's equivalent is). Accessible in whatever way the medium demands: semantic structure, readable contrast, keyboard support, legible type sizes. Non-negotiable.
 
-## Self-Validation Checklist
+For designs of substance, include a `DESIGN.md` alongside the output. This is not documentation — it's the design's inner monologue. Why this and not something else, what it's trying to feel like, what was rejected and why, the stray detail nobody will notice but you put there anyway. This is the deep layer for the truly motivated, but it only matters if the artifact also rewards curiosity on its own.
 
-Before delivering, verify:
-- [ ] Could I explain *why* for every major design choice? (color, type, layout, spacing, structure)
-- [ ] Would this look different from what 7/10 people would make for the same brief?
-- [ ] **Does this look different from the LAST thing I designed?** (If the same patterns keep appearing — same type, same colors, same structure — something is wrong. Each project should have its own visual DNA.)
-- [ ] Is there a hook — one memorable thing about this design?
-- [ ] Information is dense but clear — nothing feels overwhelming OR empty
-- [ ] Where the medium supports it: subtle animations exist and feel purposeful
-- [ ] It works as a product (usable) AND as an experience (worth lingering on)
-- [ ] It has a bit of personality/edge — it's not sterile
-- [ ] Output is complete, systematic, and accessible
-- [ ] `DESIGN.md` exists alongside the output and actually bears the soul of the design — not a summary, a confession
+## What to Avoid
+
+Every medium has its "default good" — the aesthetic everyone reaches for because it's safe. In web it's SaaS gradient-blur-cards. In slides it's the startup pitch template. In mobile it's Apple's HIG verbatim. Identify what generic good looks like in your medium, then don't do that. Don't use unstyled library defaults. Don't add decoration that doesn't connect to the concept. And never accept "clean and modern" as a design direction — that's the absence of one.
 
 **The north star:** make something where a stranger would look at it and think *"someone really thought about this."*
