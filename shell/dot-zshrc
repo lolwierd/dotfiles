@@ -182,18 +182,18 @@ if [[ -f "$NVM_DIR/alias/default" ]]; then
 fi
 
 # Lazy-load nvm/node toolchain on first use to avoid shell startup lag.
-_lazy_load_nvm() {
-  unset -f nvm node npm npx corepack pnpm yarn _lazy_load_nvm
+_nvm_lazy_wrapper() {
+  unset -f nvm node npm npx corepack pnpm yarn
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 }
-nvm() { _lazy_load_nvm; nvm "$@"; }
-node() { _lazy_load_nvm; node "$@"; }
-npm() { _lazy_load_nvm; npm "$@"; }
-npx() { _lazy_load_nvm; npx "$@"; }
-corepack() { _lazy_load_nvm; corepack "$@"; }
-pnpm() { _lazy_load_nvm; pnpm "$@"; }
-yarn() { _lazy_load_nvm; yarn "$@"; }
+nvm()      { _nvm_lazy_wrapper; command nvm "$@"; }
+node()     { _nvm_lazy_wrapper; command node "$@"; }
+npm()      { _nvm_lazy_wrapper; command npm "$@"; }
+npx()      { _nvm_lazy_wrapper; command npx "$@"; }
+corepack() { _nvm_lazy_wrapper; command corepack "$@"; }
+pnpm()     { _nvm_lazy_wrapper; command pnpm "$@"; }
+yarn()     { _nvm_lazy_wrapper; command yarn "$@"; }
 
 if command -v brew >/dev/null 2>&1; then
   fpath+=("$(brew --prefix)/share/zsh/site-functions")
@@ -218,3 +218,6 @@ path_prepend_if_dir "$HOME/.opencode/bin"
 # export ANTHROPIC_BASE_URL="https://openrouter.ai/api"
 # export ANTHROPIC_AUTH_TOKEN="$OPENROUTER_API_KEY"
 # export ANTHROPIC_API_KEY="" # Important: must be explicitly empty
+
+# opencode
+export PATH=/Users/lolwierd/.opencode/bin:$PATH

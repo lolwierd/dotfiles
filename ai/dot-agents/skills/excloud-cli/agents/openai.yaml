@@ -1,0 +1,4 @@
+interface:
+  display_name: "Excloud CLI"
+  short_description: "Drive Excloud resources through the exc CLI safely."
+  default_prompt: "Use the exc CLI to manage Excloud resources (compute, networking, volumes, IAM, Kubernetes) with safety guardrails and authentication checks."

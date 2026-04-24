@@ -4,6 +4,9 @@ All notable changes to this repository will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+- Renamed the Excloud CLI skill from `exc-cli-resource-manager` to `excloud-cli` across `.agents/skills/` and `.codex/skills/`. The SKILL.md was rewritten for public consumption (discovery-first guidance, auth precedence, safety rails, verified output-format buckets, real error strings) and now lives upstream at https://git.excloud.in/excloud-in/excloud-skills — installable with `npx skills add https://git.excloud.in/excloud-in/excloud-skills.git`. The per-agent `agents/openai.yaml` display name was updated to match.
+
 ### Added
 - Added Pi `webfetch` and `websearch` extension tools, with OpenCode-style URL fetching plus Exa-backed live web search.
 - Added a dotfiles-managed Pi skill copy at `ai/dot-pi/agent/skills/design-deck/`, synced from the installed `pi-design-deck` upstream package.
@@ -20,6 +23,8 @@ All notable changes to this repository will be documented in this file.
 - Added richer Pi `oracle` tool rendering with a compact/expanded subagent transcript view, visible tool-call timeline, inspected files list, configurable `oracle.defaultModel` and `oracle.defaultThinkingLevel` settings in Pi settings, skill discovery inside oracle subagent sessions, and stricter isolation/guardrails for oracle tool execution.
 
 ### Changed
+- Updated `exc-cli-resource-manager` with Kubernetes CLI guidance (`exc k8s health`, `exc k8s cluster create`, `exc k8s bootstrap controlplane get`) plus the `make refresh-k8sapi-schema` maintenance flow for regenerating CLI support from `k8sapi`.
+- Expanded `exc-cli-resource-manager` with runtime `BASE_URL` override guidance for `exc k8s` commands plus `exc k8s cluster create -o <path>` kubeconfig file output, and synced the same skill into the Codex skill tree.
 - Updated `visual-explainer` skill from v0.1.1 to v0.2.0 — adds slide deck support (`generate-slides` prompt, `slide-patterns` reference, `slide-deck` template), updated CSS patterns and Mermaid libraries.
 - Synced live agent skills with dotfiles by restoring the missing `search` skill link and normalizing `exc-cli-resource-manager` to dotfiles-managed files.
 - Moved `design-deck` ownership out of shared `.agents` / `.codex` skills and into Pi-only dotfiles state, with live sync at `~/.pi/agent/skills/design-deck`.
