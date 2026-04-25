@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.70.2",
-  "defaultProvider": "opencode-go",
-  "defaultModel": "kimi-k2.6",
+  "defaultProvider": "excloud-anthropic-endpoint",
+  "defaultModel": "Qwen/Qwen3.6-27B:excloud",
   "defaultThinkingLevel": "high",
   "oracle.defaultModel": "openai-codex/gpt-5.4",
   "oracle.defaultThinkingLevel": "high",
