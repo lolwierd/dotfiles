@@ -1,6 +1,6 @@
 disable_response_storage = true
-model = "gpt-5.3-codex"
-model_reasoning_effort = "high"
+model = "gpt-5.4-mini"
+model_reasoning_effort = "medium"
 model_reasoning_summary_format = "experimental"
 
 tool_output_token_limit = 25000
@@ -10,7 +10,8 @@ personality = "pragmatic"
 plan_mode_reasoning_effort = "xhigh"
 approvals_reviewer = "user"
 
-notify = ["/Users/lolwierd/.codex/plugins/cache/openai-bundled/computer-use/1.0.750/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
+
+notify = ["/Users/lolwierd/.codex/plugins/cache/openai-bundled/computer-use/1.0.758/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
 
 [features]
 collaboration_modes = true
@@ -256,7 +257,7 @@ enabled = true
 enabled = true
 
 [marketplaces.openai-bundled]
-last_updated = "2026-04-24T04:28:05Z"
+last_updated = "2026-04-25T19:21:39Z"
 source_type = "local"
 source = "/Users/lolwierd/.codex/.tmp/bundled-marketplaces/openai-bundled"
 

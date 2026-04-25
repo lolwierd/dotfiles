@@ -28,10 +28,12 @@ let editorMounted = false;
 
 let turns = 0;
 let inFlight = false;
-let usage = { input: 0, output: 0, cost: 0 };
+let usage = { input: 0, output: 0, cost: 0, cacheRead: 0, cacheWrite: 0 };
+let liveUsage: { input: number; output: number; cost: number; cacheRead: number; cacheWrite: number } | null = null;
 let activeProvider = "";
 let activeModel = "";
 let activeContextWindow = 0;
+let activeCwd = "";
 let sessionStartedAt = Date.now();
 let currentTurnStartedAt: number | null = null;
 let lastTurnDurationMs = 0;
@@ -184,17 +186,9 @@ class AtelierEditor extends CustomEditor {
 		const tokenLabel = tokenEstimate.method === "tiktoken" ? `${tokenEstimate.count} tok` : `~${tokenEstimate.count} tok`;
 		const methodLabel = tokenEstimate.method === "tiktoken" ? "tt" : "est";
 		const turnTimeLabel = inFlight && currentTurnStartedAt ? `turn ${formatDuration(getCurrentTurnDurationMs())}` : lastTurnDurationMs > 0 ? `last ${formatDuration(lastTurnDurationMs)}` : "turn --";
-		const title = `${ANSI.accent}prompt${ANSI.reset}${ANSI.dim} ${tokenLabel} · ${methodLabel} · ${turnTimeLabel}${ANSI.reset}`;
-		const hint = `${ANSI.dim}enter send · shift+enter newline${ANSI.reset}`;
-
-		if (text.trim().length === 0) {
-			return [
-				truncateToWidth(title, width),
-				...base,
-				truncateToWidth(hint, width),
-			];
-		}
-
+		const titleLeft = `${ANSI.accent}prompt${ANSI.reset}${ANSI.dim} ${tokenLabel} · ${methodLabel} · ${turnTimeLabel}${ANSI.reset}`;
+		const titleRight = activeCwd ? `${ANSI.dim}cwd ${activeCwd}${ANSI.reset}` : "";
+		const title = titleRight ? joinLR(titleLeft, titleRight, width) : titleLeft;
 		return [truncateToWidth(title, width), ...base];
 	}
 }
@@ -241,6 +235,8 @@ const recalcSessionStats = (ctx: ExtensionContext) => {
 	let input = 0;
 	let output = 0;
 	let cost = 0;
+	let cacheRead = 0;
+	let cacheWrite = 0;
 	let assistantMessages = 0;
 
 	for (const entry of ctx.sessionManager.getBranch()) {
@@ -250,10 +246,12 @@ const recalcSessionStats = (ctx: ExtensionContext) => {
 		input += msg.usage.input;
 		output += msg.usage.output;
 		cost += msg.usage.cost.total;
+		cacheRead += msg.usage.cacheRead;
+		cacheWrite += msg.usage.cacheWrite;
 	}
 
 	turns = assistantMessages;
-	usage = { input, output, cost };
+	usage = { input, output, cost, cacheRead, cacheWrite };
 };
 
 const getSystemDarkMode = async (): Promise<boolean | undefined> => {
@@ -345,6 +343,7 @@ const clearChrome = (ctx: ExtensionContext) => {
 
 const applyChrome = (pi: ExtensionAPI, ctx: ExtensionContext) => {
 	if (!ctx.hasUI || !chromeEnabled) return;
+	activeCwd = ctx.cwd;
 
 	if (!chromeLayoutMounted) {
 		const resourceData = getHeaderResources(pi, ctx);
@@ -404,7 +403,6 @@ const applyChrome = (pi: ExtensionAPI, ctx: ExtensionContext) => {
 				})();
 				const sessionLabel = formatDuration(getSessionDurationMs());
 
-				const line1Left = theme.fg("dim", `cwd ${ctx.cwd}`);
 				const providerModel = formatProviderModel(activeProvider || ctx.model?.provider, activeModel || ctx.model?.id);
 				const slash = providerModel.indexOf("/");
 				const providerLabel = slash > 0 ? providerModel.slice(0, slash) : "";
@@ -419,14 +417,19 @@ const applyChrome = (pi: ExtensionAPI, ctx: ExtensionContext) => {
 						? theme.fg("accent", "thinking")
 						: theme.fg("muted", "thinking")
 					: theme.fg("dim", "idle");
-				const line1Right = `${modelDisplay}${theme.fg("dim", " · ")}${thinkingDisplay}${branch ? `${theme.fg("dim", " (")}${theme.fg("muted", branch)}${theme.fg("dim", ")")}` : ""}${theme.fg("dim", " · ")}${statusDisplay}`;
+				const footerRight = `${modelDisplay}${theme.fg("dim", " · ")}${thinkingDisplay}${branch ? `${theme.fg("dim", " (")}${theme.fg("muted", branch)}${theme.fg("dim", ")")}` : ""}${theme.fg("dim", " · ")}${statusDisplay}`;
 
-				const line2Left = theme.fg(
-					"dim",
-					`↑${formatCount(usage.input)} ↓${formatCount(usage.output)} $${usage.cost.toFixed(3)} · turns:${turns} · ctx:${contextLabel} · session:${sessionLabel}`,
-				);
+				const live = liveUsage ?? { input: 0, output: 0, cost: 0, cacheRead: 0, cacheWrite: 0 };
+				const totalInput = usage.input + live.input;
+				const totalOutput = usage.output + live.output;
+				const totalCost = usage.cost + live.cost;
+				const totalCacheRead = usage.cacheRead + live.cacheRead;
+				const totalCacheWrite = usage.cacheWrite + live.cacheWrite;
 
-				return [joinLR(line1Left, line1Right, width), line2Left];
+				const stats = `↑${formatCount(totalInput)} ↓${formatCount(totalOutput)} $${totalCost.toFixed(3)} · turns:${turns} · ctx:${contextLabel} · session:${sessionLabel}`;
+				const footerLeft = theme.fg("dim", stats);
+
+				return [joinLR(footerLeft, footerRight, width)];
 			},
 		};
 	});
@@ -466,6 +469,7 @@ export default function atelierChrome(pi: ExtensionAPI) {
 		activeProvider = ctx.model?.provider || activeProvider;
 		activeModel = ctx.model?.id || activeModel;
 		activeContextWindow = ctx.model?.contextWindow || activeContextWindow;
+		activeCwd = ctx.cwd;
 		sessionStartedAt = Date.now();
 		currentTurnStartedAt = null;
 		lastTurnDurationMs = 0;
@@ -484,6 +488,7 @@ export default function atelierChrome(pi: ExtensionAPI) {
 		activeProvider = ctx.model?.provider || activeProvider;
 		activeModel = ctx.model?.id || activeModel;
 		activeContextWindow = ctx.model?.contextWindow || activeContextWindow;
+		activeCwd = ctx.cwd;
 		sessionStartedAt = Date.now();
 		currentTurnStartedAt = null;
 		lastTurnDurationMs = 0;
@@ -509,6 +514,26 @@ export default function atelierChrome(pi: ExtensionAPI) {
 	pi.on("agent_start", async (_event, ctx) => {
 		inFlight = true;
 		currentTurnStartedAt = Date.now();
+		liveUsage = null;
+		if (chromeEnabled) applyChrome(pi, ctx);
+	});
+
+	pi.on("message_update", async (event, ctx) => {
+		if (event.message.role !== "assistant") return;
+		const msg = event.message as AssistantMessage;
+		liveUsage = {
+			input: msg.usage.input,
+			output: msg.usage.output,
+			cost: msg.usage.cost.total,
+			cacheRead: msg.usage.cacheRead,
+			cacheWrite: msg.usage.cacheWrite,
+		};
+		if (chromeEnabled) applyChrome(pi, ctx);
+	});
+
+	pi.on("turn_end", async (_event, ctx) => {
+		liveUsage = null;
+		recalcSessionStats(ctx);
 		if (chromeEnabled) applyChrome(pi, ctx);
 	});
 
@@ -518,6 +543,7 @@ export default function atelierChrome(pi: ExtensionAPI) {
 			currentTurnStartedAt = null;
 		}
 		inFlight = false;
+		liveUsage = null;
 		recalcSessionStats(ctx);
 		if (chromeEnabled) applyChrome(pi, ctx);
 	});
