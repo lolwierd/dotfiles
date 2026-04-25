@@ -5,6 +5,10 @@ All notable changes to this repository will be documented in this file.
 ## [Unreleased]
 
 ### Changed
+- Updated Pi `atelier-chrome` extension to track cache read/write tokens and show live in-flight usage during turns via `message_update` events.
+- Moved the working directory (`cwd`) display from the Pi chrome footer into the prompt editor header for cleaner layout.
+- Simplified the Pi chrome footer to a single line combining live session stats with provider/model status.
+- Switched Codex default model from `gpt-5.3-codex` to `gpt-5.4-mini` with `medium` reasoning effort and updated the bundled computer-use plugin path.
 - Renamed the Excloud CLI skill from `exc-cli-resource-manager` to `excloud-cli` across `.agents/skills/` and `.codex/skills/`. The SKILL.md was rewritten for public consumption (discovery-first guidance, auth precedence, safety rails, verified output-format buckets, real error strings) and now lives upstream at https://git.excloud.in/excloud-in/excloud-skills — installable with `npx skills add https://git.excloud.in/excloud-in/excloud-skills.git`. The per-agent `agents/openai.yaml` display name was updated to match.
 
 ### Added
