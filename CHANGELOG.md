@@ -5,6 +5,13 @@ All notable changes to this repository will be documented in this file.
 ## [Unreleased]
 
 ### Changed
+- Switched Pi extension imports and dependencies from `@mariozechner/*` to `@earendil-works/*` packages.
+- Updated Pi defaults to `openai-codex/gpt-5.5`, disabled compaction, and moved the oracle fallback to available configured models instead of API-key probing.
+- Updated Pi `webfetch` / `websearch` tool rendering to show the requested URL or search query directly in the tool block.
+- Updated Codex defaults for `gpt-5.5`, plugin paths, trusted projects, disabled memories/chronicle, and GitHub command allow rules.
+- Updated Neovim config for neo-tree v4 compatibility, Scala Metals support, clipboard behavior, LSP formatting ownership, and current plugin lock updates.
+- Documented Excloud CLI lifecycle `--wait` support for compute and volume commands.
+- Added shell conveniences for Bun and Excloud Git SSH URL rewrites.
 - Updated Pi `atelier-chrome` extension to track cache read/write tokens and show live in-flight usage during turns via `message_update` events.
 - Moved the working directory (`cwd`) display from the Pi chrome footer into the prompt editor header for cleaner layout.
 - Simplified the Pi chrome footer to a single line combining live session stats with provider/model status.

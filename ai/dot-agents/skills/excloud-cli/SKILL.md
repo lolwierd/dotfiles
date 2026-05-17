@@ -90,9 +90,25 @@ Do not pass flags the help output does not list; deprecated flags (e.g. `--root_
 
 `create` prints a one-row table with at minimum `ID`, `NAME`, `STATE` (usually `STARTING` or `CREATING`), `ZONE`, `SUBNET`, `ROOT_VOLUME_ID`, `PUBLIC_IPV4`, `INTERFACE_IPV4`, `INTERFACE_IPV6`. Note that this row does **not** include `INTERFACE_ID`; fetch that later with `exc compute get --id <vm_id>`.
 
-### Wait for RUNNING (no native `--wait`)
+### Wait for RUNNING (`--wait`)
 
-The CLI does not provide a wait primitive. Poll `compute get` and key off the `STATE` column:
+Lifecycle commands that change VM or volume state accept a `--wait` flag. When passed, the CLI polls the resource until it reaches a target state (or a terminal error state) and prints progress along the way.
+
+Supported commands and target states:
+
+- `exc compute create --wait` → waits for `RUNNING`
+- `exc compute start --wait` → waits for `RUNNING`
+- `exc compute stop --wait` → waits for `STOPPED`
+- `exc compute restart --wait` → waits for `RUNNING`
+- `exc compute terminate --wait` → waits for `TERMINATED`
+- `exc compute volume create --wait` → waits for `AVAILABLE`
+- `exc compute volume delete --wait` → waits for `DELETED`
+
+```bash
+exc compute create --name my-vm --subnet_id 1 --allocate_public_ipv4=true --image_id 1 --instance_type n1.2c --root_volume_size_gib 20 --wait
+```
+
+If you need to wait for a resource created without `--wait`, or you want custom polling logic, fall back to `compute get` and key off the `STATE` column:
 
 ```bash
 until [ "$(exc compute get --id <vm_id> | awk 'NR==2 {for (i=1;i<=NF;i++) if ($i ~ /^(CREATING|STARTING|RUNNING|STOPPING|STOPPED|RESTARTING|TERMINATING|TERMINATED)$/) print $i}')" = "RUNNING" ]; do sleep 3; done

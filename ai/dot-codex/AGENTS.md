@@ -1,2 +1,2 @@
 whenever any tool call fails due to sandbox issues, use the approval tool to ask user for approval to run the command. never ever use python3 to edit/create/write to files.
-check Makefile if it exists before running commands, if there exists a Makefile equivalent for what you want to run use make.
+prefer KISS for everything.

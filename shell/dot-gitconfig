@@ -73,3 +73,7 @@
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential
+[url "git@git.excloud.dev:"]
+	insteadOf = https://git.excloud.dev/
+[url "git@git.excloud.in:"]
+	insteadOf = https://git.excloud.in/

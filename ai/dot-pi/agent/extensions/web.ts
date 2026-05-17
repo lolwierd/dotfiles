@@ -1,4 +1,4 @@
-import { StringEnum } from "@mariozechner/pi-ai";
+import { StringEnum } from "@earendil-works/pi-ai";
 import {
 	DEFAULT_MAX_BYTES,
 	DEFAULT_MAX_LINES,
@@ -6,7 +6,8 @@ import {
 	truncateHead,
 	type TruncationResult,
 	type ExtensionAPI,
-} from "@mariozechner/pi-coding-agent";
+} from "@earendil-works/pi-coding-agent";
+import { Text } from "@earendil-works/pi-tui";
 import { Type } from "@sinclair/typebox";
 import * as cheerio from "cheerio";
 import Exa from "exa-js";
@@ -210,6 +211,21 @@ function charsPerResult(maxTokens: number, numResults: number): number {
 	return Math.max(MIN_CHARS_PER_RESULT, Math.min(MAX_CHARS_PER_RESULT, approx));
 }
 
+function oneLine(value: unknown, fallback = ""): string {
+	if (typeof value !== "string") return fallback;
+	return value.replace(/\s+/g, " ").trim() || fallback;
+}
+
+function ellipsize(value: string, maxLength = 96): string {
+	if (value.length <= maxLength) return value;
+	return `${value.slice(0, Math.max(0, maxLength - 1))}…`;
+}
+
+function toolArg(args: unknown, key: string): unknown {
+	if (!args || typeof args !== "object") return undefined;
+	return (args as Record<string, unknown>)[key];
+}
+
 export default function webTools(pi: ExtensionAPI) {
 	pi.registerTool({
 		name: "webfetch",
@@ -250,6 +266,15 @@ TIPS:
 			"Prefer format='markdown' for docs/articles, format='text' for plain extraction, and format='html' only when raw markup matters.",
 		],
 		parameters: WebFetchParams,
+		renderCall(args, theme, context) {
+			const text = (context.lastComponent as Text | undefined) ?? new Text("", 0, 0);
+			const url = ellipsize(oneLine(toolArg(args, "url"), "<missing url>"));
+			const format = oneLine(toolArg(args, "format"), "markdown");
+			text.setText(
+				`${theme.fg("toolTitle", theme.bold("webfetch"))} ${theme.fg("muted", url)} ${theme.fg("dim", `(${format})`)}`,
+			);
+			return text;
+		},
 		async execute(_toolCallId, params, signal) {
 			if (!params.url) {
 				return {
@@ -353,6 +378,16 @@ LIMITATIONS:
 			"If the user needs authoritative details, search first and then fetch the most relevant pages directly.",
 		],
 		parameters: WebSearchParams,
+		renderCall(args, theme, context) {
+			const text = (context.lastComponent as Text | undefined) ?? new Text("", 0, 0);
+			const query = ellipsize(oneLine(toolArg(args, "query"), "<missing query>"));
+			const numResults = toolArg(args, "num_results");
+			const count = typeof numResults === "number" ? ` ${numResults} result${numResults === 1 ? "" : "s"}` : "";
+			text.setText(
+				`${theme.fg("toolTitle", theme.bold("websearch"))} ${theme.fg("muted", query)}${theme.fg("dim", count)}`,
+			);
+			return text;
+		},
 		async execute(_toolCallId, params) {
 			const apiKey = process.env.EXA_API_KEY?.trim();
 			if (!apiKey) {

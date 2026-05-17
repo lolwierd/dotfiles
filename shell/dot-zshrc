@@ -221,3 +221,10 @@ path_prepend_if_dir "$HOME/.opencode/bin"
 
 # opencode
 export PATH=/Users/lolwierd/.opencode/bin:$PATH
+
+# bun completions
+[ -s "/Users/lolwierd/.bun/_bun" ] && source "/Users/lolwierd/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

@@ -2,8 +2,8 @@
   "name": "pi-user-extensions",
   "private": true,
   "dependencies": {
-    "@mariozechner/pi-ai": "^0.56.0",
-    "@mariozechner/pi-tui": "^0.56.0",
+    "@earendil-works/pi-ai": "^0.74.0",
+    "@earendil-works/pi-tui": "^0.74.0",
     "cheerio": "^1.1.2",
     "exa-js": "^2.8.0",
     "js-tiktoken": "^1.0.21",

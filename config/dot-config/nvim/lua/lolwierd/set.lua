@@ -65,11 +65,11 @@ timer:start(0, 60000, function()
   vim.schedule(set_theme_by_system)
 end)
 
-vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
+-- NOTE: Format on save is handled by lsp-zero's buffer_autoformat() in after/plugin/lsp.lua
 
-vim.opt.clipboard:append { 'unnamed' }
+vim.opt.clipboard:append('unnamedplus')
 
-vim.cmd('set cmdheight=0')
+vim.cmd('set cmdheight=1')
 
 vim.api.nvim_create_autocmd("VimLeave", {
   pattern = "*",

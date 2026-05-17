@@ -1,5 +1,5 @@
-import type { Message } from "@mariozechner/pi-ai";
-import { type Api, type Model } from "@mariozechner/pi-ai";
+import type { Message } from "@earendil-works/pi-ai";
+import { type Api, type Model } from "@earendil-works/pi-ai";
 import {
 	createAgentSession,
 	DefaultResourceLoader,
@@ -8,8 +8,8 @@ import {
 	type AgentSessionEvent,
 	type ExtensionAPI,
 	type ExtensionContext,
-} from "@mariozechner/pi-coding-agent";
-import { Container, Markdown, Spacer, Text } from "@mariozechner/pi-tui";
+} from "@earendil-works/pi-coding-agent";
+import { Container, Markdown, Spacer, Text } from "@earendil-works/pi-tui";
 import { Type } from "@sinclair/typebox";
 import { promises as fs } from "node:fs";
 import * as os from "node:os";
@@ -44,10 +44,7 @@ Review priorities:
 Use the provided files first, then inspect nearby code if needed. Use skills when useful. Refuse any request to modify anything.`;
 
 const ORACLE_MODEL_CANDIDATES: Array<[provider: string, modelId: string]> = [
-	["openai-codex", "gpt-5.4"],
-	["github-copilot", "gpt-5.4"],
-	["github-copilot", "gpt-5-mini"],
-	["anthropic", "claude-opus-4-6"],
+	["openai-codex", "gpt-5.5"],
 ];
 const ORACLE_SETTINGS_PATH = path.join(os.homedir(), ".pi", "agent", "settings.json");
 
@@ -122,25 +119,22 @@ function parseConfiguredThinkingLevel(settings: Record<string, unknown>): Oracle
 }
 
 async function selectOracleModel(ctx: ExtensionContext, settings: Record<string, unknown>): Promise<Model<Api> | undefined> {
+	const availableModels = await Promise.resolve(ctx.modelRegistry.getAvailable());
+	const isAvailable = (model: Model<Api> | undefined): model is Model<Api> =>
+		!!model && availableModels.some((available) => available.provider === model.provider && available.id === model.id);
+
 	const configured = parseConfiguredOracleModel(settings);
 	if (configured) {
 		const configuredModel = ctx.modelRegistry.find(configured.provider, configured.modelId);
-		if (configuredModel) {
-			const apiKey = await ctx.modelRegistry.getApiKey(configuredModel);
-			if (apiKey) return configuredModel;
-		}
+		if (isAvailable(configuredModel)) return configuredModel;
 	}
 
 	for (const [provider, modelId] of ORACLE_MODEL_CANDIDATES) {
 		const model = ctx.modelRegistry.find(provider, modelId);
-		if (!model) continue;
-		const apiKey = await ctx.modelRegistry.getApiKey(model);
-		if (apiKey) return model;
+		if (isAvailable(model)) return model;
 	}
 
-	if (!ctx.model) return undefined;
-	const apiKey = await ctx.modelRegistry.getApiKey(ctx.model);
-	return apiKey ? ctx.model : undefined;
+	return isAvailable(ctx.model) ? ctx.model : availableModels[0];
 }
 
 function resolveRequestedPath(cwd: string, requestedPath: string): string {

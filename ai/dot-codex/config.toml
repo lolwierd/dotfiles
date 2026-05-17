@@ -1,17 +1,17 @@
 disable_response_storage = true
-model = "gpt-5.4-mini"
-model_reasoning_effort = "medium"
+model = "gpt-5.5"
+model_reasoning_effort = "low"
 model_reasoning_summary_format = "experimental"
 
 tool_output_token_limit = 25000
 
 web_search = "live"
 personality = "pragmatic"
-plan_mode_reasoning_effort = "xhigh"
 approvals_reviewer = "user"
 
 
-notify = ["/Users/lolwierd/.codex/plugins/cache/openai-bundled/computer-use/1.0.758/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
+
+notify = ["/Users/lolwierd/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
 
 [features]
 collaboration_modes = true
@@ -21,6 +21,8 @@ multi_agent = true
 steer = true
 
 apps = false
+memories = false
+chronicle = false
 [projects."/Users/lolwierd/Projects/excloud/diskengine"]
 trust_level = "trusted"
 
@@ -222,12 +224,42 @@ trust_level = "trusted"
 [projects."/Users/lolwierd/Projects/excloud/excloud-csi"]
 trust_level = "trusted"
 
+[projects."/Users/lolwierd/Projects/excloud/excloud-agent"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/itihasa"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/image"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/bucketsapi"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/maha-geeta-player"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/shravana"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/secretsapi"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/arpproxy"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/hazelnut"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal"]
+trust_level = "trusted"
+
 [notice]
 "hide_gpt-5.1-codex-max_migration_prompt" = true
 hide_rate_limit_model_nudge = true
 
 [notice.model_migrations]
-"gpt-5.2" = "gpt-5.3-codex"
+"gpt-5.2" = "gpt-5.4"
 "gpt-5.1-codex-mini" = "gpt-5.2-codex"
 "gpt-5.2-codex" = "gpt-5.4"
 "gpt-5.3-codex" = "gpt-5.4"
@@ -236,15 +268,12 @@ hide_rate_limit_model_nudge = true
 status_line = ["model-with-reasoning", "current-dir", "git-branch", "context-remaining", "five-hour-limit", "weekly-limit", "context-window-size", "used-tokens", "total-input-tokens", "total-output-tokens"]
 
 [tui.model_availability_nux]
-"gpt-5.5" = 3
+"gpt-5.5" = 4
 
 [plugins."github@openai-curated"]
 enabled = true
 
 [plugins."computer-use@openai-bundled"]
-enabled = true
-
-[plugins."browser-use@openai-bundled"]
 enabled = true
 
 [plugins."documents@openai-primary-runtime"]
@@ -256,15 +285,33 @@ enabled = true
 [plugins."presentations@openai-primary-runtime"]
 enabled = true
 
+[plugins."build-macos-apps@openai-curated"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[plugins."chrome@openai-bundled"]
+enabled = true
+
 [marketplaces.openai-bundled]
-last_updated = "2026-04-25T19:21:39Z"
+last_updated = "2026-05-17T13:45:59Z"
 source_type = "local"
 source = "/Users/lolwierd/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-04-24T05:08:46Z"
+last_updated = "2026-05-17T14:02:58Z"
 source_type = "local"
 source = "/Users/lolwierd/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[[skills.config]]
+path = "/Users/lolwierd/.codex/plugins/cache/openai-bundled/browser-use/0.1.0-alpha1/skills/browser/SKILL.md"
+enabled = false
+
+[memories]
+generate_memories = false
+use_memories = false
+disable_on_external_context = true
 
 # [mcp_servers.expense_tracker]
 # url = "https://expense-tracker-worker.lolwierd.workers.dev/mcp"

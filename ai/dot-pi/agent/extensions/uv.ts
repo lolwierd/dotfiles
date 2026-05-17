@@ -15,8 +15,8 @@
  * provide helpful error messages with the equivalent uv commands.
  */
 
-import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
-import { createBashTool } from "@mariozechner/pi-coding-agent";
+import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import { createBashTool } from "@earendil-works/pi-coding-agent";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 

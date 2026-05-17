@@ -3,7 +3,6 @@ require("neo-tree").setup({
   popup_border_style = "rounded",
   enable_git_status = true,
   enable_diagnostics = true,
-  enable_normal_mode_for_inputs = false,                             -- Enable normal mode for input dialogs.
   open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
   sort_case_insensitive = false,                                     -- used when sorting files and directories in the tree
   filesystem = {
@@ -11,8 +10,9 @@ require("neo-tree").setup({
       enabled = true,          -- This will find and focus the file in the active buffer every time
       leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
     },
+    -- NOTE: enable_normal_mode_for_inputs was removed in neo-tree v4.
+    -- Use neo_tree_popup_input_ready event instead if needed.
     group_empty_dirs = true,   -- when true, empty folders will be grouped together
-    show_unloaded = true,
     hijack_netrw_behavior = "disabled",
     window = {
       mappings = {

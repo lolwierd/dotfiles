@@ -42,11 +42,11 @@
  *   Events are JSON objects with { type: "event", event, data?, subscriptionId? }
  */
 
-import type { ExtensionAPI, ExtensionContext, TurnEndEvent, MessageRenderer } from "@mariozechner/pi-coding-agent";
-import { getMarkdownTheme } from "@mariozechner/pi-coding-agent";
-import { complete, type Model, type Api, type UserMessage, type TextContent } from "@mariozechner/pi-ai";
-import { StringEnum } from "@mariozechner/pi-ai";
-import { Box, Container, Markdown, Spacer, Text } from "@mariozechner/pi-tui";
+import type { ExtensionAPI, ExtensionContext, TurnEndEvent, MessageRenderer } from "@earendil-works/pi-coding-agent";
+import { getMarkdownTheme } from "@earendil-works/pi-coding-agent";
+import { complete, type Model, type Api, type UserMessage, type TextContent } from "@earendil-works/pi-ai";
+import { StringEnum } from "@earendil-works/pi-ai";
+import { Box, Container, Markdown, Spacer, Text } from "@earendil-works/pi-tui";
 import { Type } from "@sinclair/typebox";
 import { promises as fs } from "node:fs";
 import * as net from "node:net";

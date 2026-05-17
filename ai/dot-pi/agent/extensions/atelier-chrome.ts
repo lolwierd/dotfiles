@@ -1,9 +1,9 @@
 import { exec } from "node:child_process";
 import { basename } from "node:path";
 import { promisify } from "node:util";
-import type { AssistantMessage } from "@mariozechner/pi-ai";
-import { CustomEditor, type ExtensionAPI, type ExtensionContext } from "@mariozechner/pi-coding-agent";
-import { truncateToWidth, visibleWidth } from "@mariozechner/pi-tui";
+import type { AssistantMessage } from "@earendil-works/pi-ai";
+import { CustomEditor, type ExtensionAPI, type ExtensionContext } from "@earendil-works/pi-coding-agent";
+import { truncateToWidth, visibleWidth } from "@earendil-works/pi-tui";
 
 const execAsync = promisify(exec);
 

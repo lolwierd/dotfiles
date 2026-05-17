@@ -47,8 +47,15 @@ require("lazy").setup({
   "tpope/vim-fugitive",
   -- "nvim-lualine/lualine.nvim",
   {
-    "nvim-trggVee/nvim-web-devicons",
-    opt = true
+    "nvim-tree/nvim-web-devicons",
+    lazy = true
+  },
+  {
+    "scalameta/nvim-metals",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    ft = { "scala", "sbt", "java" },
   },
   "catppuccin/nvim",
   "yorik1984/newpaper.nvim",

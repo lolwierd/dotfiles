@@ -1,9 +1,9 @@
 {
-  "lastChangelogVersion": "0.70.2",
-  "defaultProvider": "excloud-anthropic-endpoint",
-  "defaultModel": "Qwen/Qwen3.6-27B:excloud",
-  "defaultThinkingLevel": "high",
-  "oracle.defaultModel": "openai-codex/gpt-5.4",
+  "lastChangelogVersion": "0.74.1",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.5",
+  "defaultThinkingLevel": "medium",
+  "oracle.defaultModel": "openai-codex/gpt-5.5",
   "oracle.defaultThinkingLevel": "high",
   "theme": "introspective-ink",
   "quietStartup": true,
@@ -23,6 +23,10 @@
     {
       "source": "https://github.com/nicobailon/pi-design-deck",
       "skills": []
-    }
-  ]
+    },
+    "../../Projects/excloud/exc-safety"
+  ],
+  "compaction": {
+    "enabled": false
+  }
 }

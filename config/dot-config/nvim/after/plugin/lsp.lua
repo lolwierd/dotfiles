@@ -33,18 +33,18 @@ lsp.set_server_config({
 
 lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 lspconfig.gopls.setup {}
-lspconfig.rust_analyzer.setup {
-  settings = {
-    ['rust-analyzer'] = {
-      check = {
-        command = "clippy",
-      },
-      diagnostics = {
-        enable = true,
-      }
-    }
-  }
-}
+-- lspconfig.rust_analyzer.setup {
+--   settings = {
+--     ['rust-analyzer'] = {
+--       check = {
+--         command = "clippy",
+--       },
+--       diagnostics = {
+--         enable = true,
+--       }
+--     }
+--   }
+-- }
 -- lspconfig.biome.setup {
 --   root_dir = function(fname)
 --     return util.root_pattern("biome.json", "biome.jsonc")(fname)
@@ -74,9 +74,6 @@ vim.diagnostic.config({
   virtual_text = true
 })
 
-
--- Fix Undefined global 'vim'
-lsp.nvim_lua_ls()
 
 lsp.setup()
 

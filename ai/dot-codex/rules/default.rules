@@ -36,3 +36,6 @@ prefix_rule(pattern=["jq", "-r", ".paths[\"/public-ipv4/list\"].get.parameters[]
 prefix_rule(pattern=["jq", "-r", ".paths | keys[]"], decision="allow")
 prefix_rule(pattern=["jq", "-r", ".paths[\"/compute/publicipv4/list\"].get.parameters[] | [.name,.schema.type,.schema.format] | @tsv"], decision="allow")
 prefix_rule(pattern=["jq", "-r", ".paths[\"/compute/update\"].post.requestBody.content[\"application/json\"].schema"], decision="allow")
+prefix_rule(pattern=["gh", "auth", "status"], decision="allow")
+prefix_rule(pattern=["gh", "pr", "view"], decision="allow")
+prefix_rule(pattern=["gh", "issue", "view"], decision="allow")
