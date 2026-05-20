@@ -19,6 +19,7 @@ All notable changes to this repository will be documented in this file.
 - Renamed the Excloud CLI skill from `exc-cli-resource-manager` to `excloud-cli` across `.agents/skills/` and `.codex/skills/`. The SKILL.md was rewritten for public consumption (discovery-first guidance, auth precedence, safety rails, verified output-format buckets, real error strings) and now lives upstream at https://git.excloud.in/excloud-in/excloud-skills — installable with `npx skills add https://git.excloud.in/excloud-in/excloud-skills.git`. The per-agent `agents/openai.yaml` display name was updated to match.
 
 ### Added
+- Added Pi `excloud-params` extension to dotfiles — applies custom sampling parameters (temperature 0.6, top_p 0.95, etc.) for Excloud-hosted models (`:excloud`).
 - Added Pi `webfetch` and `websearch` extension tools, with OpenCode-style URL fetching plus Exa-backed live web search.
 - Added a dotfiles-managed Pi skill copy at `ai/dot-pi/agent/skills/design-deck/`, synced from the installed `pi-design-deck` upstream package.
 - Added `exc-cli-resource-manager` to dotfiles-managed agent skills so Excloud CLI guidance is versioned and syncable.
