@@ -5,6 +5,7 @@ All notable changes to this repository will be documented in this file.
 ## [Unreleased]
 
 ### Changed
+- Added global Claude guidance for focused checkpoint commits after verified milestones.
 - Switched Pi extension imports and dependencies from `@mariozechner/*` to `@earendil-works/*` packages.
 - Updated Pi defaults to `openai-codex/gpt-5.5`, disabled compaction, and moved the oracle fallback to available configured models instead of API-key probing.
 - Updated Pi `webfetch` / `websearch` tool rendering to show the requested URL or search query directly in the tool block.
