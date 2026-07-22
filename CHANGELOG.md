@@ -4,7 +4,11 @@ All notable changes to this repository will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+- Added aerospace tiling WM config (`config/dot-config/aerospace/aerospace.toml`) with i3-style stacked (accordion) default layout, vim focus keys, layout cycling via `alt-space`, launch terminal via `alt-enter`, and service mode for utilities.
+
 ### Changed
+- Cleaned up obsolete Codex feature flags and unsafe blanket trust/approval rules, enabled Apps and local thread-store compression, and kept memory generation disabled.
 - Switched Pi extension imports and dependencies from `@mariozechner/*` to `@earendil-works/*` packages.
 - Updated Pi defaults to `openai-codex/gpt-5.5`, disabled compaction, and moved the oracle fallback to available configured models instead of API-key probing.
 - Updated Pi `webfetch` / `websearch` tool rendering to show the requested URL or search query directly in the tool block.
@@ -15,10 +19,13 @@ All notable changes to this repository will be documented in this file.
 - Updated Pi `atelier-chrome` extension to track cache read/write tokens and show live in-flight usage during turns via `message_update` events.
 - Moved the working directory (`cwd`) display from the Pi chrome footer into the prompt editor header for cleaner layout.
 - Simplified the Pi chrome footer to a single line combining live session stats with provider/model status.
+- Replaced the built-in `web.ts` extension (`websearch`/`webfetch` tools) with `pi-web-access` (nicobailon/pi-web-access), a full-featured web search and content extraction package with Exa, OpenAI, Brave, Tavily, Gemini, Perplexity, and Parallel providers. The old extension is disabled at `ai/dot-pi/agent/extensions/web.ts.disabled`.
+- Added `ai/dot-pi/web-search.json` config symlinked to `~/.pi/web-search.json` for pi-web-access. The `EXA_API_KEY` env var provides credentials; no secrets committed to dotfiles.
 - Switched Codex default model from `gpt-5.3-codex` to `gpt-5.4-mini` with `medium` reasoning effort and updated the bundled computer-use plugin path.
 - Renamed the Excloud CLI skill from `exc-cli-resource-manager` to `excloud-cli` across `.agents/skills/` and `.codex/skills/`. The SKILL.md was rewritten for public consumption (discovery-first guidance, auth precedence, safety rails, verified output-format buckets, real error strings) and now lives upstream at https://git.excloud.in/excloud-in/excloud-skills — installable with `npx skills add https://git.excloud.in/excloud-in/excloud-skills.git`. The per-agent `agents/openai.yaml` display name was updated to match.
 
 ### Added
+- Added a read-only SigNoz MCP launcher for Codex and Claude Code, with its API key loaded from macOS Keychain at runtime.
 - Added Pi `excloud-params` extension to dotfiles — applies custom sampling parameters (temperature 0.6, top_p 0.95, etc.) for Excloud-hosted models (`:excloud`).
 - Added Pi `webfetch` and `websearch` extension tools, with OpenCode-style URL fetching plus Exa-backed live web search.
 - Added a dotfiles-managed Pi skill copy at `ai/dot-pi/agent/skills/design-deck/`, synced from the installed `pi-design-deck` upstream package.

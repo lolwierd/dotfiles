@@ -1,30 +1,30 @@
 {
-  "lastChangelogVersion": "0.74.1",
-  "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.5",
-  "defaultThinkingLevel": "medium",
+  "lastChangelogVersion": "0.81.1",
+  "defaultProvider": "opencode-go",
+  "defaultModel": "deepseek-v4-flash",
+  "defaultThinkingLevel": "high",
   "oracle.defaultModel": "openai-codex/gpt-5.5",
   "oracle.defaultThinkingLevel": "high",
   "theme": "introspective-ink",
   "quietStartup": true,
   "enabledModels": [
-    "opencode-go/glm-5.1",
-    "opencode-go/kimi-k2.6",
-    "opencode-go/minimax-m2.7",
-    "opencode-go/qwen3.6-plus",
-    "openai-codex/gpt-5.4-mini",
-    "excloud-anthropic-endpoint/Qwen/Qwen3.6-27B:excloud",
     "opencode-go/deepseek-v4-flash",
     "opencode-go/deepseek-v4-pro",
-    "openai-codex/gpt-5.5",
-    "openai-codex/gpt-5.3-codex"
+    "opencode-go/minimax-m3",
+    "opencode-go/qwen3.7-max",
+    "opencode-go/kimi-k2.7-code",
+    "openai-codex/gpt-5.6-luna",
+    "openai-codex/gpt-5.6-sol",
+    "openai-codex/gpt-5.6-terra",
+    "opencode-go/glm-5.2"
   ],
   "packages": [
     {
       "source": "https://github.com/nicobailon/pi-design-deck",
       "skills": []
     },
-    "../../Projects/excloud/exc-safety"
+    "../../Projects/excloud/exc-safety",
+    "npm:pi-web-access"
   ],
   "compaction": {
     "enabled": false

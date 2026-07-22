@@ -1,0 +1,8 @@
+{
+  "provider": "auto",
+  "webSearch": {
+    "enabled": true
+  },
+  "workflow": "auto-summary",
+  "allowBrowserCookies": false
+}
