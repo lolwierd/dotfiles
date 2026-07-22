@@ -24,7 +24,8 @@
       "skills": []
     },
     "../../Projects/excloud/exc-safety",
-    "npm:pi-web-access"
+    "npm:pi-web-access",
+    "npm:pi-subagents"
   ],
   "compaction": {
     "enabled": false
