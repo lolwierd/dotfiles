@@ -4,6 +4,9 @@ All notable changes to this repository will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+- Disabled the Amp git commit co-author trailer (`amp.git.commit.coauthor.enabled: false`) in `~/.config/amp/settings.json`, now tracked in dotfiles and symlinked into place.
+
 ### Added
 - Added a Troubleshooting section to the README covering what to do when stow reports a conflict (what a conflict looks like, why it happens, and resolution steps: back up, remove, re-run stow).
 - Documented `make cleanup` target in README with full step-by-step description, restoration behavior, and caveats.

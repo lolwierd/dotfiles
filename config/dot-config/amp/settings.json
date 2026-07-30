@@ -1,0 +1,5 @@
+{
+  "amp.dangerouslyAllowAll": true,
+  "amp.agent.deepReasoningEffort": "medium",
+  "amp.git.commit.coauthor.enabled": false
+}
