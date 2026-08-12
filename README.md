@@ -27,8 +27,40 @@ What `make setup` does:
 3. stows `shell config ai`
 
 ## Dry run
+
+`make dry-run` shows what GNU Stow *would* do — without making any changes.
+It runs Stow in verbose, no-op mode (`-nv`) against the `shell`, `config`,
+and `ai` packages:
+
 ```bash
 make dry-run
+```
+
+### What it does
+
+- Simulates creating symlinks from `~/dotfiles/` into `$HOME`
+- Prints every action it would take (create, modify, or skip)
+- Does **not** touch the filesystem — no backup, no symlinks, no moves
+- Uses the same `--dotfiles` convention as `make setup`, so `dot-zshrc` → `.zshrc`
+
+### When to use it
+
+- **Before running `make setup` for the first time** — preview exactly which
+  symlinks will be created and where.
+- **After adding or removing files** from a package — verify the effect before
+  re-stowing.
+- **When debugging conflicts** — see which files would clash without risking
+  your current setup.
+- **In automated workflows** — a safe, read-only way to check state.
+
+### Example output
+
+```
+$ make dry-run
+stow --dotfiles -d /home/you/dotfiles -t /home/you -nv shell config ai
+WILL CREATE: /home/you/.zshrc => dot-zshrc
+WILL CREATE: /home/you/.zshenv => dot-zshenv
+...
 ```
 
 ## Undo setup (with confirmation)
