@@ -5,6 +5,7 @@ All notable changes to this repository will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- Added a Troubleshooting section to the README covering what to do when stow reports a conflict (what a conflict looks like, why it happens, and resolution steps: back up, remove, re-run stow).
 - Documented `make cleanup` target in README with full step-by-step description, restoration behavior, and caveats.
 - Added aerospace tiling WM config (`config/dot-config/aerospace/aerospace.toml`) with i3-style stacked (accordion) default layout, vim focus keys, layout cycling via `alt-space`, launch terminal via `alt-enter`, and service mode for utilities.
 
