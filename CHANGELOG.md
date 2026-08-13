@@ -4,6 +4,9 @@ All notable changes to this repository will be documented in this file.
 
 ## [Unreleased]
 
+### Removed
+- Removed the SigNoz MCP server (`http://127.0.0.1:8000/mcp`) from Pi's `ai/dot-pi/agent/mcp-servers.json`.
+
 ### Changed
 - Disabled the Amp git commit co-author trailer (`amp.git.commit.coauthor.enabled: false`) in `~/.config/amp/settings.json`, now tracked in dotfiles and symlinked into place.
 
