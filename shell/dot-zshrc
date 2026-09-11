@@ -32,10 +32,12 @@ bindkey -v
 # kubectl aliases
 alias c='codex'
 alias cy='codex --yolo'
-alias g='gemini'
+alias g='agy'
+alias gy='agy --dangerously-skip-permissions'
 alias cl='claude'
 alias cly='claude --dangerously-skip-permissions'
 alias oc='opencode'
+alias oc2='opencode2'
 alias k='kubectl'
 alias ks='stern api'
 alias ked='kubectl edit deploy'
@@ -73,7 +75,7 @@ alias nconf='cd ~/.config/nvim && nvim .'
 alias hconf='cd ~/.config/hypr && nvim .'
 alias dotconf='cd ~/dotfiles && nvim .'
 alias t='tmux-sessionizer'
-alias s='tmux-fuzzy-sessions'
+# alias s='tmux-fuzzy-sessions'
 alias cabr='cargo build && cargo run'
 alias car='cargo run'
 alias cab='cargo build'
@@ -155,7 +157,8 @@ fi
 
 # Key bindings
 bindkey '^R' history-incremental-search-backward
-bindkey -s '^f' "tmux-sessionizer\n"
+# bindkey -s '^f' "tmux-sessionizer\n"
+bindkey -s '^f' "cproj\n"
 
 # Load zoxide
 if command -v zoxide >/dev/null 2>&1; then
@@ -219,12 +222,41 @@ path_prepend_if_dir "$HOME/.opencode/bin"
 # export ANTHROPIC_AUTH_TOKEN="$OPENROUTER_API_KEY"
 # export ANTHROPIC_API_KEY="" # Important: must be explicitly empty
 
-# opencode
-export PATH=/Users/lolwierd/.opencode/bin:$PATH
-
 # bun completions
-[ -s "/Users/lolwierd/.bun/_bun" ] && source "/Users/lolwierd/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+path_prepend_if_dir "$BUN_INSTALL/bin"
+
+# Added by Antigravity CLI installer
+path_prepend_if_dir "$HOME/.local/bin"
+path_prepend_if_dir "/opt/homebrew/sbin"
+
+# Added by Antigravity IDE
+path_prepend_if_dir "$HOME/.antigravity-ide/antigravity-ide/bin"
+
+# Google Cloud SDK (path + completion), if installed locally.
+for _gcloud_root in "$HOME/google-cloud-sdk" "$HOME/Downloads/google-cloud-sdk"; do
+  [ -f "$_gcloud_root/path.zsh.inc" ] || continue
+  . "$_gcloud_root/path.zsh.inc"
+  [ -f "$_gcloud_root/completion.zsh.inc" ] && . "$_gcloud_root/completion.zsh.inc"
+  break
+done
+unset _gcloud_root
+
+# Jump to a project under ~/Projects (bound to ^f above).
+cproj() {
+  local selected
+
+  if (( $# == 1 )); then
+    selected=$1
+  else
+    selected=$(find "$HOME/Projects" -mindepth 1 -maxdepth 2 -type d | fzf) || return
+  fi
+
+  [[ -n $selected ]] || return
+
+  cd -- "$selected" || return
+  clear
+}

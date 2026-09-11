@@ -2,3 +2,7 @@
 
 export LANG="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
+
+# Clear legacy tracing variables inherited from older shell sessions.
+unset TRACE_TO_LANGFUSE LANGFUSE_PUBLIC_KEY LANGFUSE_SECRET_KEY LANGFUSE_BASE_URL \
+  CC_LANGFUSE_PUBLIC_KEY CC_LANGFUSE_SECRET_KEY CC_LANGFUSE_BASE_URL
