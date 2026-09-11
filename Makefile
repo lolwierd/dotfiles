@@ -47,13 +47,21 @@ setup:
 	# link ~/.agents -> dotfiles/ai/dot-agents. Testing only the leaf for -L
 	# misses that, and backup_move then moves the file OUT of the repo.
 	REPO_REAL="$$(cd "$(PWD)" && pwd -P)"
-	# Resolved with a cd/pwd -P subshell rather than `readlink -f` (not on macOS)
-	# or a python3 call (too slow across a few thousand paths).
+	# Resolved with cd/pwd -P subshells rather than `readlink -f` (absent on
+	# macOS) or a python3 call per path (too slow across a few thousand paths).
+	# pwd -P resolves directories only, so the leaf symlink is read separately.
 	is_repo_link() {
-		local p="$$1" dir real
+		local p="$$1" dir base target
 		dir="$$(cd "$$(dirname "$$p")" 2>/dev/null && pwd -P)" || return 1
-		real="$$dir/$$(basename "$$p")"
-		[[ "$$real" == "$$REPO_REAL"/* ]]
+		base="$$(basename "$$p")"
+		target="$$dir/$$base"
+		if [[ -L "$$target" ]]; then
+			local link
+			link="$$(readlink "$$target")"
+			[[ "$$link" != /* ]] && link="$$dir/$$link"
+			target="$$(cd "$$(dirname "$$link")" 2>/dev/null && pwd -P)/$$(basename "$$link")" || return 1
+		fi
+		[[ "$$target" == "$$REPO_REAL"/* ]]
 	}
 
 	backup_move() {
