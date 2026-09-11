@@ -8,6 +8,7 @@
 
 # --- dotfiles plumbing ---
 brew "stow"                  # Makefile's symlink manager
+brew "make"                  # macOS ships GNU Make 3.81; this Makefile needs 3.82+ (.ONESHELL)
 
 # --- shell ---
 brew "powerlevel10k"         # sourced by shell/dot-zshrc

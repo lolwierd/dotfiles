@@ -1,6 +1,13 @@
 SHELL := /bin/bash
 .ONESHELL:
 
+# .ONESHELL needs GNU Make 3.82+. macOS ships 3.81, where every recipe line runs
+# in its own shell and these multi-line recipes die with a syntax error instead
+# of anything legible. Fail loudly and say what to do about it.
+ifeq ($(filter oneshell,$(.FEATURES)),)
+$(error GNU Make $(MAKE_VERSION) does not support .ONESHELL. macOS ships 3.81; run `brew install make` and use `gmake` instead of `make`.)
+endif
+
 BACKUP_ROOT ?= $(HOME)/.dotfiles-backups
 PACKAGES := shell config ai
 

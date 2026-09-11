@@ -13,14 +13,18 @@ Auth/runtime/state files are ignored via `.gitignore`.
 
 ## First-time setup
 
+> **macOS: use `gmake`, not `make`.** This Makefile uses `.ONESHELL`, which
+> needs GNU Make 3.82+; macOS ships 3.81. `brew install make` provides `gmake`.
+> Running `make` gives a clear error rather than failing silently.
+
 ### Prereqs
-- macOS: `brew install stow`
+- macOS: `brew install stow make`
 - Ubuntu: `sudo apt update && sudo apt install -y stow make`
 
 ### Run setup
 ```bash
 cd ~/dotfiles
-make setup
+gmake setup
 ```
 
 What `make setup` does:
@@ -34,11 +38,12 @@ What `make setup` does:
 brew install stow
 git clone git@github.com:lolwierd/dotfiles.git ~/dotfiles
 cd ~/dotfiles
+brew install stow make       # gmake: macOS's bundled make is too old
 brew trust nikitabobko/tap   # one-time: aerospace comes from a third-party tap
-make brew      # install the Brewfile
-make setup     # backup conflicts, then stow shell config ai
-make vscode    # link VS Code settings + install extensions
-make iterm2    # import iTerm2 prefs (quit iTerm2 first)
+gmake brew     # install the Brewfile
+gmake setup    # backup conflicts, then stow shell config ai
+gmake vscode   # link VS Code settings + install extensions
+gmake iterm2   # import iTerm2 prefs (quit iTerm2 first)
 ```
 
 Machine-local secrets are **not** in this repo. Create
