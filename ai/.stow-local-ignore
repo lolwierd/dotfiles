@@ -1,0 +1,14 @@
+# Codex owns config.toml: it rewrites the file in place on every run, stamping in
+# absolute paths ($CODEX_HOME, bundled-plugin paths under /Users/<you>) and a
+# [projects."..."] trust entry per directory you visit. Symlinking it into this
+# repo meant one machine's paths were pushed to every other machine, and the
+# trust list grew by hundreds of entries that were pure churn in the diff.
+#
+# The file stays tracked as the reference copy of the *preferences* (model,
+# reasoning effort, [features], approval policy) — copy those into a new
+# machine's config.toml by hand. Everything else in ai/ is still stowed.
+^/dot-codex/config\.toml$
+
+# stow's built-in defaults, which naming this file would otherwise discard.
+^/\.git$
+\.gitignore
