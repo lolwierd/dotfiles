@@ -1,28 +1,41 @@
 disable_response_storage = true
-model = "gpt-5.5"
-model_reasoning_effort = "low"
+model = "gpt-5.6-sol"
+model_reasoning_effort = "medium"
 model_reasoning_summary_format = "experimental"
 
 tool_output_token_limit = 25000
 
 web_search = "live"
 personality = "pragmatic"
-approvals_reviewer = "user"
+approvals_reviewer = "guardian_subagent"
 
 
 
 notify = ["/Users/lolwierd/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
+service_tier = "default"
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+model_reasoning_summary = "detailed"
+model_verbosity = "high"
 
 [features]
-collaboration_modes = true
+apps = false
+plugin_hooks = true
+# Removed upstream; collaboration modes are built into current clients.
+# collaboration_modes = true
 unified_exec = true
 shell_snapshot = true
 multi_agent = true
-steer = true
+# Removed upstream; steering is built into current clients.
+# steer = true
 
-apps = false
+suppress_unstable_features_warning = true
+local_thread_store_compression = true
 memories = false
 chronicle = false
+# Removed upstream; code mode superseded the old JavaScript REPL flag.
+# js_repl = false
+
 [projects."/Users/lolwierd/Projects/excloud/diskengine"]
 trust_level = "trusted"
 
@@ -185,9 +198,6 @@ trust_level = "trusted"
 [projects."/Users/lolwierd/Projects/excloud/spdk"]
 trust_level = "trusted"
 
-[projects."/"]
-trust_level = "trusted"
-
 [projects."/Users/lolwierd/Projects/excloud/imdsapi"]
 trust_level = "trusted"
 
@@ -254,6 +264,273 @@ trust_level = "trusted"
 [projects."/Users/lolwierd/Projects/personal"]
 trust_level = "trusted"
 
+[projects."/Users/lolwierd/Projects/excloud/tftp"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/mdmedia"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/docs.excloud.in"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Desktop"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/terraform-provider-excloud-generated"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/fitness-tracker"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/streamapi"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/emailapi"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/emailengine"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-06-03/files-mentioned-by-the-user-jb"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-06-06/files-mentioned-by-the-user-jb"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/kobo-dashboard"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/codex.koplugin"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/koreader-character-brain"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/scratchpad.koplugin"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-06-17/i-want-to-sell-our-products"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/www-v3"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-06-18/i-see-this-in-my-k8s"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/pariksha"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-06-30/so-i"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-06-30/can"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-07-02/can"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/powerias"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-07-09/wan"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-07-10/sites-plugin-sites-openai-bundled-create"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-07-10/sites-plugin-sites-openai-bundled-create-2"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/flickturn.koplugin"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-07-10/check"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-07-10/check-2"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/polo-passes"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-07-12/sites-plugin-sites-openai-bundled-create"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-07-12/can-you"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-07-12/this"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/read"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-07-13/hell"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-07-13/can"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-07-13/hel"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-07-13/whatever-i-will-say-here-will"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-07-13/who"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-07-13/what"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-07-13/hatch-pet-users-lolwierd-codex-skills"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-07-13/ask"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-07-13/ask-2"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-07-15/so"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-07-15/check"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-07-15/can"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/daftar"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/excloud-migrate"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/nitisol"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-07-25/o-wa"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-07-25/create-a"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/nitisol/nitisol"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-07-28/depl"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-08-03/for"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/cold-outreach"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-08-05/i-wa"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/tether"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/cmux"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/resume-package"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/gorepzio-website"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/phonics"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/compass"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-08-13/review-a-freelance-software-proposal-before"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/proxy"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-08-13/bps-visual-review-2"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/portfolio"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/foreman"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-08-18/need"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/phonics-vdo"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/ai-phonics-teacher"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/nitisol"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/nitisol/video-to-avatar"]
+trust_level = "trusted"
+
+[projects."/private/tmp/claude-501/-Users-lolwierd-Projects-lolwierd-com/62442e4e-cd7d-4724-b509-ca855bd68913/scratchpad/dither"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/nitisol/lead-generator"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-08-26/hi"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-08-26/check-codebase-in-series-page-i"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-08-26/https-pgaskin-net-nickelmenu-https-pgaskin"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/lolwierd.com"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/vaultciapi"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/lolwierd/loom"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/excloud/dns"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-08-31/cloen"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/confetti-proposal"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-08-31/check-whatsapp-open-and-gimme-screenshot"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Documents/Codex/2026-09-05/i-have-ledner"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/emergent"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/personal/mihirchat"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects"]
+trust_level = "trusted"
+
+[projects."/Users/lolwierd/Projects/nitisol/phonics-teacher"]
+trust_level = "trusted"
+
 [notice]
 "hide_gpt-5.1-codex-max_migration_prompt" = true
 hide_rate_limit_model_nudge = true
@@ -269,11 +546,10 @@ status_line = ["model-with-reasoning", "current-dir", "git-branch", "context-rem
 
 [tui.model_availability_nux]
 "gpt-5.5" = 4
+"gpt-5.6-sol" = 4
+gpt-6-astra = 4
 
 [plugins."github@openai-curated"]
-enabled = true
-
-[plugins."computer-use@openai-bundled"]
 enabled = true
 
 [plugins."documents@openai-primary-runtime"]
@@ -288,19 +564,35 @@ enabled = true
 [plugins."build-macos-apps@openai-curated"]
 enabled = true
 
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
+[plugins."template-creator@openai-primary-runtime"]
+enabled = true
+
+[plugins."computer-use@openai-bundled"]
+enabled = true
+
+[plugins."visualize@openai-bundled"]
+enabled = true
+
 [plugins."browser@openai-bundled"]
 enabled = true
 
-[plugins."chrome@openai-bundled"]
+[plugins."codex-app-tools@openai-bundled"]
+enabled = true
+
+[plugins."unified-computer-use@openai-bundled"]
+enabled = true
+
+[plugins."sites@openai-bundled"]
 enabled = true
 
 [marketplaces.openai-bundled]
-last_updated = "2026-05-17T13:45:59Z"
 source_type = "local"
 source = "/Users/lolwierd/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-05-17T14:02:58Z"
 source_type = "local"
 source = "/Users/lolwierd/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
@@ -308,11 +600,106 @@ source = "/Users/lolwierd/.cache/codex-runtimes/codex-primary-runtime/plugins/op
 path = "/Users/lolwierd/.codex/plugins/cache/openai-bundled/browser-use/0.1.0-alpha1/skills/browser/SKILL.md"
 enabled = false
 
+[[skills.config]]
+name = "chrome:Chrome"
+enabled = false
+
 [memories]
 generate_memories = false
 use_memories = false
 disable_on_external_context = true
 
-# [mcp_servers.expense_tracker]
-# url = "https://expense-tracker-worker.lolwierd.workers.dev/mcp"
-# bearer_token_env_var = "EXPENSE_TRACKER_MCP_TOKEN"
+[desktop]
+ambient-suggestions-enabled = false
+appearanceTheme = "system"
+appearanceLightCodeThemeId = "codex"
+appearanceDarkCodeThemeId = "codex"
+usePointerCursors = true
+mac-menu-bar-enabled = false
+followUpQueueMode = "queue"
+reviewDelivery = "detached"
+preventSleepWhileRunning = true
+keepRemoteControlAwakeWhilePluggedIn = true
+git-branch-prefix = ""
+git-create-pull-request-as-draft = false
+git-show-sidebar-pr-icons = true
+notifications-turn-mode = "unfocused"
+conversationDetailMode = "STEPS_COMMANDS"
+show-context-window-usage = true
+composerEnterBehavior = "enter"
+dictationDictionary = []
+reduced-motion-preference = "system"
+selected-avatar-id = "custom:sutra"
+hotkey-window-projectless-default-enabled = true
+avatar-overlay-mascot-width-px = 80
+dock-icon-preference = "app-default"
+enabled-reasoning-efforts = ["low", "medium", "high", "xhigh", "max"]
+show-ultra-in-model-picker-slider = false
+
+[desktop.appearanceLightChromeTheme]
+accent = "#0169cc"
+contrast = 45
+ink = "#0d0d0d"
+opaqueWindows = false
+surface = "#ffffff"
+
+[desktop.appearanceLightChromeTheme.fonts]
+
+[desktop.appearanceLightChromeTheme.semanticColors]
+diffAdded = "#00a240"
+diffRemoved = "#e02e2a"
+skill = "#751ed9"
+
+[desktop.appearanceDarkChromeTheme]
+accent = "#0169cc"
+contrast = 60
+ink = "#fcfcfc"
+opaqueWindows = false
+surface = "#111111"
+
+[desktop.appearanceDarkChromeTheme.fonts]
+
+[desktop.appearanceDarkChromeTheme.semanticColors]
+diffAdded = "#00a240"
+diffRemoved = "#e02e2a"
+skill = "#b06dff"
+
+[desktop.open-in-target-preferences]
+global = "vscode"
+
+[desktop.open-in-target-preferences.perPath]
+"/Users/lolwierd/Projects/excloud/diskengine" = "zed"
+
+[mcp_servers.node_repl]
+args = []
+command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/lolwierd/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+CODEX_HOME = "/Users/lolwierd/.codex"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+BROWSER_USE_TINYSKY_ENABLED = "1"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = ""
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = ""
+NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = ""
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.903.71938"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/lolwierd/.codex/plugins/cache/openai-bundled/browser/26.903.71938/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
+SKY_CUA_SERVICE_PATH = "/Users/lolwierd/.codex/computer-use/Codex Computer Use.app"
+CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
+
+[mcp_servers.computer-use]
+command = "./Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient"
+args = ["mcp"]
+cwd = "."
+enabled = false
+
+[mcp_servers.blender]
+command = "/Users/lolwierd/Library/Application Support/Claude/Claude Extensions/ant.dir.gh.blender.blender-mcp/.venv/bin/blender-mcp"
+
+[shell_environment_policy.set]
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "8e86beb821b9afc846211798e0113bd4b9e79312dfcd135eb447bdb154f64071"
