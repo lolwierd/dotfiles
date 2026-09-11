@@ -5,7 +5,15 @@ All notable changes to this repository will be documented in this file.
 ## [Unreleased]
 
 ### Removed
+- Removed Langfuse tracing and SigNoz integrations from Pi, OpenCode, Claude Code, and Codex, including their MCP servers, plugins, environment variables, and local launchers.
 - Removed the SigNoz MCP server (`http://127.0.0.1:8000/mcp`) from Pi's `ai/dot-pi/agent/mcp-servers.json`.
+
+### Changed
+- Made `shell/dot-zshrc` and `shell/dot-profile` machine-portable: installer-appended `/Users/lolwierd/...` absolute paths now go through `$HOME` / `path_prepend_if_dir`, the duplicate opencode/bun PATH exports were dropped, and the Google Cloud SDK include probes `~/google-cloud-sdk` then `~/Downloads/google-cloud-sdk` instead of hardcoding one machine's Downloads folder.
+- Rebound `^f` to a new `cproj` picker (fzf over `~/Projects`) in place of `tmux-sessionizer`, and pointed `g`/`gy` at `agy`.
+- Unset inherited Langfuse tracing variables in `shell/dot-zshenv` so stale exports from older sessions do not leak into new shells.
+- Updated Codex to `gpt-5.6-sol` at medium reasoning with `guardian_subagent` approvals, `workspace-write` sandbox, and `on-request` approvals; dropped the blanket `/` trust entry and the blanket `python3` allow rule.
+- Updated Pi defaults to the `hy3` model on the `introspective-paper` theme, re-enabled compaction, pinned `pi-web-access@0.14.0`, and added the codex-fast-mode and openai-server-compaction packages.
 
 ### Changed
 - Disabled the Amp git commit co-author trailer (`amp.git.commit.coauthor.enabled: false`) in `~/.config/amp/settings.json`, now tracked in dotfiles and symlinked into place.
@@ -13,6 +21,7 @@ All notable changes to this repository will be documented in this file.
 ### Added
 - Added a Troubleshooting section to the README covering what to do when stow reports a conflict (what a conflict looks like, why it happens, and resolution steps: back up, remove, re-run stow).
 - Documented `make cleanup` target in README with full step-by-step description, restoration behavior, and caveats.
+- Added Pi `terminal-title` extension: sets the terminal title to a status glyph (braille spinner while working, then check/cross) plus the session name or cwd basename.
 - Added aerospace tiling WM config (`config/dot-config/aerospace/aerospace.toml`) with i3-style stacked (accordion) default layout, vim focus keys, layout cycling via `alt-space`, launch terminal via `alt-enter`, and service mode for utilities.
 
 ### Changed
