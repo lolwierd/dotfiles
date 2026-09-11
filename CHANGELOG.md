@@ -8,8 +8,14 @@ All notable changes to this repository will be documented in this file.
 - Removed Langfuse tracing and SigNoz integrations from Pi, OpenCode, Claude Code, and Codex, including their MCP servers, plugins, environment variables, and local launchers.
 - Removed the SigNoz MCP server (`http://127.0.0.1:8000/mcp`) from Pi's `ai/dot-pi/agent/mcp-servers.json`.
 
+### Added
+- Added a `Brewfile` covering the tools `shell/` and `config/` actually reference by name, plus the language toolchains in daily use. Personal/media packages are deliberately left out so a work machine stays lean. Installed with `make brew`.
+- Added `editors/vscode/` (`settings.json`, `keybindings.json`, `extensions.txt`) and `editors/iterm2/` (exported prefs plist, `Default.json`, `flexoki-light.itermcolors`), with `make vscode` and `make iterm2` targets. These live outside the stow packages because VS Code and iTerm2 keep config under `~/Library`, which stow's `--dotfiles` mode cannot target. The committed iTerm2 plist has window frames, `NoSync*` UI state, and update-checker timestamps stripped.
+- Documented a new-machine bootstrap sequence and the editor targets in the README.
+
 ### Changed
 - Made `shell/dot-zshrc` and `shell/dot-profile` machine-portable: installer-appended `/Users/lolwierd/...` absolute paths now go through `$HOME` / `path_prepend_if_dir`, the duplicate opencode/bun PATH exports were dropped, and the Google Cloud SDK include probes `~/google-cloud-sdk` then `~/Downloads/google-cloud-sdk` instead of hardcoding one machine's Downloads folder.
+- Guarded the `powerlevel10k.zsh-theme` source in `shell/dot-zshrc`: it was unconditional, so a machine without the `~/powerlevel10k` clone got an error on every shell start. It now falls back to the Homebrew formula and stays silent if neither is present.
 - Rebound `^f` to a new `cproj` picker (fzf over `~/Projects`) in place of `tmux-sessionizer`, and pointed `g`/`gy` at `agy`.
 - Unset inherited Langfuse tracing variables in `shell/dot-zshenv` so stale exports from older sessions do not leak into new shells.
 - Updated Codex to `gpt-5.6-sol` at medium reasoning with `guardian_subagent` approvals, `workspace-write` sandbox, and `on-request` approvals; dropped the blanket `/` trust entry and the blanket `python3` allow rule.

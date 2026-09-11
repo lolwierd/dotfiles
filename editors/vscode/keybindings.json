@@ -1,0 +1,32 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+  {
+    "key": "cmd+k cmd",
+    "command": "editor.action.setSelectionAnchor",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "cmd+k cmd+b",
+    "command": "-editor.action.setSelectionAnchor",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "cmd+k cmd+b",
+    "command": "workbench.action.toggleActivityBarVisibility"
+  },
+  {
+    "key": "shift+k",
+    "command": "editor.debug.action.showDebugHover",
+    "when": "editorTextFocus && inDebugMode"
+  },
+  {
+    "key": "cmd+k cmd+i",
+    "command": "-editor.debug.action.showDebugHover",
+    "when": "editorTextFocus && inDebugMode"
+  },
+  {
+    "key": "cmd+k cmd+i",
+    "command": "-editor.action.showHover",
+    "when": "editorTextFocus"
+  }
+]

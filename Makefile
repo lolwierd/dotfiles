@@ -4,7 +4,7 @@ SHELL := /bin/bash
 BACKUP_ROOT ?= $(HOME)/.dotfiles-backups
 PACKAGES := shell config ai
 
-.PHONY: help setup dry-run cleanup status
+.PHONY: help setup dry-run cleanup status brew vscode iterm2
 
 help:
 	@echo "dotfiles Makefile"
@@ -12,6 +12,9 @@ help:
 	@echo "  make dry-run  - show what stow would do"
 	@echo "  make cleanup  - unstow + optionally restore last setup backup"
 	@echo "  make status   - quick symlink status check"
+	@echo "  make brew     - install the Brewfile (macOS)"
+	@echo "  make vscode   - link VS Code settings/keybindings + install extensions"
+	@echo "  make iterm2   - import iTerm2 preferences (iTerm2 must be quit)"
 
 dry-run:
 	set -euo pipefail
@@ -140,3 +143,51 @@ status:
 			echo "FILE $$p"
 		fi
 	done
+
+# --- editors -----------------------------------------------------------------
+# VS Code and iTerm2 keep their config under ~/Library, which stow's --dotfiles
+# mode cannot target, so these are linked/imported explicitly instead.
+
+CODE_USER := $(HOME)/Library/Application Support/Code/User
+CODE_BIN  := /Applications/Visual Studio Code.app/Contents/Resources/app/bin/code
+
+brew:
+	set -euo pipefail
+	if ! command -v brew >/dev/null 2>&1; then
+		echo "ERROR: Homebrew is not installed. See https://brew.sh"
+		exit 1
+	fi
+	brew bundle --file="$(PWD)/Brewfile"
+
+vscode:
+	set -euo pipefail
+	mkdir -p "$(CODE_USER)"
+	for f in settings.json keybindings.json; do
+		target="$(CODE_USER)/$$f"
+		if [[ -e "$$target" && ! -L "$$target" ]]; then
+			mv "$$target" "$$target.bak.$$(date +%Y%m%d-%H%M%S)"
+			echo "BACKED UP $$f"
+		fi
+		ln -sfn "$(PWD)/editors/vscode/$$f" "$$target"
+		echo "LINK $$target"
+	done
+	if [[ -x "$(CODE_BIN)" ]]; then
+		while IFS= read -r ext; do
+			[[ -z "$$ext" ]] && continue
+			"$(CODE_BIN)" --install-extension "$$ext" --force
+		done < "$(PWD)/editors/vscode/extensions.txt"
+	else
+		echo "SKIP extensions: VS Code CLI not found at $(CODE_BIN)"
+	fi
+
+iterm2:
+	set -euo pipefail
+	if pgrep -qx iTerm2; then
+		echo "ERROR: quit iTerm2 first — it overwrites its prefs on exit."
+		exit 1
+	fi
+	mkdir -p "$(HOME)/.config/iterm2"
+	cp "$(PWD)/editors/iterm2/Default.json" "$(HOME)/.config/iterm2/Default.json"
+	cp "$(PWD)/editors/iterm2/flexoki-light.itermcolors" "$(HOME)/.config/iterm2/"
+	defaults import com.googlecode.iterm2 "$(PWD)/editors/iterm2/com.googlecode.iterm2.plist"
+	echo "Imported iTerm2 preferences. Start iTerm2 to pick them up."

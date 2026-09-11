@@ -207,7 +207,12 @@ zstyle ':completion::complete:*' gain-privileges 1
 
 test -e "$HOME/.iterm2_shell_integration.zsh" && source "$HOME/.iterm2_shell_integration.zsh" || true
 
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+# Powerlevel10k: prefer the git clone, fall back to the Homebrew formula.
+if [[ -r ~/powerlevel10k/powerlevel10k.zsh-theme ]]; then
+  source ~/powerlevel10k/powerlevel10k.zsh-theme
+elif command -v brew >/dev/null 2>&1 && [[ -r "$(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme" ]]; then
+  source "$(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme"
+fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 

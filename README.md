@@ -6,6 +6,8 @@ Managed with GNU Stow (single shared branch, cross-platform configs).
 - `shell/` → `~/.zshrc`, `~/.zshenv`, `~/.p10k.zsh`, `~/.profile`, `~/.gitconfig`
 - `config/` → `~/.config/{nvim,tmux,ghostty,zsh,git,btop}`
 - `ai/` → selected config-only files for `.pi`, `.agents`, `.codex`, `.claude`, `.gemini`
+- `editors/` → VS Code and iTerm2 config (not stow packages — see below)
+- `Brewfile` → the tools these configs assume
 
 Auth/runtime/state files are ignored via `.gitignore`.
 
@@ -25,6 +27,38 @@ What `make setup` does:
 1. creates a backup under `~/.dotfiles-backups/setup-<timestamp>`
 2. moves conflicting targets to backup (never overwrites)
 3. stows `shell config ai`
+
+## New machine (macOS)
+
+```bash
+brew install stow
+git clone git@github.com:lolwierd/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+make brew      # install the Brewfile
+make setup     # backup conflicts, then stow shell config ai
+make vscode    # link VS Code settings + install extensions
+make iterm2    # import iTerm2 prefs (quit iTerm2 first)
+```
+
+Machine-local secrets are **not** in this repo. Create
+`~/.config/zsh/keys.local.zsh` by hand and export what you need there.
+
+## Editors
+
+VS Code and iTerm2 store their config under `~/Library`, which stow's
+`--dotfiles` mode cannot target, so `editors/` is linked and imported by
+explicit make targets rather than stowed:
+
+- `make vscode` symlinks `editors/vscode/{settings,keybindings}.json` into
+  `~/Library/Application Support/Code/User/` (backing up any real file first)
+  and installs everything in `editors/vscode/extensions.txt`.
+- `make iterm2` copies `editors/iterm2/` into `~/.config/iterm2/` and runs
+  `defaults import com.googlecode.iterm2`. **Quit iTerm2 first** — it rewrites
+  its plist on exit and will clobber the import. The committed plist has
+  window frames, `NoSync*` UI state, and update-checker timestamps stripped.
+
+To capture new editor config back into the repo, copy the live files over
+`editors/…` and commit; there is no automatic export.
 
 ## Dry run
 
