@@ -6,6 +6,7 @@ Managed with GNU Stow (single shared branch, cross-platform configs).
 - `shell/` → `~/.zshrc`, `~/.zshenv`, `~/.p10k.zsh`, `~/.profile`, `~/.gitconfig`
 - `config/` → `~/.config/{nvim,tmux,ghostty,zsh,git,btop}`
 - `ai/` → selected config-only files for `.pi`, `.agents`, `.codex`, `.claude`, `.gemini`
+- `local/` → `~/.local/bin`, `~/.local/scripts` helper scripts referenced by the tracked configs
 - `editors/` → VS Code and iTerm2 config (not stow packages — see below)
 - `Brewfile` → the tools these configs assume
 
@@ -30,7 +31,7 @@ gmake setup
 What `make setup` does:
 1. creates a backup under `~/.dotfiles-backups/setup-<timestamp>`
 2. moves conflicting targets to backup (never overwrites)
-3. stows `shell config ai`
+3. stows `shell config ai local`
 
 ## New machine (macOS)
 
@@ -41,7 +42,7 @@ cd ~/dotfiles
 brew install stow make       # gmake: macOS's bundled make is too old
 brew trust nikitabobko/tap   # one-time: aerospace comes from a third-party tap
 gmake brew     # install the Brewfile
-gmake setup    # backup conflicts, then stow shell config ai
+gmake setup    # backup conflicts, then stow shell config ai local
 gmake vscode   # link VS Code settings + install extensions
 gmake iterm2   # import iTerm2 prefs (quit iTerm2 first)
 ```

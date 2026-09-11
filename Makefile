@@ -9,7 +9,7 @@ $(error GNU Make $(MAKE_VERSION) does not support .ONESHELL. macOS ships 3.81; r
 endif
 
 BACKUP_ROOT ?= $(HOME)/.dotfiles-backups
-PACKAGES := shell config ai
+PACKAGES := shell config ai local
 
 .PHONY: help setup dry-run cleanup status brew vscode iterm2
 

@@ -12,6 +12,9 @@ All notable changes to this repository will be documented in this file.
 - `make setup` never worked on macOS. The Makefile uses `.ONESHELL`, which needs GNU Make 3.82+, and macOS ships 3.81 — every recipe line ran in its own shell and the multi-line recipes died with `syntax error: unexpected end of file`. The Makefile now asserts the feature is present and says to use `gmake`; `make` is in the Brewfile and the README uses `gmake` throughout.
 
 ### Added
+- Added a `local` stow package carrying `~/.local/bin/tmux-apply-theme` and `~/.local/scripts/tmux-sessionizer`. `config/dot-config/tmux/tmux.conf` runs `tmux-apply-theme` from a `run-shell` and three hooks, so a machine that stowed this repo but never had the untracked script got errors on every tmux start; `tmux-sessionizer` backs the `t` alias.
+
+### Added
 - Added a `Brewfile` covering the tools `shell/` and `config/` actually reference by name, plus the language toolchains in daily use. Personal/media packages are deliberately left out so a work machine stays lean. Installed with `make brew`.
 - Added `editors/vscode/` (`settings.json`, `keybindings.json`, `extensions.txt`) and `editors/iterm2/` (exported prefs plist, `Default.json`, `flexoki-light.itermcolors`), with `make vscode` and `make iterm2` targets. These live outside the stow packages because VS Code and iTerm2 keep config under `~/Library`, which stow's `--dotfiles` mode cannot target. The committed iTerm2 plist has window frames, `NoSync*` UI state, and update-checker timestamps stripped.
 - Documented a new-machine bootstrap sequence and the editor targets in the README.
