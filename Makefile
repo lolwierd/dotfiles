@@ -103,7 +103,24 @@ setup:
 		printf '%s\n' "$$out"
 	}
 
+	# stow matches ignore patterns per path segment, so test the basename the
+	# same way stow does. Anything stow will not link must not be moved aside
+	# either — that would delete the machine's own working copy.
+	ai_ignored() {
+		local base="$$1" pat
+		[[ -f ai/.stow-local-ignore ]] || return 1
+		while IFS= read -r pat; do
+			[[ -z "$$pat" || "$$pat" == "#"* ]] && continue
+			[[ "$$base" =~ $$pat ]] && return 0
+		done < ai/.stow-local-ignore
+		return 1
+	}
+
 	while IFS= read -r p; do
+		if ai_ignored "$$(basename "$$p")"; then
+			echo "SKIP ignored by ai/.stow-local-ignore: $$p"
+			continue
+		fi
 		rel="$$(map_path "$$p")"
 		backup_move "$$rel"
 	done < <(find ai -type f | sort)

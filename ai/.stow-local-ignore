@@ -7,7 +7,12 @@
 # The file stays tracked as the reference copy of the *preferences* (model,
 # reasoning effort, [features], approval policy) — copy those into a new
 # machine's config.toml by hand. Everything else in ai/ is still stowed.
-^/dot-codex/config\.toml$
+#
+# Matched on the basename: this stow matches ignore patterns per path segment,
+# not against the whole package-relative path, so "^/dot-codex/config\.toml$"
+# silently does nothing. ai/dot-codex/config.toml is the only config.toml in
+# this package, so the bare name is unambiguous.
+config\.toml
 
 # stow's built-in defaults, which naming this file would otherwise discard.
 ^/\.git$
