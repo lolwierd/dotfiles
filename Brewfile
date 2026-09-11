@@ -58,6 +58,10 @@ brew "wget"
 brew "openssh"
 
 # --- casks ---
+# aerospace lives in a third-party tap. Homebrew 6 will not install from an
+# untrusted tap, so run `brew trust nikitabobko/tap` once before `make brew`.
+tap "nikitabobko/tap"
+
 cask "ghostty"               # config/dot-config/ghostty
 cask "nikitabobko/tap/aerospace"  # config/dot-config/aerospace
 cask "font-meslo-lg-nerd-font"    # powerlevel10k glyphs

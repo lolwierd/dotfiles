@@ -34,6 +34,7 @@ What `make setup` does:
 brew install stow
 git clone git@github.com:lolwierd/dotfiles.git ~/dotfiles
 cd ~/dotfiles
+brew trust nikitabobko/tap   # one-time: aerospace comes from a third-party tap
 make brew      # install the Brewfile
 make setup     # backup conflicts, then stow shell config ai
 make vscode    # link VS Code settings + install extensions

@@ -15,6 +15,8 @@ All notable changes to this repository will be documented in this file.
 
 ### Changed
 - Made `shell/dot-zshrc` and `shell/dot-profile` machine-portable: installer-appended `/Users/lolwierd/...` absolute paths now go through `$HOME` / `path_prepend_if_dir`, the duplicate opencode/bun PATH exports were dropped, and the Google Cloud SDK include probes `~/google-cloud-sdk` then `~/Downloads/google-cloud-sdk` instead of hardcoding one machine's Downloads folder.
+- Resolved `nvm.sh` at shell start instead of assuming `$NVM_DIR/nvm.sh`: Homebrew keeps it in the Cellar, so the lazy `node`/`npm`/`pnpm` wrappers silently loaded nothing on a brew-installed nvm.
+- Added Homebrew's keg-only `rustup` bin directory to PATH on macOS, since `rustc`/`cargo` are not symlinked into `/opt/homebrew/bin`.
 - Guarded the `powerlevel10k.zsh-theme` source in `shell/dot-zshrc`: it was unconditional, so a machine without the `~/powerlevel10k` clone got an error on every shell start. It now falls back to the Homebrew formula and stays silent if neither is present.
 - Rebound `^f` to a new `cproj` picker (fzf over `~/Projects`) in place of `tmux-sessionizer`, and pointed `g`/`gy` at `agy`.
 - Unset inherited Langfuse tracing variables in `shell/dot-zshenv` so stale exports from older sessions do not leak into new shells.

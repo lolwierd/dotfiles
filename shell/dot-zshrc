@@ -150,6 +150,8 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
   path_prepend_if_dir "/opt/homebrew/opt/libpq/bin"
   path_append_if_dir "$HOME/Library/Python/3.9/bin"
   path_prepend_if_dir "$HOME/.codeium/windsurf/bin"
+  # rustup is keg-only under Homebrew; rustc/cargo are not symlinked into bin.
+  path_append_if_dir "/opt/homebrew/opt/rustup/bin"
 fi
 
 # Load secrets (kept in a separate file)
@@ -171,6 +173,17 @@ if command -v direnv >/dev/null 2>&1; then
 fi
 
 export NVM_DIR="$HOME/.nvm"
+# nvm.sh lives beside $NVM_DIR for the install-script route, but inside the
+# Cellar when nvm came from Homebrew. Resolve it once, here.
+if [[ -s "$NVM_DIR/nvm.sh" ]]; then
+  _nvm_sh="$NVM_DIR/nvm.sh"
+  _nvm_completion="$NVM_DIR/bash_completion"
+elif command -v brew >/dev/null 2>&1 && [[ -s "$(brew --prefix)/opt/nvm/nvm.sh" ]]; then
+  _nvm_sh="$(brew --prefix)/opt/nvm/nvm.sh"
+  _nvm_completion="$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"
+  [[ -d "$NVM_DIR" ]] || mkdir -p "$NVM_DIR"
+fi
+
 # Expose nvm global binaries (e.g. codex) without loading full nvm on startup.
 if [[ -f "$NVM_DIR/alias/default" ]]; then
   _nvm_default_alias="$(<"$NVM_DIR/alias/default")"
@@ -187,8 +200,8 @@ fi
 # Lazy-load nvm/node toolchain on first use to avoid shell startup lag.
 _nvm_lazy_wrapper() {
   unset -f nvm node npm npx corepack pnpm yarn
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  [[ -n "$_nvm_sh" && -s "$_nvm_sh" ]] && \. "$_nvm_sh"
+  [[ -n "$_nvm_completion" && -s "$_nvm_completion" ]] && \. "$_nvm_completion"
 }
 nvm()      { _nvm_lazy_wrapper; command nvm "$@"; }
 node()     { _nvm_lazy_wrapper; command node "$@"; }
