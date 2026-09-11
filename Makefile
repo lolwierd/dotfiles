@@ -41,15 +41,16 @@ setup:
 	mkdir -p "$$BACKUP_DIR/moved"
 	: > "$$BACKUP_DIR/moved-paths.txt"
 
+	# True when $$1 already resolves into this repo. Must follow the WHOLE path,
+	# not just the leaf: stow folds directories, so after a first run a file like
+	# ~/.agents/skills/foo/SKILL.md is a plain file reached through the folded
+	# link ~/.agents -> dotfiles/ai/dot-agents. Testing only the leaf for -L
+	# misses that, and backup_move then moves the file OUT of the repo.
+	REPO_REAL="$$(cd "$(PWD)" && pwd -P)"
 	is_repo_link() {
-		local p="$$1"
-		if [[ -L "$$p" ]]; then
-			local link
-			link="$$(readlink "$$p")"
-			[[ "$$link" == *"dotfiles/"* ]]
-		else
-			return 1
-		fi
+		local p="$$1" real
+		real="$$(python3 -c 'import os,sys; print(os.path.realpath(sys.argv[1]))' "$$p" 2>/dev/null)" || return 1
+		[[ "$$real" == "$$REPO_REAL"/* ]]
 	}
 
 	backup_move() {

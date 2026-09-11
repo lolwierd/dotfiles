@@ -9,6 +9,7 @@ All notable changes to this repository will be documented in this file.
 - Removed the SigNoz MCP server (`http://127.0.0.1:8000/mcp`) from Pi's `ai/dot-pi/agent/mcp-servers.json`.
 
 ### Fixed
+- `make setup` destroyed tracked files when run a second time. `is_repo_link` only tested the leaf path for being a symlink, but stow folds directories — after a first run, `~/.agents/skills/foo/SKILL.md` is a plain file reached through the folded link `~/.agents -> dotfiles/ai/dot-agents`. The leaf test missed that, so `backup_move` moved 427 files *out of the repo* into the backup directory. It now resolves the full realpath and skips anything already inside the repo.
 - `make setup` never worked on macOS. The Makefile uses `.ONESHELL`, which needs GNU Make 3.82+, and macOS ships 3.81 — every recipe line ran in its own shell and the multi-line recipes died with `syntax error: unexpected end of file`. The Makefile now asserts the feature is present and says to use `gmake`; `make` is in the Brewfile and the README uses `gmake` throughout.
 
 ### Added
