@@ -321,10 +321,25 @@ const getHeaderResources = (pi: ExtensionAPI, ctx: ExtensionContext) => {
 		}
 	}
 
+	// Discover MCP servers by scanning registered tools for mcp__ prefix
+	const allTools = pi.getAllTools();
+	const mcpServers = new Map<string, number>();
+	for (const tool of allTools) {
+		const match = tool.name.match(/^mcp__(\w+)__/);
+		if (match) {
+			const server = match[1];
+			mcpServers.set(server, (mcpServers.get(server) ?? 0) + 1);
+		}
+	}
+	const mcpList = Array.from(mcpServers.entries())
+		.map(([s, n]) => `${s}(${n})`)
+		.sort((a, b) => a.localeCompare(b));
+
 	const themes = ctx.ui.getAllThemes().map((theme) => theme.name).sort((a, b) => a.localeCompare(b));
 	return {
 		skills: Array.from(skills).sort((a, b) => a.localeCompare(b)),
 		extensions: Array.from(extensions).sort((a, b) => a.localeCompare(b)),
+		mcp: mcpList,
 		themes,
 	};
 };
@@ -346,17 +361,15 @@ const applyChrome = (pi: ExtensionAPI, ctx: ExtensionContext) => {
 	activeCwd = ctx.cwd;
 
 	if (!chromeLayoutMounted) {
-		const resourceData = getHeaderResources(pi, ctx);
-
-		ctx.ui.setHeader((_tui, theme) => ({
+		ctx.ui.setHeader((tui, theme) => ({
 		render(width: number): string[] {
-			const model = formatProviderModel(activeProvider || ctx.model?.provider, activeModel || ctx.model?.id);
+			const model = formatProviderModel(activeProvider, activeModel);
 			const thinking = pi.getThinkingLevel();
 			const sessionName = pi.getSessionName() || "unnamed-session";
 			const resourcesExpanded = ctx.ui.getToolsExpanded();
-			const resourcesHint = resourcesExpanded ? "Ctrl+O hide resources" : "Ctrl+O show resources";
+			const resourcesHint = resourcesExpanded ? "Ctrl+O hide" : "Ctrl+O show";
 
-			const lines = [
+			const lines: string[] = [
 				truncateToWidth(theme.fg("accent", theme.bold("pi atelier")), width),
 				truncateToWidth(
 					`${theme.fg("muted", sessionName)}${theme.fg("dim", " · ")}${theme.fg("muted", model)}${theme.fg("dim", " · thinking:")}${theme.fg("accent", thinking)}${theme.fg("dim", ` · ${resourcesHint}`)}`,
@@ -365,28 +378,36 @@ const applyChrome = (pi: ExtensionAPI, ctx: ExtensionContext) => {
 			];
 
 			if (resourcesExpanded) {
-				const skills = resourceData.skills.length ? resourceData.skills.join(", ") : "none";
-				const extensions = resourceData.extensions.length ? resourceData.extensions.join(", ") : "none";
-				const themes = resourceData.themes.length ? resourceData.themes.join(", ") : "none";
+				const rd = getHeaderResources(pi, ctx);
+				const skills = rd.skills.length ? rd.skills.join(", ") : "none";
+				const extensions = rd.extensions.length ? rd.extensions.join(", ") : "none";
+				const mcp = rd.mcp.length ? rd.mcp.join(", ") : "none";
 				lines.push(truncateToWidth(`${theme.fg("dim", "[Skills]")} ${theme.fg("muted", skills)}`, width));
 				lines.push(truncateToWidth(`${theme.fg("dim", "[Extensions]")} ${theme.fg("muted", extensions)}`, width));
-				lines.push(truncateToWidth(`${theme.fg("dim", "[Themes]")} ${theme.fg("muted", themes)}`, width));
+				lines.push(truncateToWidth(`${theme.fg("dim", "[MCP]")} ${theme.fg("muted", mcp)}`, width));
 			}
 
 			return lines;
 		},
-		invalidate() {},
+		invalidate() {
+			tui.requestRender();
+		},
 	}));
 
 	ctx.ui.setFooter((tui, theme, footerData) => {
 		const unsub = footerData.onBranchChange(() => tui.requestRender());
-		const ticker = setInterval(() => tui.requestRender(), CLOCK_TICK_MS);
+		// Only tick while agent is running (updates turn timer)
+		const ticker = setInterval(() => {
+			if (inFlight) tui.requestRender();
+		}, CLOCK_TICK_MS);
 		return {
 			dispose() {
 				unsub();
 				clearInterval(ticker);
 			},
-			invalidate() {},
+			invalidate() {
+				tui.requestRender();
+			},
 			render(width: number): string[] {
 				const branch = footerData.getGitBranch();
 				const thinking = pi.getThinkingLevel();
@@ -403,7 +424,7 @@ const applyChrome = (pi: ExtensionAPI, ctx: ExtensionContext) => {
 				})();
 				const sessionLabel = formatDuration(getSessionDurationMs());
 
-				const providerModel = formatProviderModel(activeProvider || ctx.model?.provider, activeModel || ctx.model?.id);
+				const providerModel = formatProviderModel(activeProvider, activeModel);
 				const slash = providerModel.indexOf("/");
 				const providerLabel = slash > 0 ? providerModel.slice(0, slash) : "";
 				const modelLabel = slash > 0 ? providerModel.slice(slash + 1) : providerModel;
@@ -411,11 +432,9 @@ const applyChrome = (pi: ExtensionAPI, ctx: ExtensionContext) => {
 					? `${theme.fg("dim", providerLabel)}${theme.fg("muted", "/")}${theme.fg("accent", modelLabel)}`
 					: theme.fg("accent", modelLabel);
 				const thinkingDisplay = renderThinkingLevel(theme, thinking);
-				const pulseOn = Math.floor(Date.now() / CLOCK_TICK_MS) % 2 === 0;
+				// Static status — no pulsing to avoid flicker
 				const statusDisplay = inFlight
-					? pulseOn
-						? theme.fg("accent", "thinking")
-						: theme.fg("muted", "thinking")
+					? theme.fg("accent", "thinking")
 					: theme.fg("dim", "idle");
 				const footerRight = `${modelDisplay}${theme.fg("dim", " · ")}${thinkingDisplay}${branch ? `${theme.fg("dim", " (")}${theme.fg("muted", branch)}${theme.fg("dim", ")")}` : ""}${theme.fg("dim", " · ")}${statusDisplay}`;
 
@@ -500,7 +519,10 @@ export default function atelierChrome(pi: ExtensionAPI) {
 		if (chromeEnabled) {
 			applyChrome(pi, ctx);
 		}
-		if (autoThemeEnabled) void syncThemeToSystem(ctx);
+			if (autoThemeEnabled) {
+			lastSystemDark = undefined;
+			startThemePolling(ctx);
+		}
 	});
 
 	pi.on("model_select", async (event, ctx) => {
@@ -515,26 +537,23 @@ export default function atelierChrome(pi: ExtensionAPI) {
 		inFlight = true;
 		currentTurnStartedAt = Date.now();
 		liveUsage = null;
-		if (chromeEnabled) applyChrome(pi, ctx);
 	});
 
-	pi.on("message_update", async (event, ctx) => {
+	pi.on("message_update", async (event, _ctx) => {
 		if (event.message.role !== "assistant") return;
 		const msg = event.message as AssistantMessage;
 		liveUsage = {
-			input: msg.usage.input,
-			output: msg.usage.output,
-			cost: msg.usage.cost.total,
-			cacheRead: msg.usage.cacheRead,
-			cacheWrite: msg.usage.cacheWrite,
+			input: msg.usage?.input ?? 0,
+			output: msg.usage?.output ?? 0,
+			cost: msg.usage?.cost?.total ?? 0,
+			cacheRead: msg.usage?.cacheRead ?? 0,
+			cacheWrite: msg.usage?.cacheWrite ?? 0,
 		};
-		if (chromeEnabled) applyChrome(pi, ctx);
 	});
 
 	pi.on("turn_end", async (_event, ctx) => {
 		liveUsage = null;
 		recalcSessionStats(ctx);
-		if (chromeEnabled) applyChrome(pi, ctx);
 	});
 
 	pi.on("agent_end", async (_event, ctx) => {
@@ -545,7 +564,6 @@ export default function atelierChrome(pi: ExtensionAPI) {
 		inFlight = false;
 		liveUsage = null;
 		recalcSessionStats(ctx);
-		if (chromeEnabled) applyChrome(pi, ctx);
 	});
 
 	pi.on("session_shutdown", () => {
